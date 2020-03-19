@@ -1,0 +1,29 @@
+/* header */
+/*========================================================*/
+/* header */
+header {
+    margin-top: 5%;
+}
+/* navbar title branding */
+h1 {
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+}
+/* navbar links */
+a {
+    font-size: 20px;
+    color: rgb(39, 89, 55);
+}
+a:hover {
+    font-size: 20px;
+    color: rgba(39, 89, 55, 50%);
+}
+/* main section */
+/*========================================================*/
+/* main image */
+.main-image {
+    max-width: 100%;
+    width: 100%;
+    box-shadow: 5px 5px 5px lightgray;
+}
