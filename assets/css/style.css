@@ -4,13 +4,13 @@
 header {
     margin-top: 2.5%;
 }
-/* navbar title branding */
+/* top navbar title branding */
 h1 {
     font-size: 20px;
     font-weight: normal;
     color: white;
 }
-/* navbar links */
+/* bottom navbar links */
 a {
     font-size: 20px;
     color: rgb(39, 89, 55);
@@ -18,6 +18,11 @@ a {
 a:hover {
     font-size: 20px;
     color: rgba(39, 89, 55, 50%);
+}
+/* logo */
+.logo-image {
+    width: auto;
+    height: 50px;
 }
 /* main section */
 /*========================================================*/
