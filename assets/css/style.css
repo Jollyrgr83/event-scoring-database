@@ -1,7 +1,7 @@
 /* header */
 /*========================================================*/
 /* header */
-header {
+.home-header {
     margin-top: 2.5%;
 }
 /* top navbar title branding */
@@ -31,4 +31,42 @@ a:hover {
     max-width: 100%;
     width: 100%;
     box-shadow: 5px 5px 5px lightgray;
+}
+
+.main-green {
+    background-color: rgba(39, 89, 55, 50%);
+    padding: 2.5%;
+}
+
+.event-header {
+    color: rgb(39, 89, 55);
+}
+
+.main-container {
+    margin: 2.5%;
+    padding: 2.5%;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgb(39, 89, 55);
+}
+
+.enter {
+    width: 150px;
+    height: 75px;
+    margin: 25px;
+    text-align: center;
+    border: solid 0.5pt black;
+}
+
+.enter-button {
+    width: 150px;
+    height: 75px;
+    margin: 25px;
+    text-align: center;
+}
+
+.tier-button {
+    width: 150px;
+    height: 75px;
+    margin: 25px;
+    text-align: center;
 }

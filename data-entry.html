@@ -10,86 +10,185 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <!-- local style sheet -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
-
 <body>
-
     <header>
         <nav class="navbar navbar-light p-0">
             <h1 class="navbar-brand justify-content-start p-2 my-0">
-                <a href="index.html" class="nav-link">
-                Data Entry
-                </a>
+                <a href="index.html" class="nav-link">Data Entry</a>
             </h1>
             <img src="assets/images/SC-logo.jpg" alt="Santee Cooper logo" class="justify-content-end p-0 mx-3 logo-image"/> 
         </nav>
     </header>
-    
-    <main>
-        
-        <img src="assets/images/distribution-lines.jpg" alt="image of electrical distribution lines" class="main-image"/>
-        
-        <!-- Button trigger modal -->
-        <button type="button" class="btn card-img-overlay" data-toggle="modal" data-target="#exampleModalCenter">
-        Enter Event Data
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Enter Event Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <!-- Enter modal body elements below -->
-                <div class="modal-body">
-                
-                    <form>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">Email address</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect1">Example select</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect2">Example multiple select</label>
-                          <select multiple class="form-control" id="exampleFormControlSelect2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1">Example textarea</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                      </form>
-
-
-
-
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+    <main class="main-green">
+        <div class="container main-container">
+            <div class="row">
+                <h1 class="event-header mx-auto">Enter Event Information</h1>
+            </div>
+            <div class="row">
+                <div class="mx-auto">
+                    <input id="year-input" type="text" placeholder="Enter year"></input>
+                    <button id="year-button">Submit</button>
                 </div>
             </div>
+        </div>
+        <div class="container main-container">
+            <div id="event-input">
             </div>
         </div>
 
+        <script type="text/javascript">
+            var database;
+            if (localStorage.getItem("database") === null) {
+                database = {
+                    "2020" : {
+                        "tierArray" : ["journeyman", "apprentice"],
+                        "eventArray" : [
+                            ["t1e1", "t2e2", "t3e3"],
+                            ["t2e1"]
+                        ]
+                }
+                }
+                console.log("database was created");
+            }
+            else {
+                database = JSON.parse(localStorage.getItem("database"));
+                console.log("database was retrieved");
+            }
+
+            renderInput();
+            
+            function renderInput() {
+                $("#event-input").empty();
+
+                // retrieve tiers and events from database
+                var tierArray = [];
+                for (let i = 0; i < database["2020"].tierArray.length; i++) {
+                    tierArray.push(database["2020"].tierArray[i]);
+                }
+                var eventArray = [];
+                for (let i = 0; i < database["2020"].eventArray.length; i++) {
+                    eventArray.push(database["2020"].eventArray[i]);
+                }
+
+                // generate displayArray by adding inputs and buttons
+                var eventDisplayArray = [];
+                
+                
+                for (let i = 0; i < eventDisplayArray.length; i++) {
+                    eventDisplayArray[i].push("input", "button");
+                }
+
+                var tierDisplayArray = tierArray;
+
+                console.log("tierArray", tierArray);
+                console.log("tierDisplayArray", tierDisplayArray);
+                
+                tierDisplayArray.push("input", "button");
+
+                console.log("tierArray", tierArray);
+                console.log("tierDisplayArray", tierDisplayArray);
+
+                // normalize event array lengths
+                var maxLength = 0;
+                for (let i = 0; i < eventDisplayArray.length; i++) {
+                    if (eventDisplayArray[i].length > maxLength) {
+                        maxLength = eventDisplayArray[i].length;
+                    }
+                }
+                for (let i = 0; i < eventDisplayArray.length; i++) {
+                    for (let j = 0; j < maxLength; j++) {
+                        if (eventDisplayArray[i][j] === undefined) {
+                            eventDisplayArray[i].push(" ");
+                        }
+                    }
+                }
+                console.log("eventDisplayArray", eventDisplayArray);
+                
+                // generate and append first row items
+                var firstRowEl = $("<div>");
+                firstRowEl.attr("class", "row");
+                $.each(tierDisplayArray, function(i, tier) {
+                    if (tier === "input") {
+                        var tierEl = $("<input>");
+                        tierEl.attr("class", "enter");
+                        tierEl.attr("type", "text");
+                        tierEl.attr("placeholder", "enter tier");
+                        tierEl.attr("id", "add-tier-input");
+                        firstRowEl.append(tierEl);
+                    }
+                    else if (tier === "button") {
+                        var tierEl = $("<button>");
+                        tierEl.attr("class", "tier-button");
+                        tierEl.attr("id", "add-tier-button");
+                        tierEl.text("add tier");
+                        firstRowEl.append(tierEl);
+                    }
+                    else {
+                        var tierEl = $("<div>");
+                        tierEl.attr("class", "enter");
+                        tierEl.text(tier);
+                        firstRowEl.append(tierEl);
+                    }
+                });
+                $("#event-input").append(firstRowEl);
+                // generate and append follow-on rows
+
+                // # of rows = maxLength
+                for (let i = 0; i < maxLength; i++) {
+                    var rowEl = $("<div>");
+                    rowEl.attr("class", "row");
+                    console.log("tierArray", tierArray);
+                    // # of events in row = # of tiers = tierArray.length
+                    for (let j = 0; j < tierArray.length; j++) {
+                        console.log("j", j);
+                        console.log("i", i);
+                        console.log("eventDisplayArray[j][i]", eventDisplayArray[j][i]);
+                        if (eventDisplayArray[j][i] === "input"){
+                            var eventEl = $("<input>");
+                            eventEl.attr("type", "text");
+                            eventEl.attr("class", "enter");
+                            eventEl.attr("id", "event-input" + i);
+                            eventEl.attr("placeholder", "enter event");
+                            rowEl.append(eventEl);
+                        }
+                        else if (eventDisplayArray[j][i] === "button") {
+                            var eventEl = $("<button>");
+                            eventEl.attr("class", "enter-button");
+                            eventEl.attr("id", "event-button" + i);
+                            eventEl.text("add event");
+                            eventEl.attr("data-tierNum", i);
+                            rowEl.append(eventEl);
+                        }
+                        else {
+                            var eventEl = $("<div>");
+                            eventEl.attr("class", "enter");
+                            eventEl.text(eventDisplayArray[j][i]);
+                            rowEl.append(eventEl);
+                        }
+                    }
+                    $("#event-input").append(rowEl);
+                }  
+            }
+            
+            
+            $(document).on("click", "#add-tier-button", function() {
+                var tierArray = database["2020"].tierArray;
+                var eventArray = database["2020"].eventArray;
+                tierArray.push($("#add-tier-input").val().trim());
+                eventArray.push([]);
+                renderInput();
+            });
+
+            $(document).on("click", ".enter-button", function() {
+                var tierNum = event.target.getAttribute("data-tierNum");
+                var eventArray = database["2020"].eventArray;
+                eventArray[tierNum].push($("#event-input" + tierNum));
+                renderInput();
+            })
+        </script>
     </main>
     
     <footer>

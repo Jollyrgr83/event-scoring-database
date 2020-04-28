@@ -4,22 +4,22 @@ This project was designed to record, display, and generate reports for a competi
 - Top three competitors overall (both tiers)
 - Overall results including scores and times for all competitors in all tiers for all events
 
-# Requirements
+## Requirements
 This project was designed to be used on any web browser.
 
-# Installation
+## Installation
 This project does not require installation.
 
-# Technology/Framework
+## Technology/Framework
 This project was created using bootstrap, html, css, and javascript.
 
-# How to Use
+## How to Use
 TBD
 
-# Credits
+## Credits
 I would like to thank all the instructors, TAs, and staff at the University of Utah Coding Bootcamp for the instruction, curriculum, inspiration, and other support provided to assist me in the creation of this project.
 
-# License
+## License
 Released under MIT License
 
 Copyright (c) 2020 Jason Mangin
