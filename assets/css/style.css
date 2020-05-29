@@ -1,72 +1,54 @@
-/* header */
-/*========================================================*/
-/* header */
-.home-header {
-    margin-top: 2.5%;
+.background {
+    background-color: rgba(39, 89, 55, 45%);
 }
-/* top navbar title branding */
-h1 {
-    font-size: 20px;
-    font-weight: normal;
-    color: white;
+.header-container {
+    margin: 5% 0 0 0;
 }
-/* bottom navbar links */
-a {
-    font-size: 20px;
-    color: rgb(39, 89, 55);
-}
-a:hover {
-    font-size: 20px;
-    color: rgba(39, 89, 55, 50%);
-}
-/* logo */
-.logo-image {
-    width: auto;
-    height: 50px;
-}
-/* main section */
-/*========================================================*/
-/* main image */
-.main-image {
+.title {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
     max-width: 100%;
-    width: 100%;
-    box-shadow: 5px 5px 5px lightgray;
+    width: 300px;
+    text-align: center;
+    border: solid 5px rgb(39, 89, 55);
+    background-color: rgb(39, 89, 55);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px black;
 }
-
-.main-green {
-    background-color: rgba(39, 89, 55, 50%);
-    padding: 2.5%;
-}
-
-.event-header {
-    color: rgb(39, 89, 55);
-}
-
-.main-container {
+.button {
+    border-radius: 40px;
+    background-color: rgb(39, 89, 55);
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border: solid 2px rgb(39, 89, 55);
+    font-size: 22px;
+    max-width: 100%;
+    width: 300px;
     margin: 2.5%;
-    padding: 2.5%;
+    padding: 1%;
+    box-shadow: 1px 1px 2px black;
+}
+.button:hover, .button:focus {
     background-color: white;
-    box-shadow: 5px 5px 5px rgb(39, 89, 55);
+    color: rgb(39, 89, 55);
+    outline: none;
+    border: solid 2px rgb(39, 89, 55);
 }
-
-.enter {
-    width: 150px;
-    height: 75px;
-    margin: 25px;
+input:enabled, input:focus, input:active {
+    border-radius: 40px;
+    background-color: white;
+    color: rgb(39, 89, 55);
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border: solid 2px rgb(39, 89, 55);
+    font-size: 22px;
+    max-width: 100%;
+    width: 300px;
+    margin: 2.5%;
+    padding: 1%;
+    box-shadow: 1px 1px 2px black;
     text-align: center;
-    border: solid 0.5pt black;
-}
-
-.enter-button {
-    width: 150px;
-    height: 75px;
-    margin: 25px;
-    text-align: center;
-}
-
-.tier-button {
-    width: 150px;
-    height: 75px;
-    margin: 25px;
-    text-align: center;
+    outline: none;
 }
