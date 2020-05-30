@@ -7,8 +7,8 @@
 .title {
     font-family: "Lato", sans-serif;
     font-weight: 300;
-    max-width: 100%;
-    width: 300px;
+    max-width: 90%;
+    width: 400px;
     text-align: center;
     border: solid 5px rgb(39, 89, 55);
     background-color: rgb(39, 89, 55);
@@ -19,11 +19,11 @@
 .main-container {
     border-radius: 15px;
     border: solid 2.5px rgb(39, 89, 55);
-    max-width: 100%;
-    width: 300px;
-    margin: 0 5px 5px 5px;
-    padding: 15px 1% 15px 1%;
-    box-shadow: 1px 1px 2px black;
+    max-width: 90%;
+    width: 400px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px black;
 }
 .button {
     border-radius: 40px;
@@ -34,9 +34,9 @@
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
     width: 90%;
-    margin: 10px 5px 10px 5px;
-    padding: 1%;
-    box-shadow: 1px 1px 2px black;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
 }
 .button:hover, .button:focus {
     background-color: white;
@@ -52,10 +52,10 @@
     font-weight: 300;
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
-    width: 45px;
-    margin: 5px 5px 10px 5px;
-    padding: 1%;
-    box-shadow: 1px 1px 2px black;
+    width: 50px;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
 }
 .nav-button:hover, .nav-button:focus {
     background-color: white;
@@ -72,9 +72,9 @@ input:enabled, input:focus, input:active {
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
     width: 90%;
-    margin: 10px 5px 10px 5px;
-    padding: 1%;
-    box-shadow: 1px 1px 2px black;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
     text-align: center;
     outline: none;
 }
@@ -87,9 +87,9 @@ select:enabled, select:focus, select:active {
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
     width: 90%;
-    margin: 10px 5px 10px 5px;
-    padding: 1%;
-    box-shadow: 1px 1px 2px black;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
     text-align: center;
     outline: none;
 }
@@ -99,21 +99,21 @@ select:enabled, select:focus, select:active {
     font-weight: 400;
     font-size: 22px;
     width: 90%;
-    margin: 0 5px 0 5px;
-    padding: 1%;
+    margin: 5px;
+    padding: 5px;
     text-align: center;
 }
-.time-title {
+.score-title {
     color: rgb(39, 89, 55);
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-size: 22px;
-    width: 40%;
-    margin: 0 5px 0 5px;
-    padding: 1%;
+    width: 30%;
+    margin: 5px;
+    padding: 5px;
     text-align: center;
 }
-.time-input:enabled, .time-input:focus, .time-input:active {
+.score-input:enabled, .score-input:focus, .score-input:active {
     border-radius: 40px;
     background-color: white;
     color: rgb(39, 89, 55);
@@ -121,22 +121,10 @@ select:enabled, select:focus, select:active {
     font-weight: 300;
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
-    width: 40%;
-    margin: 10px 5px 10px 5px;
-    padding: 1%;
-    box-shadow: 1px 1px 2px black;
+    width: 25%;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
     text-align: center;
     outline: none;
-}
-.score-title {
-    border-radius: 40px;
-    background-color: rgb(39, 89, 55);
-    color: white;
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 22px;
-    width: 90%;
-    margin: 0 5px 0 5px;
-    padding: 1%;
-    text-align: center;
 }
