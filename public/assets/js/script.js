@@ -13,3 +13,7 @@ $(() => {
         }
     });
 });
+
+// post routes
+// year-setup:
+// add tier - update db first, then pull from db, and build screen using handlebars? (need partials)

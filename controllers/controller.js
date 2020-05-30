@@ -8,14 +8,19 @@ router.get("/", (req, res) => {
 });
 
 router.get("/year-setup", (req, res) => {
+    // get info from db for year?, active tiers, and active events
     res.render("year-setup");
 });
 
 router.get("/competitor-entry", (req, res) => {
+    // previous and next button actions?
+    // look up by competitor number and year?
+    // where to store id for use
     res.render("competitor-entry");
 });
 
 router.get("/score-entry", (req, res) => {
+    // get competitor info for top box and pre-fill event score info if available
     res.render("score-entry");
 });
 

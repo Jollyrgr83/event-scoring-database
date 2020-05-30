@@ -1,29 +1,37 @@
-CREATE DATABASE rodeo;
+USE f53njecxqtofop7z;
 
-USE rodeo;
+DROP TABLE events;
+DROP TABLE tiers;
+DROP TABLE people;
+DROP TABLE scores;
+DROP TABLE teams;
 
 CREATE TABLE events (
     id INT AUTO_INCREMENT NOT NULL,
     event_name VARCHAR(255) NOT NULL,
     tier_id INT NOT NULL,
     year INT NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE tiers (
     id INT AUTO_INCREMENT NOT NULL,
     tier_name VARCHAR(255) NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE people (
     id INT AUTO_INCREMENT NOT NULL,
+    competitor_number VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     org_name VARCHAR(255) NOT NULL,
     team_id INT NOT NULL,
     tier_id INT NOT NULL,
     year INT NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -33,6 +41,7 @@ CREATE TABLE teams (
     tier_id INT NOT NULL,
     year INT NOT NULL,
     coop BOOLEAN NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -43,6 +52,7 @@ CREATE TABLE scores (
     score INT NOT NULL,
     time_min INT NOT NULL,
     time_sec INT NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -62,20 +72,20 @@ INSERT INTO tiers (id, tier_name) VALUES
 (1, "Apprentice"),
 (2, "Journeyman");
 
-INSERT INTO people (id, first_name, last_name, org_name, team_id, tier_id, year) VALUES
-(1, "Adam", "Alda", "Santee Cooper", 1, 1, 2019),
-(2, "Brett", "Byers", "Black River Coop", 2, 1, 2019),
-(3, "Charles", "Cooper", "Santee Cooper", 3, 1, 2019),
-(4, "David", "Dwight", "Berkeley Electric Coop", 4, 1, 2019),
-(5, "Ed", "Eden", "Marlboro Coop", 5, 1, 2019),
-(6, "Fred", "Franks", "Black River Coop", 6, 2, 2019),
-(7, "Gary", "Green", "Black River Coop", 6, 2, 2019),
-(8, "Hank", "Henderson", "Black River Coop", 6, 2, 2019),
-(9, "Isaac", "Ingles", "Black River Coop", 6, 2, 2019),
-(10, "John", "Johnson", "Santee Cooper", 7, 2, 2019),
-(11, "Kevin", "Smith", "Santee Cooper", 7, 2, 2019),
-(12, "Luke", "Smith", "Santee Cooper", 7, 2, 2019),
-(13, "Matt", "Smith", "Santee Cooper", 7, 2, 2019);
+INSERT INTO people (id, first_name, last_name, org_name, team_id, tier_id, year, competitor_number) VALUES
+(1, "Adam", "Alda", "Santee Cooper", 1, 1, 2019, "A101"),
+(2, "Brett", "Byers", "Black River Coop", 2, 1, 2019, "A102"),
+(3, "Charles", "Cooper", "Santee Cooper", 3, 1, 2019, "A103"),
+(4, "David", "Dwight", "Berkeley Electric Coop", 4, 1, 2019, "A104"),
+(5, "Ed", "Eden", "Marlboro Coop", 5, 1, 2019, "A105"),
+(6, "Fred", "Franks", "Black River Coop", 6, 2, 2019, "A201"),
+(7, "Gary", "Green", "Black River Coop", 6, 2, 2019, "A202"),
+(8, "Hank", "Henderson", "Black River Coop", 6, 2, 2019, "A203"),
+(9, "Isaac", "Ingles", "Black River Coop", 6, 2, 2019, "A204"),
+(10, "John", "Johnson", "Santee Cooper", 7, 2, 2019, "A205"),
+(11, "Kevin", "Smith", "Santee Cooper", 7, 2, 2019, "A206"),
+(12, "Luke", "Smith", "Santee Cooper", 7, 2, 2019, "A207"),
+(13, "Matt", "Smith", "Santee Cooper", 7, 2, 2019, "A208");
 
 INSERT INTO teams (id, team_name, tier_id, year, coop) VALUES
 (1, "Adam Alda", 1, 2019, false),
