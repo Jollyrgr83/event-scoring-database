@@ -24,6 +24,15 @@ router.get("/score-entry", (req, res) => {
     res.render("score-entry");
 });
 
+router.get("/reports", (req, res) => {
+    res.render("reports");
+});
+
+router.get("/instructions", (req, res) => {
+    res.render("instructions");
+});
+
+
 router.post("/api/", (req, res) => {
     model.add(req.body.name, (result) => {
         res.json({ id: result.insertId });

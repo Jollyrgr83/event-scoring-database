@@ -16,6 +16,19 @@
     border-radius: 15px;
     box-shadow: 2px 2px 5px black;
 }
+.mini-title {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    border: solid 5px rgb(39, 89, 55);
+    background-color: rgb(39, 89, 55);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px black;
+}
 .main-container {
     border-radius: 15px;
     border: solid 2.5px rgb(39, 89, 55);
@@ -92,6 +105,20 @@ select:enabled, select:focus, select:active {
     box-shadow: 2px 2px 5px black;
     text-align: center;
     outline: none;
+}
+.mini-title {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    width: 90%;
+    text-align: center;
+    border: solid 5px rgb(39, 89, 55);
+    background-color: rgb(39, 89, 55);
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
 }
 .item-title {
     color: rgb(39, 89, 55);

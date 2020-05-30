@@ -6,7 +6,9 @@ $(() => {
             "home": "/",
             "comp": "/competitor-entry",
             "year": "/year-setup",
-            "score": "/score-entry"
+            "score": "/score-entry",
+            "rep": "/reports",
+            "help": "/instructions"
         };
         if (routes[ID]) {
             window.location.href = routes[ID];
