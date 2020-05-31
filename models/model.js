@@ -1,23 +1,13 @@
 var orm = require("../config/orm.js");
 
 var handler_name = {
-    all: (cb) => {
-        orm.selectAll((res) => {
+    yearAll: (year, cb) => {
+        orm.selectAllYear(year, (res) => {
             cb(res);
         });
     },
-    add: (name, cb) => {
-        orm.insertOne([name], (res) => {
-            cb(res);
-        });
-    },
-    update: (id, cb) => {
-        orm.updateOne([id], (res) => {
-            cb(res);
-        });    
-    },
-    delete: (id, cb) => {
-        orm.deleteOne([id], (res) => {
+    tierAll: (cb) => {
+        orm.selectAllTiers((res) => {
             cb(res);
         });
     }

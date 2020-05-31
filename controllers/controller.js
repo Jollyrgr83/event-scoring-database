@@ -8,15 +8,25 @@ router.get("/", (req, res) => {
 });
 
 router.get("/year-setup", (req, res) => {
-    // get info from db for year?, active tiers, and active events
-    res.render("year-setup");
+    model.tierAll((data) => {
+        console.log("data", data);
+        var hbs = {
+            tiers: data
+        };
+        console.log("hbs", hbs);
+        res.render("year-setup", hbs);
+    });
 });
 
 router.get("/competitor-entry", (req, res) => {
-    // previous and next button actions?
-    // look up by competitor number and year?
-    // where to store id for use
-    res.render("competitor-entry");
+    model.tierAll((data) => {
+        console.log("data", data);
+        var hbs = {
+            tiers: data
+        };
+        console.log("hbs", hbs);
+        res.render("competitor-entry", hbs);
+    });
 });
 
 router.get("/score-entry", (req, res) => {
@@ -30,6 +40,28 @@ router.get("/reports", (req, res) => {
 
 router.get("/instructions", (req, res) => {
     res.render("instructions");
+});
+
+router.post("/api/year-setup", (req, res) => {
+    if (isNaN(parseInt(req.body.year))) {
+        return;
+    }
+    else {
+        let dataObj = {
+            year: parseInt(req.body.year),
+            tier: [],
+            all: []
+        };
+        model.tierAll((tierData) => {
+            console.log("data", tierData);
+            dataObj.tier = [...tierData];
+            model.yearAll(dataObj.year, (allData) => {
+                console.log("allData", allData);
+                dataObj.all = [...allData];
+                res.send(dataObj);
+            });
+        });
+    }
 });
 
 

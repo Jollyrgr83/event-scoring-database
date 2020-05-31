@@ -7,58 +7,32 @@
 </header>
 
 <main class="main-container mx-auto text-center">
-    <!-- pull info from db for most recent year? -->
+
     <p class="item-title mx-auto">Competition Year</p>
-    <input id="year-input" type="text" placeholder="Enter Year" />
+    <input id="year-input" type="number" placeholder="Enter Year" value="" />
+    <button class="button" id="year-update-button">Update</button>
 
 </main>
+
+<main id="dynamic"></main>
 
 <main class="main-container mx-auto text-center">
 
     <p class="item-title mx-auto">Select Competition Tier</p>
-    <select id="tier-input">
-        <option>Apprentice</option>
-        <option>Journeyman</option>
+    <select id="tier-select">
+        {{#each tiers}}
+            {{> year/year-tier-block}}
+        {{/each}}
         <option>Add New</option>
     </select>
 
-    <button class="button" id="year-enter">Add Tier</button>
+    <button class="button" id="year-add-tier-button">Add Tier</button>
 
 </main>
 
-<!-- Get active tiers from db and populate with active events -->
-
 <section class="main-container mx-auto text-center">
 
-    <p class="mini-title mx-auto">Apprentice Tier</p>
-
-    <input id="year-input" type="text" placeholder="Enter Event" value="Knot Tying" />
-    <input id="year-input" type="text" placeholder="Enter Event" value="Written Exam" />
-    <input id="year-input" type="text" placeholder="Enter Event" value="Pole Climb" />
-
-    <p class="item-title mx-auto">Add an Event</p>
-    <input id="year-input" type="text" placeholder="Enter Event" />
-    <button class="button" id="year-enter">Enter</button>
-
-</section>
-
-<section class="main-container mx-auto text-center">
-
-    <p class="mini-title mx-auto">Journeyman Tier</p>
-
-    <input id="year-input" type="text" placeholder="Enter Event" value="Changeout" />
-    <input id="year-input" type="text" placeholder="Enter Event" value="Excavation" />
-    <input id="year-input" type="text" placeholder="Enter Event" value="Pole Climb" />
-
-    <p class="item-title mx-auto">Add an Event</p>
-    <input id="year-input" type="text" placeholder="Enter Event" />
-    <button class="button" id="year-enter">Enter</button>
-
-</section>
-
-<section class="main-container mx-auto text-center">
-
-    <button class="button" id="year">Save Changes</button>
+    <button class="button" id="year-save-button">Save Changes</button>
 
 </section>
 

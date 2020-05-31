@@ -1,30 +1,16 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    selectAll: (cb) => {
-        var queryString = "SELECT * FROM table_name;";
+    selectAllYear: (year, cb) => {
+        var queryString = `SELECT events.id, events.event_name, events.tier_id, events.year, tiers.tier_name FROM events INNER JOIN tiers ON (events.tier_id = tiers.id) WHERE events.year = ${year};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    insertOne: (inputs, cb) => {
-        var queryString = `INSERT INTO table_name (col_name) VALUES (?);`;
-        connection.query(queryString, inputs, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    updateOne: (inputs, cb) => {
-        var queryString = `UPDATE table_name SET col_name = true WHERE id = ?;`;
-        connection.query(queryString, inputs, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    deleteOne: (inputs, cb) => {
-        var queryString = `DELETE FROM table_name WHERE id = ?`;
-        connection.query(queryString, inputs, (err, result) => {
+    selectAllTiers: (cb) => {
+        var queryString = `SELECT * FROM tiers;`;
+        connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
