@@ -1,0 +1,28 @@
+{
+  "name": "event-scoring-database",
+  "version": "1.0.0",
+  "description": "Rodeo Scoring Database",
+  "main": "server.js",
+  "scripts": {
+    "test": "none",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jollyrgr83/event-scoring-database.git"
+  },
+  "keywords": [
+    "rodeo"
+  ],
+  "author": "Jason Mangin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jollyrgr83/event-scoring-database/issues"
+  },
+  "homepage": "https://github.com/Jollyrgr83/event-scoring-database#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "mysql": "^2.18.1"
+  }
+}
