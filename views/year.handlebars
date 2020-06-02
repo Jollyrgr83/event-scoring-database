@@ -8,27 +8,31 @@
 
 <main class="main-container mx-auto text-center">
 
-    <p class="item-title mx-auto">Competition Year</p>
-    <input id="year-input" type="number" placeholder="Enter Year" value="" />
+    <p class="item-title mx-auto">Select Competition Year</p>
+    <select id="year-select">
+        {{#each arrays}}
+            {{#each years}}
+                {{> year/year-block}}
+            {{/each}}
+        {{/each}}
+    </select>
     <button class="button" id="year-update-button">Update</button>
-
 </main>
 
 <main id="dynamic"></main>
 
 <main class="main-container mx-auto text-center">
 
-    <p class="item-title mx-auto">Add Competition Tier</p>
+    <p class="item-title mx-auto">Select Competition Tier</p>
     <select id="tier-select">
-        {{#each tiers}}
-            {{> year/year-tier-block}}
+        {{#each arrays}}
+            {{#each tiers}}
+                {{> year/tier-block}}
+            {{/each}}
         {{/each}}
-        <option>Add New</option>
     </select>
 
     <button class="button" id="year-add-tier-button">Add Tier</button>
-
-    <div id="add-tier-dynamic"></div>
 
 </main>
 

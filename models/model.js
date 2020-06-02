@@ -16,8 +16,18 @@ var model = {
             cb(res);
         });
     },
+    updateView: (body, cb) => {
+        orm.updateOneView(body, (res) => {
+            cb(res);
+        });
+    },
     deleteView: (body, cb) => {
         orm.deleteOneView(body, (res) => {
+            cb(res);
+        });
+    },
+    getYearOptions: (cb) => {
+        orm.getAllYear((res) => {
             cb(res);
         });
     }

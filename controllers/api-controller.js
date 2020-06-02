@@ -40,6 +40,14 @@ router.post("/api/view/", (req, res) => {
     });
 });
 
+router.put("/api/view/", (req, res) => {
+    console.log("view PUT body: ", req.body);
+    model.updateView(req.body, (data) => {
+        console.log("data", data);
+        res.json(data);
+    });
+});
+
 router.delete("/api/view/", (req, res) => {
     console.log("view DELETE body: ", req.body);
     model.deleteView(req.body, (data) => {
@@ -47,29 +55,5 @@ router.delete("/api/view/", (req, res) => {
         res.json(data);
     });
 });
-
-// router.put("/api/", (req, res) => {
-//     model.update(req.body.id, (result) => {
-//         if (result.changedRows === 0) {
-//             return res.status(404).end();
-//         }
-//         else {
-//             res.status(200).end();
-//         }
-//     });
-// });
-
-// router.delete("/api/", (req, res) => {
-//     console.log("req.body", req.body);
-//     model.delete(req.body.id, (result) => {
-//         console.log("result", result);
-//         if (result.affectedRows === 0) {
-//             return res.status(404).end();
-//         }
-//         else {
-//             res.status(200).end();
-//         }
-//     });
-// });
 
 module.exports = router;

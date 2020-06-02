@@ -12,7 +12,10 @@ router.get("/view", (req, res) => {
 });
 
 router.get("/year", (req, res) => {
-    res.render("year");
+    model.getYearOptions((data) => {
+        console.log("data", JSON.stringify(data));
+        res.render("year", data);
+    });
 });
 
 router.get("/competitors", (req, res) => {

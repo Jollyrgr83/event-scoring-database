@@ -32,7 +32,11 @@ $(() => {
                 if (titleName === "Tiers") {
                     var teamStatus = $("#tiers-add-select").val();
                 }
-                renderAddMessage("success", titleName, itemName, teamStatus);
+                else if (titleName === "Organizations") {
+                    var teamStatus = null;
+                    var coopStatus = $("#organizations-add-select").val();
+                }
+                renderAddMessage("success", titleName, itemName, teamStatus, coopStatus);
             }
         }
     });
@@ -41,24 +45,42 @@ $(() => {
         var clickClass = $(event.target).attr("class");
         var ID = parseInt($(event.target).attr("id"));
         var titleName = $("#view-menu").val();
-        if (clickClass.indexOf("delete") != -1) {
+        var itemValue = $(`#input-${ID}`).val().trim();
+        if (itemValue === "") {
+            return;
+        }
+        else if (clickClass.indexOf("delete") != -1) {
             clickClass = "delete";
+            $.ajax("/api/view/", {
+                type: "DELETE",
+                data: {
+                    titleName: titleName,
+                    id: ID
+                }
+            }).then((res) => {
+                console.log("res", res);
+                if (res.affectedRows === 1) {
+                    window.location.href = "/view";
+                }
+            });
         }
         else if (clickClass.indexOf("update") != -1) {
             clickClass = "update";
+            $.ajax("/api/view/", {
+                type: "PUT",
+                data: {
+                    titleName: titleName,
+                    id: ID,
+                    itemValue: itemValue
+                }
+            }).then((res) => {
+                console.log("res", res);
+                if (res.affectedRows === 1) {
+                    window.location.href = "/view";
+                }
+            });
         }
-        $.ajax("/api/view/", {
-            type: "DELETE",
-            data: {
-                titleName: titleName,
-                id: ID
-            }
-        }).then((res) => {
-            console.log("res", res);
-            if (res.affectedRows === 1) {
-                window.location.href = "/view";
-            }
-        });
+        
     });
 
     function getView(titleName) {
@@ -133,12 +155,27 @@ $(() => {
             var tiersSelectEl = $("<select>");
             tiersSelectEl.attr("id", "tiers-add-select");
             var optionYesEl = $("<option>");
-            optionYesEl.text("Yes");
+            optionYesEl.text("Individuals");
             tiersSelectEl.append(optionYesEl);
             var optionNoEl = $("<option>");
-            optionNoEl.text("No");
+            optionNoEl.text("Teams");
             tiersSelectEl.append(optionNoEl);
             $("#add-container").append(tiersSelectEl);
+        }
+        else if (titleName === "Organizations") {
+            var organizationsTextEl = $("<p>");
+            organizationsTextEl.attr("class", "item-title mx-auto");
+            organizationsTextEl.text("Is this organization a coop?");
+            $("#add-container").append(organizationsTextEl);
+            var organizationsSelectEl = $("<select>");
+            organizationsSelectEl.attr("id", "organizations-add-select");
+            var optionYesEl = $("<option>");
+            optionYesEl.text("Yes");
+            organizationsSelectEl.append(optionYesEl);
+            var optionNoEl = $("<option>");
+            optionNoEl.text("No");
+            organizationsSelectEl.append(optionNoEl);
+            $("#add-container").append(organizationsSelectEl);
         }
         var buttonEl = $("<button>");
         buttonEl.attr("class", "button mx-auto");
@@ -150,7 +187,7 @@ $(() => {
         $("#add-container").append(messageEl);
     }
 
-    function renderAddMessage(status, titleName, itemName, teamStatus) {
+    function renderAddMessage(status, titleName, itemName, teamStatus, coopStatus) {
         $("#add-container").empty();
         if (status === "error") {
             console.log("status was error");
@@ -166,12 +203,20 @@ $(() => {
                 titleName: titleName,
                 itemName: itemName,
             };
-            if (teamStatus === "Yes" || teamStatus === "No") {
-                if (teamStatus === "Yes") {
+            if (teamStatus === "Individuals" || teamStatus === "Teams") {
+                if (teamStatus === "Teams") {
                     addObj.teamStatus = true;
                 }
                 else {
                     addObj.teamStatus = false;
+                }
+            }
+            else if (coopStatus === "Yes" || coopStatus === "No") {
+                if (coopStatus === "Yes") {
+                    addObj.coopStatus = true;
+                }
+                else {
+                    addObj.coopStatus = false;
                 }
             }
             $.ajax("/api/view/", {
@@ -188,110 +233,3 @@ $(() => {
     }
 
 });
-
-
-
-
-//     $(".nav-button").on("click", (event) => {
-//         var ID = $(event.target).attr("id");
-//         console.log("ID: ", ID);
-//     });
-
-//     function renderYear(data) {
-//         $("#dynamic").empty();
-//         $("#add-tier-dynamic").empty();
-//         // updates year-input value with selected year
-//         $("#year-input").val(parseInt(data.year));
-//         // ends if no tiers or events have been selected yet
-//         if (data.all.length === 0) {
-//             return;
-//         }
-//         let obj = {
-//             // names of active tiers
-//             activeTiers: [data.all[0].tier_name],
-//             // ids of active tiers
-//             activeTierIDs: [data.all[0].tier_id]
-//         };
-//         // populate obj arrays with active tier names and ids
-//         for (let i = 1; i < data.all.length; i++) {
-//             if (obj.activeTiers.indexOf(data.all[i].tier_name) === -1) {
-//                 obj.activeTiers.push(data.all[i].tier_name);
-//                 obj.activeTierIDs.push(data.all[i].tier_id);
-//             }
-//         }
-//         // establish obj keys and arrays for active tiers
-//         for (let i = 0; i < obj.activeTiers.length; i++) {
-//             obj[obj.activeTiers[i]] = [];
-//         }
-//         // separate event objects into applicable obj arrays
-//         for (let i = 0; i < data.all.length; i++) {
-//             obj[data.all[i].tier_name].push(data.all[i]);
-//         }
-//         // render html elements for active tiers and events
-//         for (let i = 0; i < obj.activeTiers.length; i++) {
-//             var sectionEl = $("<section>");
-//             sectionEl.attr("class", "main-container mx-auto text-center");
-//             var pTitleEl = $("<p>");
-//             pTitleEl.attr("class", "mini-title mx-auto");
-//             pTitleEl.text(obj.activeTiers[i] + " Tier");
-//             sectionEl.append(pTitleEl);
-//             for (let j = 0; j < obj[obj.activeTiers[i]].length; j++) {
-//                 var inputEl = $("<input>");
-//                 inputEl.attr("id", obj[obj.activeTiers[i]][j].id);
-//                 inputEl.attr("type", "text");
-//                 inputEl.val(obj[obj.activeTiers[i]][j].event_name);
-//                 sectionEl.append(inputEl);
-//             }
-//             var pAddEl = $("<p>");
-//             pAddEl.attr("class", "item-title mx-auto");
-//             pAddEl.text("Add an Event");
-//             var addInputEl = $("<input>");
-//             addInputEl.attr("id", obj.activeTiers[i] + "EventInput");
-//             addInputEl.attr("type", "text");
-//             addInputEl.attr("placeholder", "Enter Event Name");
-//             var addButtonEl = $("<button>");
-//             addButtonEl.attr("class", "button");
-//             addButtonEl.attr("id", obj.activeTiers[i] + "EventInputButton");
-//             addButtonEl.text("Add Event");
-//             sectionEl.append(pAddEl);
-//             sectionEl.append(addInputEl);
-//             sectionEl.append(addButtonEl);
-//             $("#dynamic").append(sectionEl);
-//         }
-//     }
-
-//     function renderAddTier() {
-//         $("#add-tier-dynamic").empty();
-//         var inputEl = $("<input>");
-//         inputEl.attr("id", "new-tier-input");
-//         inputEl.attr("type", "text");
-//         inputEl.attr("placeholder", "Enter Tier Name");
-//         var buttonEl = $("<button>");
-//         buttonEl.attr("class", "button");
-//         buttonEl.attr("id", "new-tier-button");
-//         buttonEl.text("Update");
-//         $("#add-tier-dynamic").append(inputEl);
-//         $("#add-tier-dynamic").append(buttonEl);
-//     }
-
-//     function renderTierOptions() {
-//         console.log("renderTierOptions called");
-//         $.get("/api/year-setup", (data) => {
-//             console.log("data 166", data);
-//             $("#tier-select").empty();
-//             for (let i = 0; i < data.tiers.length; i++) {
-//                 var optionEl = $("<option>");
-//                 optionEl.attr("id", data.tiers[i].id);
-//                 optionEl.text(data.tiers[i].tier_name);
-//                 $("#tier-select").append(optionEl);
-//             }
-//             var optionEl = $("<option>");
-//             optionEl.text("Add New");
-//             $("#tier-select").append(optionEl);
-//         });
-//     }
-// });
-
-// post routes
-// year-setup:
-// add tier - update db first, then pull from db, and build screen using handlebars? (need partials)
