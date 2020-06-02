@@ -3,9 +3,15 @@ var router = express.Router();
 
 var model = require("../models/model.js");
 
-router.get("/api/tier", (req, res) => {
+router.get("/api/tier/", (req, res) => {
     model.allTiers((data) => {
         res.json({tiers: data});
+    });
+});
+
+router.get("/api/events/", (req, res) => {
+    model.allEvents((data) => {
+        res.json(data);
     });
 });
 
@@ -31,11 +37,32 @@ router.get("/api/view/:tableName", (req, res) => {
     });
 });
 
+router.get("/api/year/:id", (req, res) => {
+    model.getActiveTiers(parseInt(req.params.id), (data) => {
+        console.log("getActiveYears: ", data);
+        res.json(data);
+    });
+});
+
 router.post("/api/view/", (req, res) => {
     console.log("view POST body: ", req.body);
     model.addView(req.body, (data) => {
         console.log("data", data);
         console.log("data.insertId", data.insertId);
+        res.json(data);
+    });
+});
+
+router.post("/api/year/", (req, res) => {
+    console.log("year POST body: ", req.body);
+    model.addEventYear(req.body, (data) => {
+        console.log("data", data);
+        res.json(data);
+    });
+});
+
+router.post("/api/year/tier/", (req, res) => {
+    model.addTierYear(req.body, (data) => {
         res.json(data);
     });
 });
@@ -51,6 +78,14 @@ router.put("/api/view/", (req, res) => {
 router.delete("/api/view/", (req, res) => {
     console.log("view DELETE body: ", req.body);
     model.deleteView(req.body, (data) => {
+        console.log("data", data);
+        res.json(data);
+    });
+});
+
+router.delete("/api/year/", (req, res) => {
+    console.log("year DELETE body: ", req.body);
+    model.deleteYear(req.body.event_id, req.body.tier_id, req.body.year_id, (data) => {
         console.log("data", data);
         res.json(data);
     });

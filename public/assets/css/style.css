@@ -95,6 +95,24 @@
     outline: none;
     border: solid 2px rgb(39, 89, 55);
 }
+.year-button {
+    border-radius: 40px;
+    background-color: red;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border: solid 2px red;
+    font-size: 22px;
+    width: 15%;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
+}
+.year-button:hover, .year-button:focus {
+    background-color: white;
+    color: red;
+    outline: none;
+}
 input:enabled, input:focus, input:active {
     border-radius: 40px;
     background-color: white;
@@ -104,6 +122,21 @@ input:enabled, input:focus, input:active {
     border: solid 2px rgb(39, 89, 55);
     font-size: 22px;
     width: 90%;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
+    text-align: center;
+    outline: none;
+}
+.year-input:enabled, .year-input:focus, .year-input:active {
+    border-radius: 40px;
+    background-color: white;
+    color: rgb(39, 89, 55);
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    border: solid 2px rgb(39, 89, 55);
+    font-size: 22px;
+    width: 70%;
     margin: 5px;
     padding: 5px;
     box-shadow: 2px 2px 5px black;
