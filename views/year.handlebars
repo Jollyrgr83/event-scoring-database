@@ -10,35 +10,43 @@
         {{> main/title-block}}
     {{/each}}
 
-    <main class="main-container mx-auto text-center">
+    <main>
 
-        <p class="item-title mx-auto">Select Competition Year</p>
-        <select id="year-select">
-            {{#each arrays}}
-                {{#each years}}
-                    {{> year/year-block}}
+        <section class="main-container mx-auto text-center">
+
+            <p class="item-title mx-auto">Select Competition Year</p>
+            
+            <select id="year-select">
+                {{#each arrays}}
+                    {{#each years}}
+                        {{> year/year-block}}
+                    {{/each}}
                 {{/each}}
-            {{/each}}
-        </select>
-        <button class="button" id="year-update-button">Update</button>
+            </select>
+
+            <button class="button" id="year-update-button">Update</button>
+
+        </section>
+
+        <section id="dynamic"></section>
+
+        <section class="main-container mx-auto text-center">
+
+            <p class="item-title mx-auto">Select Competition Tier</p>
+            
+            <select id="tier-select">
+                {{#each arrays}}
+                    {{#each tiers}}
+                        {{> year/tier-block}}
+                    {{/each}}
+                {{/each}}
+            </select>
+
+            <button class="button" id="year-add-tier-button">Add Tier</button>
+
+        </section>
+
     </main>
-
-    <section id="dynamic"></section>
-
-    <section class="main-container mx-auto text-center">
-
-        <p class="item-title mx-auto">Select Competition Tier</p>
-        <select id="tier-select">
-            {{#each arrays}}
-                {{#each tiers}}
-                    {{> year/tier-block}}
-                {{/each}}
-            {{/each}}
-        </select>
-
-        <button class="button" id="year-add-tier-button">Add Tier</button>
-
-    </section>
 
     {{> main/nav-menu-block}}
 

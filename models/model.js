@@ -60,6 +60,26 @@ var model = {
         orm.getActiveTiers(year_id, event_id, (res) => {
             cb(res);
         });
+    },
+    allComp: (yearValue, cb) => {
+        orm.getAllCompetitors(yearValue, (res) => {
+            cb(res);
+        });
+    },
+    oneComp: (compID, cb) => {
+        orm.getOneCompetitor(compID, (res) => {
+            cb(res);
+        });
+    },
+    updateComp: (body, cb) => {
+        orm.updateOneCompetitor(body, (res) => {
+            cb(res);
+        });
+    },
+    deleteComp: (body, cb) => {
+        orm.deleteOneCompetitor(body, (res) => {
+            cb(res);
+        });
     }
 };
 

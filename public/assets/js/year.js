@@ -1,7 +1,6 @@
 $(() => {
     $(document).on("click", ".button", (event) => {
         var ID = $(event.target).attr("id");
-        // var buttonClass = $(event.target).attr("class");
         if (ID === "year-update-button") {
             getYearSetup();
         }
@@ -32,9 +31,6 @@ $(() => {
     });
 
     $(document).on("click", ".year-button", (event) => {
-        // var event_id = parseInt($(event.target).attr("data-event_id"));
-        // var tier_id = parseInt($(event.target).attr("data-tier_id"));
-        // var year_id = parseInt($("#year-select").val());
         $.ajax("/api/year/", {
             type: "DELETE",
             data: {
@@ -50,9 +46,6 @@ $(() => {
     });
 
     $(document).on("click", ".year-add-event-button", (event) => {
-        // var year_id = parseInt($("#year-select").val());
-        // var tier_id = parseInt($(event.target).attr("data-id"));
-        // var event_id = parseInt($(`#year-add-event-select-${tier_id}`).val());
         $.ajax("/api/year/", {
             type: "POST",
             data: {

@@ -39,6 +39,7 @@ CREATE TABLE competitors (
     org_id INT NOT NULL,
     tier_id INT NOT NULL,
     year_id INT NOT NULL,
+    comp_number VARCHAR(255 NOT NULL),
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
@@ -122,15 +123,15 @@ INSERT INTO organizations (id, name, coop) VALUES
 (13, "Marlboro Electric Cooperative", true),
 (14, "Lynches River Electric Cooperative", true);
 
-INSERT INTO competitors (id, first_name, last_name, team_name, group_names, org_id, tier_id, year_id) VALUES
-(1, "Kyle", "Patrick", null, null, 6, 1, 4),
-(2, "Jeremy", "Garrett", null, null, 1, 1, 4),
-(3, "Michael", "Sims", null, null, 5, 1, 4),
-(4, "Peter", "Strong", null, null, 4, 1, 4),
-(5, null, null, "Santee Cooper Team 1", "Tommy Reece, Nick Brown, Coby Martin, Bryant Geathers", 1, 2, 4),
-(6, null, null, "Santee Cooper Team 2", "Sport Rabon, Chris Osha, McKenzie Johnson", 1, 2, 4),
-(7, null, null, "Palmetto Electric Cooperative Team 1", "Tarl Graham, Thomas Scaachi, David White", 4, 2, 4),
-(8, null, null, "Blue Ridge Electric Cooperative Team 1", "Chad Davidson, Jay Bagwell, Clay Crawford, Anson Perry", 5, 2, 4);
+INSERT INTO competitors (id, first_name, last_name, team_name, group_names, org_id, tier_id, year_id, comp_number) VALUES
+(1, "Kyle", "Patrick", null, null, 6, 1, 4, "A101"),
+(2, "Jeremy", "Garrett", null, null, 1, 1, 4, "A102"),
+(3, "Michael", "Sims", null, null, 5, 1, 4, "A103"),
+(4, "Peter", "Strong", null, null, 4, 1, 4, "A104"),
+(5, null, null, "Santee Cooper Team 1", "Tommy Reece, Nick Brown, Coby Martin, Bryant Geathers", 1, 2, 4, "J101"),
+(6, null, null, "Santee Cooper Team 2", "Sport Rabon, Chris Osha, McKenzie Johnson", 1, 2, 4, "J102"),
+(7, null, null, "Palmetto Electric Cooperative Team 1", "Tarl Graham, Thomas Scaachi, David White", 4, 2, 4, "J103"),
+(8, null, null, "Blue Ridge Electric Cooperative Team 1", "Chad Davidson, Jay Bagwell, Clay Crawford, Anson Perry", 5, 2, 4, "J104");
 
 INSERT INTO scores (id, year_id, competitor_id, event_id, score, time_minutes, time_seconds) VALUES
 (1, 4, 1, 1, 99, 4, 45),

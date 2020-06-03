@@ -8,35 +8,39 @@
 
     {{> main/title-block}}
 
-    <main class="main-container mx-auto text-center">
+    <main>
 
-        <select id="view-menu">
-            <option>Tiers</option>
-            <option>Events</option>
-            <option>Organizations</option>
-            <option>Years</option>
-        </select>
+        <section class="main-container mx-auto text-center">
 
-        <button class="button" id="view-menu-button">View Items</button>
+            <select id="view-menu">
+                <option>Tiers</option>
+                <option>Events</option>
+                <option>Organizations</option>
+                <option>Years</option>
+            </select>
 
+            <button class="button" id="view-menu-button">View Items</button>
+
+        </section>
+
+        <section class="main-container mx-auto text-center hide" id="view-container"></section>
+
+        <section class="main-container mx-auto text-center">
+
+            <select id="add-menu">
+                <option>Tiers</option>
+                <option>Events</option>
+                <option>Organizations</option>
+                <option>Years</option>
+            </select>
+
+            <button class="button" id="add-menu-button">Add Item</button>
+
+            <div id="add-container"></div>
+
+        </section>
+        
     </main>
-
-    <section class="main-container mx-auto text-center hide" id="view-container"></section>
-
-    <section class="main-container mx-auto text-center">
-
-        <select id="add-menu">
-            <option>Tiers</option>
-            <option>Events</option>
-            <option>Organizations</option>
-            <option>Years</option>
-        </select>
-
-        <button class="button" id="add-menu-button">Add Item</button>
-
-        <div id="add-container"></div>
-
-    </section>
 
     {{> main/nav-menu-block}}
 

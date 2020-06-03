@@ -105,8 +105,6 @@ var orm = {
     },
     getActiveTiers: (id, cb) => {
         const activeTiersObj = {};
-        // var queryString = `SELECT * FROM years WHERE year_id = ${parseInt(id)};`;
-        // var queryString = `SELECT tiers.name, events.name, years.id, years.tier_id, years.event_id FROM years INNER JOIN tiers ON (years.tier_id = tiers.id) INNER JOIN events ON (years.event_id = events.id) WHERE years.year_id = ${id};`;
         var queryString = `SELECT years.tier_id, tiers.name FROM years INNER JOIN tiers ON (years.tier_id = tiers.id) WHERE years.year_id = ${id} AND years.type = 'tier';`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
@@ -129,6 +127,39 @@ var orm = {
                     cb(activeTiersObj);
                 });
             });
+        });
+    },
+    getAllCompetitors: (yearValue, cb) => {
+        var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE year_id = ${parseInt(yearValue)};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    getOneCompetitor: (compID, cb) => {
+        if (isNaN(parseInt(compID))) {
+            cb([]);
+        }
+        else {
+            var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE competitors.id = ${parseInt(compID)};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                cb(result[0]);
+            });
+        }
+    },
+    updateOneCompetitor: (body, cb) => {
+        var queryString = `UPDATE competitors SET comp_number = '${body.comp_number}', first_name = '${body.first_name}', last_name = '${body.last_name}', team_name = '${body.team_name}', group_names = '${body.group_names}' WHERE id = ${body.id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    deleteOneCompetitor: (body, cb) => {
+        var queryString = `DELETE FROM competitors WHERE id = ${parseInt(body.id)};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
         });
     }
 };

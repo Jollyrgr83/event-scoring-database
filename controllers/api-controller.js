@@ -37,6 +37,26 @@ router.get("/api/view/:tableName", (req, res) => {
     });
 });
 
+router.get("/api/comp/:yearValue", (req, res) => {
+    model.allComp(parseInt(req.params.yearValue), (data) => {
+        let returnData = data.map((x) => {
+            if (x.team) {
+                return {id: x.id, text: `${x.comp_number} - ${x.team_name}: ${x.group_names}`};
+            } 
+            else {
+                return {id: x.id, text: `${x.comp_number} - ${x.first_name} ${x.last_name}`};
+            }
+        });
+        res.json(returnData);
+    });
+});
+
+router.get("/api/comp/compID/:compID", (req, res) => {
+    model.oneComp(parseInt(req.params.compID), (data) => {
+        res.json(data);
+    });
+});
+
 router.get("/api/year/:id", (req, res) => {
     model.getActiveTiers(parseInt(req.params.id), (data) => {
         console.log("getActiveYears: ", data);
@@ -75,6 +95,12 @@ router.put("/api/view/", (req, res) => {
     });
 });
 
+router.put("/api/comp/update/", (req, res) => {
+    model.updateComp(req.body, (data) => {
+        res.json(data);
+    });
+});
+
 router.delete("/api/view/", (req, res) => {
     console.log("view DELETE body: ", req.body);
     model.deleteView(req.body, (data) => {
@@ -94,6 +120,12 @@ router.delete("/api/year/", (req, res) => {
 router.delete("/api/year/tier/", (req, res) => {
     model.deleteYearTier(req.body, (data) => {
         console.log("data", data);
+        res.json(data);
+    });
+});
+
+router.delete("/api/comp/", (req, res) => {
+    model.deleteComp(req.body, (data) => {
         res.json(data);
     });
 });
