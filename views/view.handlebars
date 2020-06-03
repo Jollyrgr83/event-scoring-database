@@ -1,49 +1,43 @@
-<header class="header-container mx-auto">
-    
-    <h1 class="title mx-auto">Annual Lineworkers Rodeo Scoring</h1>
-    
-    <img class="logo row mx-auto" src="/assets/images/logo.png" alt="Santee Cooper logo" /> 
+<head>
+    <title>Annual Lineworkers Rodeo Scoring | {{title}}</title>
+    {{> main/head-block}}
+    <!-- view page js script -->
+    <script type="text/javascript" src="/assets/js/view.js"></script>
+</head>
+<body class="background">
 
-</header>
+    {{> main/title-block}}
 
-<main class="main-container mx-auto text-center">
+    <main class="main-container mx-auto text-center">
 
-    <select id="view-menu">
-        <option>Tiers</option>
-        <option>Events</option>
-        <option>Organizations</option>
-        <option>Years</option>
-    </select>
+        <select id="view-menu">
+            <option>Tiers</option>
+            <option>Events</option>
+            <option>Organizations</option>
+            <option>Years</option>
+        </select>
 
-    <button class="button" id="view-menu-button">View Items</button>
+        <button class="button" id="view-menu-button">View Items</button>
 
-</main>
+    </main>
 
-<section class="main-container mx-auto text-center hide" id="view-container"></section>
+    <section class="main-container mx-auto text-center hide" id="view-container"></section>
 
-<section class="main-container mx-auto text-center">
+    <section class="main-container mx-auto text-center">
 
-    <select id="add-menu">
-        <option>Tiers</option>
-        <option>Events</option>
-        <option>Organizations</option>
-        <option>Years</option>
-    </select>
+        <select id="add-menu">
+            <option>Tiers</option>
+            <option>Events</option>
+            <option>Organizations</option>
+            <option>Years</option>
+        </select>
 
-    <button class="button" id="add-menu-button">Add Item</button>
+        <button class="button" id="add-menu-button">Add Item</button>
 
-    <div id="add-container"></div>
+        <div id="add-container"></div>
 
-</section>
+    </section>
 
-<nav class="main-container mx-auto text-center">
+    {{> main/nav-menu-block}}
 
-    <button class="button" id="home">Home</button>
-    <button class="button" id="view">View/Edit</button>
-    <button class="button" id="year">Year Setup</button>
-    <button class="button" id="comp">Competitors</button>
-    <button class="button" id="score">Scores</button>
-    <button class="button" id="reports">Reports</button>
-    <button class="button" id="help">Help</button>
-
-</nav>
+</body>

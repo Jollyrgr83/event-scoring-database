@@ -1,21 +1,8 @@
 $(() => {
     $(document).on("click", ".button", (event) => {
         var ID = $(event.target).attr("id");
-        var buttonClass = $(event.target).attr("class");
         console.log("ID: ", ID);
-        var routes = {
-            "home": "/",
-            "view": "/view",
-            "year": "/year",
-            "comp": "/competitors",
-            "score": "/score",
-            "reports": "/reports",
-            "help": "/help"
-        };
-        if (routes[ID]) {
-            window.location.href = routes[ID];
-        }
-        else if (ID === "view-menu-button") {
+        if (ID === "view-menu-button") {
             var titleName = $("#view-menu").val();
             getView(titleName);
         }
@@ -40,50 +27,6 @@ $(() => {
                 renderAddMessage("success", titleName, itemName, teamStatus, coopStatus);
             }
         }
-        else if (ID === "year-update-button") {
-            var selectMenu = $("#year-select");
-            var selectMenuKeys = Object.keys(selectMenu["0"]);
-            for (let i = 0; i < selectMenuKeys.length; i++) {
-                if (selectMenu["0"][i].selected) {
-                    var selectionValue = parseInt(selectMenu["0"][i].value);
-                }
-            }
-            console.log("selectionValue", selectionValue);
-            $.get("/api/year/" + selectionValue, (data) => {
-                console.log("year data: ", data);
-                renderYearSetup(data);
-            });
-
-        }
-        else if (ID === "year-add-tier-button") {
-            var year_id = parseInt($("#year-select").val());
-            var tier_id = parseInt($("#tier-select").val());
-            $.ajax("/api/year/tier/", {
-                type: "POST",
-                data: {
-                    year_id: year_id,
-                    tier_id: tier_id
-                }
-            }).then((res) => {
-                window.location.href = "/year";
-            });
-        }
-        else if (buttonClass.indexOf("delete") != -1) {
-            var year_id = parseInt($("#year-select").val());
-            var tier_id = parseInt($(event.target).attr("data-tier_id"));
-            $.ajax("/api/year/tier/", {
-                type: "DELETE",
-                data: {
-                    tier_id: tier_id,
-                    year_id: year_id
-                }
-            }).then((res) => {
-                console.log("res", res);
-                if (res.affectedRows === 1) {
-                    window.location.href = "/year";
-                }
-            });
-        }
     });
 
     $(document).on("click", ".view-button", (event) => {
@@ -105,7 +48,8 @@ $(() => {
             }).then((res) => {
                 console.log("res", res);
                 if (res.affectedRows === 1) {
-                    window.location.href = "/view";
+                    var titleName = $("#view-menu").val();
+                    getView(titleName);
                 }
             });
         }
@@ -121,53 +65,20 @@ $(() => {
             }).then((res) => {
                 console.log("res", res);
                 if (res.affectedRows === 1) {
-                    window.location.href = "/view";
+                    var titleName = $("#view-menu").val();
+                    getView(titleName, "update");
                 }
             });
         }
         
     });
 
-    $(document).on("click", ".year-button", (event) => {
-        var event_id = parseInt($(event.target).attr("data-event_id"));
-        var tier_id = parseInt($(event.target).attr("data-tier_id"));
-        var year_id = parseInt($("#year-select").val());
-        $.ajax("/api/year/", {
-            type: "DELETE",
-            data: {
-                year_id: year_id,
-                tier_id: tier_id,
-                event_id: event_id
-            }
-        }).then((res) => {
-            console.log("res", res);
-            if (res.affectedRows === 1) {
-                window.location.href = "/year";
-            }
-        });      
-    });
-
-    $(document).on("click", ".year-add-event-button", (event) => {
-        var tier_id = parseInt($(event.target).attr("data-id"));
-        var year_id = parseInt($("#year-select").val());
-        var event_id = parseInt($(`#year-add-event-select-${tier_id}`).val());
-        $.ajax("/api/year/", {
-            type: "POST",
-            data: {
-                year_id: year_id,
-                tier_id: tier_id,
-                event_id: event_id
-            }
-        }).then((res) => {
-            console.log("res", res);
-        });
-    });
-
-    function getView(titleName) {
+    function getView(titleName, status) {
         console.log("titleName", titleName);
         const dataObj = {
             titleName: titleName,
-            tableName: titleName.toLowerCase()
+            tableName: titleName.toLowerCase(),
+            status: status
         };
         $.get("/api/view/" + dataObj.tableName, (data) => {
             console.log("data", data);
@@ -214,6 +125,12 @@ $(() => {
             rowEl.append(updateButtonEl);
             rowEl.append(deleteButtonEl);
             $("#view-container").append(rowEl);
+        }
+        if (dataObj.status === "update") {
+            var textEl = $("<p>");
+            textEl.attr("class", "item-title");
+            textEl.text(`Success! Item Updated!`);
+            $("#view-container").append(textEl);
         }
     }
 
@@ -304,6 +221,8 @@ $(() => {
                 data: addObj
             }).then((res) => {
                 console.log("response", res);
+                var titleName = $("#view-menu").val();
+                getView(titleName);
                 var textEl = $("<p>");
                 textEl.attr("class", "item-title");
                 textEl.text(`Success! Item Added!`);
@@ -311,61 +230,4 @@ $(() => {
             });
         }
     }
-
-    function renderYearSetup(data) {
-        var main = $("#dynamic");
-        main.empty();
-        for (let i = 0; i < data.tiers.length; i++) {
-            var containerEl = $("<section>");
-            containerEl.attr("class", "main-container mx-auto text-center");
-            var pTitleEl = $("<p>");
-            pTitleEl.attr("class", "mini-title mx-auto");
-            pTitleEl.text(`${data.tiers[i].name} Tier`);
-            containerEl.append(pTitleEl);
-            for (let j = 0; j < data[data.tiers[i].name].length; j++) {
-                var itemInputEl = $("<input>");
-                itemInputEl.attr("class", "year-input mx-auto");
-                itemInputEl.attr("data-id", data[data.tiers[i].name][j].event_id);
-                itemInputEl.attr("type", "text");
-                itemInputEl.val(data[data.tiers[i].name][j].name);
-                var deleteButtonEl = $("<button>");
-                deleteButtonEl.attr("data-event_id", data[data.tiers[i].name][j].event_id);
-                deleteButtonEl.attr("data-tier_id", data.tiers[i].tier_id);
-                deleteButtonEl.attr("class", "year-button delete mx-auto");
-                deleteButtonEl.text("x");
-                var rowEl = $("<div>");
-                rowEl.attr("class", "row mx-auto text-center");
-                rowEl.append(itemInputEl);
-                rowEl.append(deleteButtonEl);
-                containerEl.append(rowEl);
-            }
-            var pAddEl = $("<p>");
-            pAddEl.attr("class", "item-title mx-auto");
-            pAddEl.text("Add New Event");
-            containerEl.append(pAddEl);
-            var selectEventEl = $("<select>");
-            selectEventEl.attr("id", `year-add-event-select-${data.tiers[i].tier_id}`);
-            selectEventEl.attr("data-id", data.tiers[i].tier_id);
-            for (let k = 0; k < data.allEvents.length; k++) {
-                var optionEl = $("<option>");
-                optionEl.attr("value", data.allEvents[k].id);
-                optionEl.text(data.allEvents[k].name);
-                selectEventEl.append(optionEl);
-            }
-            containerEl.append(selectEventEl);
-            var addEventButtonEl = $("<button>");
-            addEventButtonEl.attr("class", "button year-add-event-button");
-            addEventButtonEl.attr("data-id", data.tiers[i].tier_id);
-            addEventButtonEl.text("Add Event");
-            containerEl.append(addEventButtonEl);
-            var delTierButtonEl = $("<button>");
-            delTierButtonEl.attr("class", "button mx-auto delete");
-            delTierButtonEl.attr("data-tier_id", data.tiers[i].tier_id);
-            delTierButtonEl.attr("style", "background-color: red; border: solid 2px red;");
-            delTierButtonEl.text("Delete Tier");
-            containerEl.append(delTierButtonEl);
-            main.append(containerEl);
-        }
-    }
-
 });
