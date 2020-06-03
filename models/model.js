@@ -46,6 +46,11 @@ var model = {
             cb(res);
         });
     },
+    deleteYearTier: (body, cb) => {
+        orm.deleteYearTier(body, (res) => {
+            cb(res);
+        });
+    },
     getYearOptions: (cb) => {
         orm.getAllYear((res) => {
             cb(res);

@@ -91,4 +91,11 @@ router.delete("/api/year/", (req, res) => {
     });
 });
 
+router.delete("/api/year/tier/", (req, res) => {
+    model.deleteYearTier(req.body, (data) => {
+        console.log("data", data);
+        res.json(data);
+    });
+});
+
 module.exports = router;

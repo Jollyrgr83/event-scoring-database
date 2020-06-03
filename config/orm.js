@@ -80,6 +80,13 @@ var orm = {
             cb(result);
         });
     },
+    deleteYearTier: (body, cb) => {
+        var queryString = `DELETE FROM years WHERE year_id = ${body.year_id} AND tier_id = ${body.tier_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
     getAllYear: (cb) => {
         const yearAndTierObj = {arrays: [{
             years: [],

@@ -1,6 +1,7 @@
 $(() => {
     $(document).on("click", ".button", (event) => {
         var ID = $(event.target).attr("id");
+        var buttonClass = $(event.target).attr("class");
         console.log("ID: ", ID);
         var routes = {
             "home": "/",
@@ -65,6 +66,22 @@ $(() => {
                 }
             }).then((res) => {
                 window.location.href = "/year";
+            });
+        }
+        else if (buttonClass.indexOf("delete") != -1) {
+            var year_id = parseInt($("#year-select").val());
+            var tier_id = parseInt($(event.target).attr("data-tier_id"));
+            $.ajax("/api/year/tier/", {
+                type: "DELETE",
+                data: {
+                    tier_id: tier_id,
+                    year_id: year_id
+                }
+            }).then((res) => {
+                console.log("res", res);
+                if (res.affectedRows === 1) {
+                    window.location.href = "/year";
+                }
             });
         }
     });
@@ -341,6 +358,12 @@ $(() => {
             addEventButtonEl.attr("data-id", data.tiers[i].tier_id);
             addEventButtonEl.text("Add Event");
             containerEl.append(addEventButtonEl);
+            var delTierButtonEl = $("<button>");
+            delTierButtonEl.attr("class", "button mx-auto delete");
+            delTierButtonEl.attr("data-tier_id", data.tiers[i].tier_id);
+            delTierButtonEl.attr("style", "background-color: red; border: solid 2px red;");
+            delTierButtonEl.text("Delete Tier");
+            containerEl.append(delTierButtonEl);
             main.append(containerEl);
         }
     }
