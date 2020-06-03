@@ -184,6 +184,7 @@ $(() => {
                 $.get("/api/org/", (data) => {
                     console.log("org data", data);
                     var orgMenuEl = $("<select>");
+                    orgMenuEl.attr("id", "org-select");
                     for (let i = 0; i < data.length; i++) {
                         var optionEl = $("<option>");
                         optionEl.attr("value", data[i].id);
