@@ -80,6 +80,22 @@ var model = {
         orm.deleteOneCompetitor(body, (res) => {
             cb(res);
         });
+    },
+    allOrgs: (cb) => {
+        orm.getAllOrgs((res) => {
+            console.log("model allOrgs data: ", res);
+            cb(res);
+        });
+    },
+    tierInfo: (id, cb) => {
+        orm.getTierInfo(id, (res) => {
+            cb(res);
+        });
+    },
+    addOneComp: (body, cb) => {
+        orm.addOneCompetitor(body, (res) => {
+            cb(res);
+        });
     }
 };
 

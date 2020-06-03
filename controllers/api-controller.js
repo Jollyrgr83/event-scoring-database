@@ -57,6 +57,20 @@ router.get("/api/comp/compID/:compID", (req, res) => {
     });
 });
 
+router.get("/api/org/", (req, res) => {
+    console.log("api allOrgs Run:");
+    model.allOrgs((data) => {
+        console.log("api allOrgs data: ", data);
+        res.json(data);
+    });
+});
+
+router.get("/api/comp/tierInfo/:id", (req, res) => {
+    model.tierInfo(parseInt(req.params.id), (data) => {
+        res.json(data);
+    });
+});
+
 router.get("/api/year/:id", (req, res) => {
     model.getActiveTiers(parseInt(req.params.id), (data) => {
         console.log("getActiveYears: ", data);
@@ -83,6 +97,12 @@ router.post("/api/year/", (req, res) => {
 
 router.post("/api/year/tier/", (req, res) => {
     model.addTierYear(req.body, (data) => {
+        res.json(data);
+    });
+});
+
+router.post("/api/comp/", (req, res) => {
+    model.addOneComp(req.body, (data) => {
         res.json(data);
     });
 });

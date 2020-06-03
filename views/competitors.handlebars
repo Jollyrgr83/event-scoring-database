@@ -41,7 +41,17 @@
 
             <p class="mini-title mx-auto">Add Competitors</p>
 
-            <div id="add-dynamic"></div>
+            <p class="item-title mx-auto">Select Competition Tier</p>
+            
+            <select id="tier-select">
+                {{#each arrays}}
+                    {{#each tiers}}
+                        {{> year/tier-block}}
+                    {{/each}}
+                {{/each}}
+            </select>
+
+            <div id="add-dynamic-comp-info"></div>
 
         </section>
 

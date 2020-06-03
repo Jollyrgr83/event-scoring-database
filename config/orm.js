@@ -130,11 +130,16 @@ var orm = {
         });
     },
     getAllCompetitors: (yearValue, cb) => {
-        var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE year_id = ${parseInt(yearValue)};`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
+        if(isNaN(parseInt(yearValue))) {
+            cb([]);
+        }
+        else {
+            var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE year_id = ${parseInt(yearValue)};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                cb(result);
+            });
+        }
     },
     getOneCompetitor: (compID, cb) => {
         if (isNaN(parseInt(compID))) {
@@ -157,6 +162,28 @@ var orm = {
     },
     deleteOneCompetitor: (body, cb) => {
         var queryString = `DELETE FROM competitors WHERE id = ${parseInt(body.id)};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    getAllOrgs: (cb) => {
+        var queryString = `SELECT * FROM organizations;`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            console.log("orgs data: ", result);
+            cb(result);
+        });
+    },
+    getTierInfo: (id, cb) => {
+        var queryString = `SELECT team FROM tiers WHERE id = ${parseInt(id)};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    addOneCompetitor: (body, cb) => {
+        var queryString = `INSERT INTO competitors (tier_id, comp_number, first_name, last_name, team_name, group_names, org_id, year_id) VALUES (${body.tier_id}, '${body.comp_number}', '${body.first_name}', '${body.last_name}', '${body.team_name}', '${body.group_names}', ${body.org_id}, ${body.year_id});`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);

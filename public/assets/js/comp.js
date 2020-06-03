@@ -20,7 +20,7 @@ $(() => {
                 }
             }).then((data) => {
                 var textEl = $("<p>");
-                textEl.attr("class", "item-title");
+                textEl.attr("class", "item-title mx-auto");
                 textEl.text(`Success! Changes Saved!`);
                 $("#view-dynamic-comp-info").append(textEl);
             })
@@ -35,11 +35,18 @@ $(() => {
                 renderCompPage();
             });
         }
+        else if (ID = "add-comp-save-button") {
+            renderAddMessage();
+        }
 
     });
 
     $(document).on("change", "#comp-select", (event) => {
         renderCompInfo();
+    });
+
+    $(document).on("change", "#tier-select", (event) => {
+        renderCompAddInfo();
     });
 
     function renderCompPage() {
@@ -50,11 +57,43 @@ $(() => {
         $.get("/api/comp/" + parseInt($("#year-select").val()), (data) => {
             renderCompSelectionMenu(data);
             renderCompInfo();
+            renderCompAddInfo();
         });
     }
     
+    function renderAddMessage() {
+        var inputObj = {
+            tier_id: parseInt($("#tier-select").val()),
+            comp_number: $("#add-comp-number").val() === undefined ? null : $("#add-comp-number").val().trim(),
+            first_name: $("#add-first-name").val() === undefined ? null : $("#add-first-name").val().trim(),
+            last_name: $("#add-last-name").val() === undefined ? null : $("#add-last-name").val().trim(),
+            team_name: $("#add-team-name").val() === undefined ? null : $("#add-team-name").val().trim(),
+            group_names: $("#add-group-names").val() === undefined ? null : $("#add-group-names").val().trim(),
+            org_id: parseInt($("#org-select").val()),
+            year_id: parseInt($("#year-select").val())
+        };
+        $.ajax("/api/comp/", {
+            type: "POST",
+            data: inputObj
+        }).then((data) => {
+            var textEl = $("<p>");
+            textEl.attr("class", "item-title mx-auto");
+            textEl.text(`Success! Competitor Added!`);
+            $("#add-dynamic-comp-info").append(textEl);
+            $("#add-comp-number").val().trim(),
+            $("#add-first-name").val("");
+            $("#add-last-name").val("");
+            $("#add-team-name").val("");
+            $("#add-group-names").val("");
+        });
+    }
+
     function renderCompSelectionMenu(data) {
         $("#view-dynamic-comp-select").empty();
+        var menuTitleEl = $("<p>");
+        menuTitleEl.attr("class", "item-title mx-auto");
+        menuTitleEl.text("Select a Competitor");
+        $("#view-dynamic-comp-select").append(menuTitleEl);
         var menuEl = $("<select>");
         menuEl.attr("id", "comp-select");
         for (let i = 0; i < data.length; i++) {
@@ -77,7 +116,94 @@ $(() => {
             }
         });
     }
-    
+
+    function renderCompAddInfo() {
+        $("#add-dynamic-comp-info").empty();
+        var compNumberTitleEl = $("<p>");
+        compNumberTitleEl.attr("class", "item-title mx-auto");
+        compNumberTitleEl.text("Enter Competitor Number");
+        var compNumberEl = $("<input>");
+        compNumberEl.attr("id", "add-comp-number");
+        compNumberEl.attr("type", "text");
+        var firstNameTitleEl = $("<p>");
+        firstNameTitleEl.attr("class", "item-title mx-auto");
+        firstNameTitleEl.text("Enter Competitor's First Name");
+        var firstNameEl = $("<input>");
+        firstNameEl.attr("id", "add-first-name");
+        firstNameEl.attr("type", "text");
+        var lastNameTitleEl = $("<p>");
+        lastNameTitleEl.attr("class", "item-title mx-auto");
+        lastNameTitleEl.text("Enter Competitor's Last Name");
+        var lastNameEl = $("<input>");
+        lastNameEl.attr("id", "add-last-name");
+        lastNameEl.attr("type", "text");
+        var teamNameTitleEl = $("<p>");
+        teamNameTitleEl.attr("class", "item-title mx-auto");
+        teamNameTitleEl.text("Enter Competitor Team Name");
+        var teamNameEl = $("<input>");
+        teamNameEl.attr("id", "add-team-name");
+        teamNameEl.attr("type", "text");
+        var groupNamesTitleEl = $("<p>");
+        groupNamesTitleEl.attr("class", "item-title mx-auto");
+        groupNamesTitleEl.text("Enter the Group's Names");
+        var groupNamesEl = $("<input>");
+        groupNamesEl.attr("id", "add-group-names");
+        groupNamesEl.attr("type", "text");
+        var orgMenuTitleEl = $("<p>");
+        orgMenuTitleEl.attr("class", "item-title mx-auto");
+        orgMenuTitleEl.text("Select the Competitor's Organization");
+        var saveButtonEl = $("<button>");
+        saveButtonEl.attr("id", "add-comp-save-button");
+        saveButtonEl.attr("class", "button mx-auto");
+        saveButtonEl.text("Add Competitor");
+        $.get("/api/comp/tierInfo/" + parseInt($("#tier-select").val()), (res) => {
+            console.log("res", res);
+            if (res[0].team === 0) {
+                $.get("/api/org/", (data) => {
+                    console.log("org data", data);
+                    var orgMenuEl = $("<select>");
+                    orgMenuEl.attr("id", "org-select");
+                    for (let i = 0; i < data.length; i++) {
+                        var optionEl = $("<option>");
+                        optionEl.attr("value", data[i].id);
+                        optionEl.text(data[i].name);
+                        orgMenuEl.append(optionEl);
+                    }
+                    $("#add-dynamic-comp-info").append(compNumberTitleEl);
+                    $("#add-dynamic-comp-info").append(compNumberEl);
+                    $("#add-dynamic-comp-info").append(firstNameTitleEl);
+                    $("#add-dynamic-comp-info").append(firstNameEl);
+                    $("#add-dynamic-comp-info").append(lastNameTitleEl);
+                    $("#add-dynamic-comp-info").append(lastNameEl);
+                    $("#add-dynamic-comp-info").append(orgMenuTitleEl);
+                    $("#add-dynamic-comp-info").append(orgMenuEl);
+                    $("#add-dynamic-comp-info").append(saveButtonEl);
+                });    
+            }
+            else {
+                $.get("/api/org/", (data) => {
+                    console.log("org data", data);
+                    var orgMenuEl = $("<select>");
+                    for (let i = 0; i < data.length; i++) {
+                        var optionEl = $("<option>");
+                        optionEl.attr("value", data[i].id);
+                        optionEl.text(data[i].name);
+                        orgMenuEl.append(optionEl);
+                    }
+                    $("#add-dynamic-comp-info").append(compNumberTitleEl);
+                    $("#add-dynamic-comp-info").append(compNumberEl);
+                    $("#add-dynamic-comp-info").append(teamNameTitleEl);
+                    $("#add-dynamic-comp-info").append(teamNameEl);
+                    $("#add-dynamic-comp-info").append(groupNamesTitleEl);
+                    $("#add-dynamic-comp-info").append(groupNamesEl);
+                    $("#add-dynamic-comp-info").append(orgMenuTitleEl);
+                    $("#add-dynamic-comp-info").append(orgMenuEl); 
+                    $("#add-dynamic-comp-info").append(saveButtonEl); 
+                });
+            }
+        });
+    }
+
     function renderTeam(data) {
         $("#view-dynamic-comp-info").empty();
         var compNumberTitleEl = $("<p>");
