@@ -1,10 +1,13 @@
 $(() => {
+    getYearSetup();
+
+    $(document).on("change", "#year-select", (event) => {
+        getYearSetup();
+    });
+
     $(document).on("click", ".button", (event) => {
         var ID = $(event.target).attr("id");
-        if (ID === "year-update-button") {
-            getYearSetup();
-        }
-        else if (ID === "year-add-tier-button") {
+        if (ID === "year-add-tier-button") {
             $.ajax("/api/year/tier/", {
                 type: "POST",
                 data: {

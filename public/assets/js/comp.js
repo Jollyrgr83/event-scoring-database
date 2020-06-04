@@ -1,13 +1,9 @@
 $(() => {
+    renderCompPage();
+
     $(document).on("click", ".button", (event) => {
         var ID = $(event.target).attr("id");
-        console.log("test", $("#unknown").val());
-        if (ID === "year-update-button") {
-            $("#view-section").attr("class", "main-container mx-auto text-center show");
-            $("#add-section").attr("class", "main-container mx-auto text-center show");
-            renderCompPage();
-        }
-        else if (ID === "comp-save-button") {
+        if (ID === "comp-save-button") {
             $.ajax("/api/comp/update/", {
                 type: "PUT",
                 data: {
@@ -39,6 +35,10 @@ $(() => {
             renderAddMessage();
         }
 
+    });
+
+    $(document).on("change", "#year-select", (event) => {
+        renderCompPage();
     });
 
     $(document).on("change", "#comp-select", (event) => {

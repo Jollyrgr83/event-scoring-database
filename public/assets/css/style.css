@@ -144,7 +144,7 @@ input:enabled, input:focus, input:active {
     outline: none;
 }
 select:enabled, select:focus, select:active {
-    border-radius: 40px;
+    border-radius: 10px;
     background-color: white;
     color: rgb(39, 89, 55);
     font-family: "Lato", sans-serif;

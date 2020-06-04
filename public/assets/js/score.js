@@ -63,10 +63,14 @@ $(() => {
     }
 
     function renderScore() {
+        // get list of events for year and add any missing event records in scores table
+            // pull records for competitor id and year id from scores table
+            // pull records for events and year from year table
+            // insert records into scores table for missing competitor id, event id, and year id records
         $("#score-container").empty();
         var input = `${parseInt($("#comp-select").val())}&${parseInt($("#year-select").val())}`;
-        console.log("input", input);
         $.get("/api/score/one/" + input, (data) => {
+            console.log("data", data);
             for (let i = 0; i < data.length; i++) {
                 var sectionEl = $("<div>");
                 sectionEl.attr("class", "main-container mx-auto text-center");

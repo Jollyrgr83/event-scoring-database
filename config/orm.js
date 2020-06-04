@@ -189,16 +189,14 @@ var orm = {
         });
     },
     getCompetitorScores: (compID, yearID, cb) => {
-        if (isNaN(parseInt(compID))) {
-            cb([]);
-        }
-        else {
-            var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                cb(result);
-            });
-        }
+        console.log("compID", compID);
+        console.log("yearID", yearID);
+        var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
+        console.log("queryString", queryString);
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
     },
     updateCompetitorScores: (arr, cb) => {
         const resultArr = [];
