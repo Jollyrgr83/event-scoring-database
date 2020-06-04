@@ -16,9 +16,7 @@ router.get("/api/events/", (req, res) => {
 });
 
 router.get("/api/view/:tableName", (req, res) => {
-    console.log("tableName", req.params.tableName);
     model.allView(req.params.tableName, (data) => {
-        console.log("data", data);
         if (data[0].value) {
             let arr = [];
             for (let i = 0; i < data.length; i++) {
@@ -58,9 +56,7 @@ router.get("/api/comp/compID/:compID", (req, res) => {
 });
 
 router.get("/api/org/", (req, res) => {
-    console.log("api allOrgs Run:");
     model.allOrgs((data) => {
-        console.log("api allOrgs data: ", data);
         res.json(data);
     });
 });
@@ -73,24 +69,27 @@ router.get("/api/comp/tierInfo/:id", (req, res) => {
 
 router.get("/api/year/:id", (req, res) => {
     model.getActiveTiers(parseInt(req.params.id), (data) => {
-        console.log("getActiveYears: ", data);
+        res.json(data);
+    });
+});
+
+router.get("/api/score/one/:compID", (req, res) => {
+    var arr = req.params.compID.split("&");
+    var compID = parseInt(arr[0]);
+    var yearID = parseInt(arr[1]);
+    model.getCompScores(compID, yearID, (data) => {
         res.json(data);
     });
 });
 
 router.post("/api/view/", (req, res) => {
-    console.log("view POST body: ", req.body);
     model.addView(req.body, (data) => {
-        console.log("data", data);
-        console.log("data.insertId", data.insertId);
         res.json(data);
     });
 });
 
 router.post("/api/year/", (req, res) => {
-    console.log("year POST body: ", req.body);
     model.addEventYear(req.body, (data) => {
-        console.log("data", data);
         res.json(data);
     });
 });
@@ -108,9 +107,7 @@ router.post("/api/comp/", (req, res) => {
 });
 
 router.put("/api/view/", (req, res) => {
-    console.log("view PUT body: ", req.body);
     model.updateView(req.body, (data) => {
-        console.log("data", data);
         res.json(data);
     });
 });
@@ -121,25 +118,26 @@ router.put("/api/comp/update/", (req, res) => {
     });
 });
 
+router.put("/api/score/", (req, res) => {
+    model.updateScores(req.body.data, (data) => {
+        res.json(data);
+    });
+});
+
 router.delete("/api/view/", (req, res) => {
-    console.log("view DELETE body: ", req.body);
     model.deleteView(req.body, (data) => {
-        console.log("data", data);
         res.json(data);
     });
 });
 
 router.delete("/api/year/", (req, res) => {
-    console.log("year DELETE body: ", req.body);
     model.deleteYear(req.body.event_id, req.body.tier_id, req.body.year_id, (data) => {
-        console.log("data", data);
         res.json(data);
     });
 });
 
 router.delete("/api/year/tier/", (req, res) => {
     model.deleteYearTier(req.body, (data) => {
-        console.log("data", data);
         res.json(data);
     });
 });

@@ -1,119 +1,36 @@
 <head>
-    <title>Annual Lineworkers Rodeo Scoring | {{title}}</title>
+    <title>Annual Lineworkers Rodeo Scoring | {{#each arrays}} {{title}} {{/each}}</title>
     {{> main/head-block}}
     <!-- scores page js script -->
     <script type="text/javascript" src="/assets/js/score.js"></script>
 </head>
 <body class="background">
 
-    {{> main/title-block}}
+    {{#each arrays}}
+        {{> main/title-block}}
+    {{/each}}
 
-    <main class="main-container mx-auto text-center">
-        
-        <p class="item-title mx-auto">Competitor Number:</p>
-        <input class="mx-auto" id="scoreCompNumber" type="text" placeholder="A101" />
-        <p class="item-title mx-auto">Competitor Type:</p>
-        <input class="mx-auto" id="scoreCompType" type="text" placeholder="Apprentice" />
-        <p class="item-title mx-auto">Competition Year:</p>
-        <input class="mx-auto" id="scoreYear" type="number" placeholder="2020" />
+    <main>
+
+        <section class="main-container mx-auto text-center">
+
+            <p class="item-title mx-auto">Select Competition Year</p>
+            
+            <select id="year-select">
+                {{#each arrays}}
+                    {{#each years}}
+                        {{> year/year-block}}
+                    {{/each}}
+                {{/each}}
+            </select>
+
+            <div id="comp-menu-container"></div>
+
+        </section>
+
+        <section id="score-container"></section>
 
     </main>
-    
-    <section class="main-container mx-auto text-center">
-        
-        <p class="mini-title mx-auto">Event 1</p>
-
-        <div class="row mx-auto">
-            <p class="score-title mx-auto">Score</p>
-            <p class="score-title mx-auto">Minutes</p>
-            <p class="score-title mx-auto">Seconds</p>
-        </div>
-
-        <div class="row mx-auto">
-            <input class="score-input mx-auto" id="score" type="text" placeholder="100" />
-            <input class="score-input mx-auto" id="time-min" type="text" placeholder="10" />
-            <input class="score-input mx-auto" id="time-sec" type="text" placeholder="59" />
-        </div>
-
-    </section>
-
-    <section class="main-container mx-auto text-center">
-        
-        <p class="mini-title mx-auto">Event 2</p>
-
-        <div class="row mx-auto">
-            <p class="score-title mx-auto">Score</p>
-            <p class="score-title mx-auto">Minutes</p>
-            <p class="score-title mx-auto">Seconds</p>
-        </div>
-
-        <div class="row mx-auto">
-            <input class="score-input mx-auto" id="score" type="text" placeholder="100" />
-            <input class="score-input mx-auto" id="time-min" type="text" placeholder="10" />
-            <input class="score-input mx-auto" id="time-sec" type="text" placeholder="59" />
-        </div>
-
-    </section>
-
-    <section class="main-container mx-auto text-center">
-        
-        <p class="mini-title mx-auto">Event 3</p>
-
-        <div class="row mx-auto">
-            <p class="score-title mx-auto">Score</p>
-            <p class="score-title mx-auto">Minutes</p>
-            <p class="score-title mx-auto">Seconds</p>
-        </div>
-
-        <div class="row mx-auto">
-            <input class="score-input mx-auto" id="score" type="text" placeholder="100" />
-            <input class="score-input mx-auto" id="time-min" type="text" placeholder="10" />
-            <input class="score-input mx-auto" id="time-sec" type="text" placeholder="59" />
-        </div>
-
-    </section>
-
-    <section class="main-container mx-auto text-center">
-        
-        <p class="mini-title mx-auto">Event 4</p>
-
-        <div class="row mx-auto">
-            <p class="score-title mx-auto">Score</p>
-            <p class="score-title mx-auto">Minutes</p>
-            <p class="score-title mx-auto">Seconds</p>
-        </div>
-
-        <div class="row mx-auto">
-            <input class="score-input mx-auto" id="score" type="text" placeholder="100" />
-            <input class="score-input mx-auto" id="time-min" type="text" placeholder="10" />
-            <input class="score-input mx-auto" id="time-sec" type="text" placeholder="59" />
-        </div>
-
-    </section>
-
-    <section class="main-container mx-auto text-center">
-        
-        <p class="mini-title mx-auto">Event 5</p>
-
-        <div class="row mx-auto">
-            <p class="score-title mx-auto">Score</p>
-            <p class="score-title mx-auto">Minutes</p>
-            <p class="score-title mx-auto">Seconds</p>
-        </div>
-
-        <div class="row mx-auto">
-            <input class="score-input mx-auto" id="score" type="text" placeholder="100" />
-            <input class="score-input mx-auto" id="time-min" type="text" placeholder="10" />
-            <input class="score-input mx-auto" id="time-sec" type="text" placeholder="59" />
-        </div>
-
-    </section>
-
-    <section class="main-container mx-auto text-center">
-        
-        <button class="button" id="year">Save Changes</button>
-
-    </section>
 
     {{> main/nav-menu-block}}
 

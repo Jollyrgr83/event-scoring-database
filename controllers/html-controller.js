@@ -34,10 +34,11 @@ router.get("/competitors", (req, res) => {
 });
 
 router.get("/score", (req, res) => {
-    var hbsObj = {
-        title: "Rodeo Score Entry"
-    };
-    res.render("score", hbsObj);
+    model.getYearOptions((data) => {
+        console.log("data", JSON.stringify(data));
+        data.arrays[0].title = "Score Entry";
+        res.render("score", data);
+    });
 });
 
 router.get("/reports", (req, res) => {

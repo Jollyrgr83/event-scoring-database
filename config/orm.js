@@ -171,7 +171,6 @@ var orm = {
         var queryString = `SELECT * FROM organizations;`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
-            console.log("orgs data: ", result);
             cb(result);
         });
     },
@@ -188,6 +187,29 @@ var orm = {
             if (err) throw err;
             cb(result);
         });
+    },
+    getCompetitorScores: (compID, yearID, cb) => {
+        if (isNaN(parseInt(compID))) {
+            cb([]);
+        }
+        else {
+            var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                cb(result);
+            });
+        }
+    },
+    updateCompetitorScores: (arr, cb) => {
+        const resultArr = [];
+        for (let i = 0; i < arr.length; i++) {
+            var queryString = `UPDATE scores SET ${arr[i].title} = ${arr[i].value} WHERE id = ${arr[i].id};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                resultArr.push(result);
+            });
+        }
+        cb(resultArr);
     }
 };
 

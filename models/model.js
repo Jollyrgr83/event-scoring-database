@@ -83,7 +83,6 @@ var model = {
     },
     allOrgs: (cb) => {
         orm.getAllOrgs((res) => {
-            console.log("model allOrgs data: ", res);
             cb(res);
         });
     },
@@ -94,6 +93,16 @@ var model = {
     },
     addOneComp: (body, cb) => {
         orm.addOneCompetitor(body, (res) => {
+            cb(res);
+        });
+    },
+    getCompScores: (compID, yearID, cb) => {
+        orm.getCompetitorScores(compID, yearID, (res) => {
+            cb(res);
+        });
+    },
+    updateScores: (arr, cb) => {
+        orm.updateCompetitorScores(arr, (res) => {
             cb(res);
         });
     }
