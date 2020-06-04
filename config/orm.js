@@ -1,26 +1,71 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    selectAllTiers: (cb) => {
-        var queryString = `SELECT * FROM tiers;`;
+    selectAllFromOneTable: (tableName, cb) => {
+        if (tableName === "years") {
+            var queryString = `SELECT * FROM years WHERE type = "year";`;
+        } else {
+            var queryString = `SELECT * FROM ${tableName};`;
+        }
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    selectAllEvents: (cb) => {
-        var queryString = `SELECT * FROM events;`;
+    selectAllCompetitorsByYear: (year, cb) => {
+        var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE year_id = ${year};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    selectAllView: (tableName, cb) => {
-        var queryString = `SELECT * FROM ${tableName};`;
+    selectOneCompetitorByID: (competitor_id, cb) => {
+        var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE competitors.id = ${competitor_id};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
+    },
+    selectTeamBooleanByTierID: (tier_id, cb) => {
+        var queryString = `SELECT team FROM tiers WHERE id = ${tier_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    selectAllTiersByYearID: (year_id, cb) => {
+        const activeTiersObj = {year_id: year_id};
+        var queryString = `SELECT years.tier_id, tiers.name FROM years INNER JOIN tiers ON (years.tier_id = tiers.id) WHERE years.year_id = ${activeTiersObj.year_id} AND years.type = 'tier';`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            activeTiersObj.tiers = [...result];
+            var queryString = `SELECT years.event_id, years.tier_id, events.name FROM years INNER JOIN events ON (years.event_id = events.id) WHERE years.year_id = ${activeTiersObj.year_id} AND years.type = 'event';`; 
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                for (let i = 0; i < activeTiersObj.tiers.length; i++) {
+                    activeTiersObj[activeTiersObj.tiers[i].name] = [];
+                    for (let j = 0; j < result.length; j++) {
+                        if (result[j].tier_id === activeTiersObj.tiers[i].tier_id) {
+                            activeTiersObj[activeTiersObj.tiers[i].name].push(result[j]);
+                        }
+                    }
+                }
+                var queryString = `SELECT * FROM events;`;
+                connection.query(queryString, (err, result) => {
+                    if (err) throw err;
+                    activeTiersObj.allEvents = [...result];
+                    var queryString = `SELECT * FROM competitors WHERE year_id = ${activeTiersObj.year_id};`;
+                    connection.query(queryString, (err, result) => {
+                        if (err) throw err;
+                        activeTiersObj.competitors = [...result];
+                        cb(activeTiersObj);
+                    });
+                });
+            });
+        });
+    },
+    insertOneRecord: (obj, cb) => {
+        var queryString = `INSERT INTO ${obj.table_name} ?;`;
     },
     addOneView: (body, cb) => {
         if (body.titleName === "Years") {
@@ -87,72 +132,6 @@ var orm = {
             cb(result);
         });
     },
-    getAllYear: (cb) => {
-        const yearAndTierObj = {arrays: [{
-            years: [],
-            tiers: []
-        }]};
-        var queryString = `SELECT id, value FROM years WHERE type = 'year';`;
-        connection.query(queryString, (err, result1) => {
-            if (err) throw err;
-            yearAndTierObj.arrays[0].years = [...result1];
-            connection.query(`SELECT * FROM tiers;`, (err, result2) => {
-                if (err) throw err;
-                yearAndTierObj.arrays[0].tiers = [...result2];
-                cb(yearAndTierObj);
-            });
-        });
-    },
-    getActiveTiers: (id, cb) => {
-        const activeTiersObj = {};
-        var queryString = `SELECT years.tier_id, tiers.name FROM years INNER JOIN tiers ON (years.tier_id = tiers.id) WHERE years.year_id = ${id} AND years.type = 'tier';`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            activeTiersObj.tiers = [...result];
-            var queryString = `SELECT years.event_id, years.tier_id, events.name FROM years INNER JOIN events ON (years.event_id = events.id) WHERE years.year_id = ${id} AND years.type = 'event';`; 
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                for (let i = 0; i < activeTiersObj.tiers.length; i++) {
-                    activeTiersObj[activeTiersObj.tiers[i].name] = [];
-                    for (let j = 0; j < result.length; j++) {
-                        if (result[j].tier_id === activeTiersObj.tiers[i].tier_id) {
-                            activeTiersObj[activeTiersObj.tiers[i].name].push(result[j]);
-                        }
-                    }
-                }
-                var queryString = `SELECT * FROM events;`;
-                connection.query(queryString, (err, result) => {
-                    if (err) throw err;
-                    activeTiersObj.allEvents = [...result];
-                    cb(activeTiersObj);
-                });
-            });
-        });
-    },
-    getAllCompetitors: (yearValue, cb) => {
-        if(isNaN(parseInt(yearValue))) {
-            cb([]);
-        }
-        else {
-            var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE year_id = ${parseInt(yearValue)};`;
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                cb(result);
-            });
-        }
-    },
-    getOneCompetitor: (compID, cb) => {
-        if (isNaN(parseInt(compID))) {
-            cb([]);
-        }
-        else {
-            var queryString = `SELECT competitors.id, competitors.first_name, competitors.last_name, competitors.team_name, competitors.group_names, competitors.comp_number, tiers.name, tiers.team FROM competitors INNER JOIN tiers ON (competitors.tier_id = tiers.id) WHERE competitors.id = ${parseInt(compID)};`;
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                cb(result[0]);
-            });
-        }
-    },
     updateOneCompetitor: (body, cb) => {
         var queryString = `UPDATE competitors SET comp_number = '${body.comp_number}', first_name = '${body.first_name}', last_name = '${body.last_name}', team_name = '${body.team_name}', group_names = '${body.group_names}' WHERE id = ${body.id};`;
         connection.query(queryString, (err, result) => {
@@ -167,20 +146,6 @@ var orm = {
             cb(result);
         });
     },
-    getAllOrgs: (cb) => {
-        var queryString = `SELECT * FROM organizations;`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    getTierInfo: (id, cb) => {
-        var queryString = `SELECT team FROM tiers WHERE id = ${parseInt(id)};`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
     addOneCompetitor: (body, cb) => {
         var queryString = `INSERT INTO competitors (tier_id, comp_number, first_name, last_name, team_name, group_names, org_id, year_id) VALUES (${body.tier_id}, '${body.comp_number}', '${body.first_name}', '${body.last_name}', '${body.team_name}', '${body.group_names}', ${body.org_id}, ${body.year_id});`;
         connection.query(queryString, (err, result) => {
@@ -189,10 +154,7 @@ var orm = {
         });
     },
     getCompetitorScores: (compID, yearID, cb) => {
-        console.log("compID", compID);
-        console.log("yearID", yearID);
         var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
-        console.log("queryString", queryString);
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
@@ -208,6 +170,26 @@ var orm = {
             });
         }
         cb(resultArr);
+    },
+    scoreReconciliation: (year_id, competitor_id, cb) => {
+        const resultObj = {
+            year_id: year_id,
+            competitor_id: competitor_id
+        };
+        // pull records for competitor id and year id from scores table
+        var queryString = `SELECT * FROM scores WHERE competitor_id = ${resultObj.competitor_id} AND year_id = ${resultObj.year_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            resultObj.scores = [...result];
+            // pull records for events and year from year table
+            var queryString = `SELECT * FROM years WHERE year_id = ${resultObj.year_id};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                resultObj.years = [...result];
+                console.log("resultObj", resultObj);
+                cb(resultObj);
+            });
+        });
     }
 };
 

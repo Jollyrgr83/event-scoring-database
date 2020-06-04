@@ -1,16 +1,11 @@
 $(() => {
+    renderAddMenu();
+
     $(document).on("click", ".button", (event) => {
-        var ID = $(event.target).attr("id");
-        console.log("ID: ", ID);
-        if (ID === "view-menu-button") {
-            var titleName = $("#view-menu").val();
-            getView(titleName);
+        if ($(event.target).attr("id") === "view-menu-button") {
+            getView($("#view-menu").val());
         }
-        else if (ID === "add-menu-button") {
-            var titleName = $("#add-menu").val();
-            renderAddMenu(titleName);
-        }
-        else if (ID === "add-container-button") {
+        else if ($(event.target).attr("id") === "add-container-button") {
             var titleName = $("#add-menu").val();
             var itemName = $("#add-container-input").val().trim();
             if (itemName === "" || (isNaN(parseInt(itemName)) && titleName === "Years")) {
@@ -73,6 +68,10 @@ $(() => {
         
     });
 
+    $(document).on("change", "#add-menu", (event) => {
+        renderAddMenu();
+    });
+
     function getView(titleName, status) {
         console.log("titleName", titleName);
         const dataObj = {
@@ -80,7 +79,7 @@ $(() => {
             tableName: titleName.toLowerCase(),
             status: status
         };
-        $.get("/api/view/" + dataObj.tableName, (data) => {
+        $.get("/api/view/menu/" + dataObj.tableName, (data) => {
             console.log("data", data);
             dataObj.data = [...data.data];
             renderViewMenu(dataObj);
@@ -134,7 +133,8 @@ $(() => {
         }
     }
 
-    function renderAddMenu(titleName) {
+    function renderAddMenu() {
+        var titleName = $("#add-menu").val();
         $("#add-container").empty();
         var pTitleEl = $("<p>");
         pTitleEl.attr("class", "item-title mx-auto");

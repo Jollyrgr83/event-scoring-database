@@ -1,18 +1,28 @@
 var orm = require("../config/orm.js");
 
 var model = {
-    allTiers: (cb) => {
-        orm.selectAllTiers((res) => {
+    getAllFromOneTable: (tableName, cb) => {
+        orm.selectAllFromOneTable(tableName, (res) => {
             cb(res);
         });
     },
-    allEvents: (cb) => {
-        orm.selectAllEvents((res) => {
+    getAllCompetitorsByYear: (year, cb) => {
+        orm.selectAllCompetitorsByYear(year, (res) => {
             cb(res);
         });
     },
-    allView: (tableName, cb) => {
-        orm.selectAllView(tableName, (res) => {
+    getOneCompetitorByID: (competitor_id, cb) => {
+        orm.selectOneCompetitorByID(competitor_id, (res) => {
+            cb(res);
+        });
+    },
+    getTeamBooleanByTierID: (tier_id, cb) => {
+        orm.selectTeamBooleanByTierID(tier_id, (res) => {
+            cb(res);
+        });
+    },
+    getAllTiersByYearID: (year_id, cb) => {
+        orm.selectAllTiersByYearID(year_id, (res) => {
             cb(res);
         });
     },
@@ -51,26 +61,6 @@ var model = {
             cb(res);
         });
     },
-    getYearOptions: (cb) => {
-        orm.getAllYear((res) => {
-            cb(res);
-        });
-    },
-    getActiveTiers: (year_id, event_id, cb) => {
-        orm.getActiveTiers(year_id, event_id, (res) => {
-            cb(res);
-        });
-    },
-    allComp: (yearValue, cb) => {
-        orm.getAllCompetitors(yearValue, (res) => {
-            cb(res);
-        });
-    },
-    oneComp: (compID, cb) => {
-        orm.getOneCompetitor(compID, (res) => {
-            cb(res);
-        });
-    },
     updateComp: (body, cb) => {
         orm.updateOneCompetitor(body, (res) => {
             cb(res);
@@ -78,16 +68,6 @@ var model = {
     },
     deleteComp: (body, cb) => {
         orm.deleteOneCompetitor(body, (res) => {
-            cb(res);
-        });
-    },
-    allOrgs: (cb) => {
-        orm.getAllOrgs((res) => {
-            cb(res);
-        });
-    },
-    tierInfo: (id, cb) => {
-        orm.getTierInfo(id, (res) => {
             cb(res);
         });
     },
@@ -103,6 +83,11 @@ var model = {
     },
     updateScores: (arr, cb) => {
         orm.updateCompetitorScores(arr, (res) => {
+            cb(res);
+        });
+    },
+    scoreReconciliation: (year_id, competitor_id, cb) => {
+        orm.scoreReconciliation(year_id, competitor_id, (res) => {
             cb(res);
         });
     }

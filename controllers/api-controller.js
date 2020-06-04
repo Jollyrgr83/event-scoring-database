@@ -1,87 +1,66 @@
+// DEPENDENCIES
+// ==================================================
 var express = require("express");
 var router = express.Router();
-
 var model = require("../models/model.js");
-
-router.get("/api/tier/", (req, res) => {
-    model.allTiers((data) => {
-        res.json({tiers: data});
-    });
-});
-
-router.get("/api/events/", (req, res) => {
-    model.allEvents((data) => {
-        res.json(data);
-    });
-});
-
-router.get("/api/view/:tableName", (req, res) => {
-    model.allView(req.params.tableName, (data) => {
+// ==================================================
+// GET ROUTES
+// ==================================================
+// sends data to view.js to build the view and edit items section
+router.get("/api/view/menu/:tableName", (req, res) => {
+    model.getAllFromOneTable(req.params.tableName, data => {
         if (data[0].value) {
             let arr = [];
             for (let i = 0; i < data.length; i++) {
                 if (data[i].type === "year") {
-                    arr.push({
-                        id: data[i].id,
-                        name: data[i].value
-                    });
+                    arr.push({id: data[i].id, name: data[i].value});
                 }
             }
             res.json({data: arr});
-        }
-        else {
+        } else {
             res.json({data: data});
         }
     });
 });
-
-router.get("/api/comp/:yearValue", (req, res) => {
-    model.allComp(parseInt(req.params.yearValue), (data) => {
-        let returnData = data.map((x) => {
-            if (x.team) {
-                return {id: x.id, text: `${x.comp_number} - ${x.team_name}: ${x.group_names}`};
-            } 
-            else {
-                return {id: x.id, text: `${x.comp_number} - ${x.first_name} ${x.last_name}`};
-            }
-        });
-        res.json(returnData);
-    });
+// sends data to comp.js to render competitor selection menu in view/edit competitors section
+router.get("/api/comp/year/:year", (req, res) => {
+    if (isNaN(parseInt(req.params.year))) {
+        res.json([])
+    } else {
+        model.getAllCompetitorsByYear(parseInt(req.params.year), data => res.json(data.map(x => x.team ? {id: x.id, text: `${x.comp_number} - ${x.team_name}: ${x.group_names}`} : {id: x.id, text: `${x.comp_number} - ${x.first_name} ${x.last_name}`})));
+    }
 });
-
-router.get("/api/comp/compID/:compID", (req, res) => {
-    model.oneComp(parseInt(req.params.compID), (data) => {
-        res.json(data);
-    });
+// sends data to comp.js to render competitor name and number information in view/edit competitors section
+router.get("/api/comp/competitor/:competitor_id", (req, res) => {
+    if (isNaN(parseInt(req.params.competitor_id))) {
+        res.json([]);
+    } else {
+        model.getOneCompetitorByID(parseInt(req.params.competitor_id), data => res.json(data[0]));
+    }
 });
-
-router.get("/api/org/", (req, res) => {
-    model.allOrgs((data) => {
-        res.json(data);
-    });
+// sends boolean result to comp.js for team field based on tier id
+router.get("/api/comp/tier/:id", (req, res) => {
+    model.getTeamBooleanByTierID(parseInt(req.params.id), data => res.json(data));
 });
-
-router.get("/api/comp/tierInfo/:id", (req, res) => {
-    model.tierInfo(parseInt(req.params.id), (data) => {
-        res.json(data);
-    });
+// sends all organizations to comp.js for organization selection menu in add section
+router.get("/api/comp/org/", (req, res) => {
+    model.getAllFromOneTable("organizations", data => res.json(data));
 });
-
+// sends data to year.js to render the tier and event information for the selected year 
 router.get("/api/year/:id", (req, res) => {
-    model.getActiveTiers(parseInt(req.params.id), (data) => {
-        res.json(data);
-    });
+    model.getAllTiersByYearID(parseInt(req.params.id), data => res.json(data));
 });
 
 router.get("/api/score/one/:compID", (req, res) => {
-    var arr = req.params.compID.split("&");
-    var compID = parseInt(arr[0]);
-    var yearID = parseInt(arr[1]);
-    model.getCompScores(compID, yearID, (data) => {
-        res.json(data);
-    });
+    model.getCompScores(parseInt(req.params.compID.split("&")[0]), parseInt(req.params.compID.split("&")[0]), data => res.json(data));
 });
 
+router.get("/api/score/year-setup/:inputData", (req, res) => {
+    model.scoreReconciliation(parseInt(req.params.inputData.split("&")[0]), parseInt(req.params.inputData.split("&")[1]), data => res.json(data));
+});
+// ==================================================
+// POST ROUTES
+// ==================================================
 router.post("/api/view/", (req, res) => {
     model.addView(req.body, (data) => {
         res.json(data);
@@ -105,7 +84,9 @@ router.post("/api/comp/", (req, res) => {
         res.json(data);
     });
 });
-
+// ==================================================
+// PUT ROUTES
+// ==================================================
 router.put("/api/view/", (req, res) => {
     model.updateView(req.body, (data) => {
         res.json(data);
@@ -123,7 +104,9 @@ router.put("/api/score/", (req, res) => {
         res.json(data);
     });
 });
-
+// ==================================================
+// DELETE ROUTES
+// ==================================================
 router.delete("/api/view/", (req, res) => {
     model.deleteView(req.body, (data) => {
         res.json(data);
@@ -147,5 +130,7 @@ router.delete("/api/comp/", (req, res) => {
         res.json(data);
     });
 });
-
+// ==================================================
+// EXPORTS
+// ==================================================
 module.exports = router;

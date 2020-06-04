@@ -11,7 +11,6 @@ $(() => {
 
     $(document).on("click", "#save-button", (event) => {
         var totalEvents = $(event.target).attr("data-total-events");
-        console.log("totalEvents", totalEvents);
         var scoreObj = [];
         for (let i = 0; i < totalEvents; i++) {
             scoreObj.push({
@@ -30,7 +29,6 @@ $(() => {
                 id: $(`#seconds-input-${i}`).attr("data-record-id")
             });
         }
-        console.log("scoreObj", JSON.stringify(scoreObj));
         $.ajax("/api/score/", {
             type: "PUT",
             data: {data: scoreObj}
@@ -64,13 +62,18 @@ $(() => {
 
     function renderScore() {
         // get list of events for year and add any missing event records in scores table
+        var year_id = $("#year-select").val();
+        var competitor_id = $("#comp-select").val();
+        $.get(`/api/score/year-setup/${year_id}&${competitor_id}`, (data) => {
+            console.log("resultObj", data);
+        });
+
             // pull records for competitor id and year id from scores table
             // pull records for events and year from year table
             // insert records into scores table for missing competitor id, event id, and year id records
         $("#score-container").empty();
         var input = `${parseInt($("#comp-select").val())}&${parseInt($("#year-select").val())}`;
         $.get("/api/score/one/" + input, (data) => {
-            console.log("data", data);
             for (let i = 0; i < data.length; i++) {
                 var sectionEl = $("<div>");
                 sectionEl.attr("class", "main-container mx-auto text-center");

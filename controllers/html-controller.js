@@ -4,48 +4,48 @@ var router = express.Router();
 var model = require("../models/model.js");
 
 router.get("/", (req, res) => {
-    var hbsObj = {
-        title: "Annual Lineworkers Rodeo Scoring"
-    };
-    res.render("index", hbsObj);
+    res.render("index", {title: "Annual Lineworkers Rodeo Scoring"});
 });
 
 router.get("/view", (req, res) => {
-    var hbsObj = {
-        title: "View/Edit Database Options"
-    };
-    res.render("view", hbsObj);
+    res.render("view", {title: "View/Edit Database Options"});
 });
 
 router.get("/year", (req, res) => {
-    model.getYearOptions((data) => {
-        console.log("data", JSON.stringify(data));
-        data.arrays[0].title = "Rodeo Scoring Year Setup";
-        res.render("year", data);
+    let hbsYearObj = {arrays: [{title: "Year Setup", years: [], tiers: []}]};
+    model.getAllFromOneTable("years", (data) => {
+        hbsYearObj.arrays[0].years = [...data];
+        model.getAllFromOneTable("tiers", (data) => {
+            hbsYearObj.arrays[0].tiers = [...data];
+            res.render("year", hbsYearObj);
+        });
     });
 });
 
 router.get("/competitors", (req, res) => {
-    model.getYearOptions((data) => {
-        console.log("data", JSON.stringify(data));
-        data.arrays[0].title = "Add/Edit Competitors";
-        res.render("competitors", data);
+    let hbsYearObj = {arrays: [{title: "Add/Edit Competitors", years: [], tiers: []}]};
+    model.getAllFromOneTable("years", (data) => {
+        hbsYearObj.arrays[0].years = [...data];
+        model.getAllFromOneTable("tiers", (data) => {
+            hbsYearObj.arrays[0].tiers = [...data];
+            res.render("competitors", hbsYearObj);
+        });
     });
 });
 
 router.get("/score", (req, res) => {
-    model.getYearOptions((data) => {
-        console.log("data", JSON.stringify(data));
-        data.arrays[0].title = "Score Entry";
-        res.render("score", data);
+    let hbsYearObj = {arrays: [{title: "Score Entry", years: [], tiers: []}]};
+    model.getAllFromOneTable("years", (data) => {
+        hbsYearObj.arrays[0].years = [...data];
+        model.getAllFromOneTable("tiers", (data) => {
+            hbsYearObj.arrays[0].tiers = [...data];
+            res.render("score", hbsYearObj);
+        });
     });
 });
 
 router.get("/reports", (req, res) => {
-    var hbsObj = {
-        title: "View/Print Reports"
-    };
-    res.render("reports", hbsObj);
+    res.render("reports", {title: "View/Print Reports"});
 });
 
 module.exports = router;
