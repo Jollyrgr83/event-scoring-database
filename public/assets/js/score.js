@@ -1,13 +1,9 @@
 $(() => {
     renderCompSelectionMenu();
 
-    $(document).on("change", "#year-select", (event) => {
-        renderCompSelectionMenu();
-    });
+    $(document).on("change", "#year-select", event => renderCompSelectionMenu());
 
-    $(document).on("change", "#comp-select", (event) => {
-        renderScore();
-    });
+    $(document).on("change", "#comp-select", event => renderScore());
 
     $(document).on("click", "#save-button", (event) => {
         var totalEvents = $(event.target).attr("data-total-events");
@@ -41,7 +37,7 @@ $(() => {
     });
 
     function renderCompSelectionMenu() {
-        $.get("/api/comp/" + parseInt($("#year-select").val()), (data) => {
+        $.get("/api/comp/year/" + parseInt($("#year-select").val()), (data) => {
             $("#comp-menu-container").empty();
             var menuTitleEl = $("<p>");
             menuTitleEl.attr("class", "item-title mx-auto");
@@ -56,24 +52,18 @@ $(() => {
                 menuEl.append(optionEl);
             }
             $("#comp-menu-container").append(menuEl);
-            renderScore();
+            reconcileScores();
         });
     }
 
-    function renderScore() {
-        // get list of events for year and add any missing event records in scores table
-        var year_id = $("#year-select").val();
-        var competitor_id = $("#comp-select").val();
-        $.get(`/api/score/year-setup/${year_id}&${competitor_id}`, (data) => {
-            console.log("resultObj", data);
-        });
+    function reconcileScores() {
+        $.get(`/api/score/reconcile/${$("#year-select").val()}`, data => renderScore());
+    }
 
-            // pull records for competitor id and year id from scores table
-            // pull records for events and year from year table
-            // insert records into scores table for missing competitor id, event id, and year id records
+    function renderScore() {
         $("#score-container").empty();
         var input = `${parseInt($("#comp-select").val())}&${parseInt($("#year-select").val())}`;
-        $.get("/api/score/one/" + input, (data) => {
+        $.get("/api/score/competitor/" + input, (data) => {
             for (let i = 0; i < data.length; i++) {
                 var sectionEl = $("<div>");
                 sectionEl.attr("class", "main-container mx-auto text-center");

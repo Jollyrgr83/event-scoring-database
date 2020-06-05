@@ -1,11 +1,7 @@
-// DEPENDENCIES
-// ==================================================
 var express = require("express");
 var router = express.Router();
 var model = require("../models/model.js");
-// ==================================================
-// GET ROUTES
-// ==================================================
+
 // sends data to view.js to build the view and edit items section
 router.get("/api/view/menu/:tableName", (req, res) => {
     model.getAllFromOneTable(req.params.tableName, data => {
@@ -21,6 +17,10 @@ router.get("/api/view/menu/:tableName", (req, res) => {
             res.json({data: data});
         }
     });
+});
+// sends data to year.js to render the tier and event information for the selected year 
+router.get("/api/year/:id", (req, res) => {
+    model.getAllTiersByYearID(parseInt(req.params.id), data => res.json(data));
 });
 // sends data to comp.js to render competitor selection menu in view/edit competitors section
 router.get("/api/comp/year/:year", (req, res) => {
@@ -46,91 +46,107 @@ router.get("/api/comp/tier/:id", (req, res) => {
 router.get("/api/comp/org/", (req, res) => {
     model.getAllFromOneTable("organizations", data => res.json(data));
 });
-// sends data to year.js to render the tier and event information for the selected year 
-router.get("/api/year/:id", (req, res) => {
-    model.getAllTiersByYearID(parseInt(req.params.id), data => res.json(data));
+// sends all event scores for one competitor to score.js to render competitor scores 
+router.get("/api/score/competitor/:competitor_id", (req, res) => {
+    model.getCompetitorScores(parseInt(req.params.competitor_id.split("&")[0]), parseInt(req.params.competitor_id.split("&")[1]), data => res.json(data));
 });
-
-router.get("/api/score/one/:compID", (req, res) => {
-    model.getCompScores(parseInt(req.params.compID.split("&")[0]), parseInt(req.params.compID.split("&")[0]), data => res.json(data));
+// sends score reconciliation data to score.js
+router.get("/api/score/reconcile/:year_id", (req, res) => {
+    const obj = {year_id: parseInt(req.params.year_id), tiers: {}};
+    model.getScoreReconciliation(obj.year_id, (data) => {
+        // parse SQL result
+        for (let i = 0; i < data.tiers.length; i++) {
+            obj.tiers[data.tiers[i].tier_id] = {competitor_id: [], event_id: []};
+            for (let j = 0; j < data.events.length; j++) {
+                if (data.events[j].tier_id === data.tiers[i].tier_id) {
+                    obj.tiers[data.tiers[i].tier_id].event_id.push(data.events[j]);
+                }
+            }
+            for (let j = 0; j < data.competitors_table.length; j++) {
+                if (data.competitors_table[j].tier_id === data.tiers[i].tier_id) {
+                    obj.tiers[data.tiers[i].tier_id].competitor_id.push(data.competitors_table[j]);
+                }
+            }
+        }
+        // build required score entries
+        obj.req = [];
+        let tier_arr = Object.keys(obj.tiers);
+        for (let i = 0; i < tier_arr.length; i++) {
+            for (let j = 0; j < obj.tiers[tier_arr[i]].competitor_id.length; j++) {
+                for (let k = 0; k < obj.tiers[tier_arr[i]].event_id.length; k++) {
+                    var item = {
+                        year_id: obj.year_id,
+                        competitor_id: obj.tiers[tier_arr[i]].competitor_id[j].id,
+                        event_id: obj.tiers[tier_arr[i]].event_id[k].event_id
+                    };
+                    obj.req.push(item);
+                }
+            }
+        }
+        // compare against actual
+        obj.delta = [];
+        for (let i = 0; i < obj.req.length; i++) {
+            let counter = true;
+            for (let j = 0; j < data.act.length; j++) {
+                if (obj.req[i].competitor_id === data.act[j].competitor_id && obj.req[i].event_id === data.act[j].event_id) {
+                    counter = false;
+                }
+            }
+            if (counter) {
+                obj.delta.push(obj.req[i]);
+            }
+        }
+        // insert missing score table records
+        for (let i = 0; i < obj.delta.length; i++) {
+            model.addScore(obj.delta[i], data => console.log(data));
+        }
+        obj.scores = data;
+        res.json(obj);
+    });
 });
-
-router.get("/api/score/year-setup/:inputData", (req, res) => {
-    model.scoreReconciliation(parseInt(req.params.inputData.split("&")[0]), parseInt(req.params.inputData.split("&")[1]), data => res.json(data));
-});
-// ==================================================
-// POST ROUTES
-// ==================================================
+// receives data from view.js and adds new category (tier, event, organization, year)
 router.post("/api/view/", (req, res) => {
-    model.addView(req.body, (data) => {
-        res.json(data);
-    });
+    model.addCategory(req.body, data => res.json(data));
 });
-
+// receives data from year.js and adds new event
 router.post("/api/year/", (req, res) => {
-    model.addEventYear(req.body, (data) => {
-        res.json(data);
-    });
+    model.addEvent(req.body, data => res.json(data));
 });
-
+// receives data from year.js and adds new tier
 router.post("/api/year/tier/", (req, res) => {
-    model.addTierYear(req.body, (data) => {
-        res.json(data);
-    });
+    model.addTier(req.body, data => res.json(data));
 });
-
+// receives data from comp.js and adds new competitor
 router.post("/api/comp/", (req, res) => {
-    model.addOneComp(req.body, (data) => {
-        res.json(data);
-    });
+    model.addCompetitor(req.body, data => res.json(data));
 });
-// ==================================================
-// PUT ROUTES
-// ==================================================
+// receives data from view.js and updates category record (tier, entry, organization, year)
 router.put("/api/view/", (req, res) => {
-    model.updateView(req.body, (data) => {
-        res.json(data);
-    });
+    model.updateCategory(req.body, data => res.json(data));
 });
-
+// receives data from comp.js and updates competitor record
 router.put("/api/comp/update/", (req, res) => {
-    model.updateComp(req.body, (data) => {
-        res.json(data);
-    });
+    model.updateCompetitor(req.body, data => res.json(data));
 });
-
+// receives data from score.js 
 router.put("/api/score/", (req, res) => {
-    model.updateScores(req.body.data, (data) => {
-        res.json(data);
-    });
+    model.updateCompetitorScores(req.body.data, data => res.json(data));
 });
-// ==================================================
-// DELETE ROUTES
-// ==================================================
+// receives data from view.js and deletes category record (tier, entry, organization, year)
 router.delete("/api/view/", (req, res) => {
-    model.deleteView(req.body, (data) => {
-        res.json(data);
-    });
+    model.deleteCategory(req.body, data => res.json(data));
 });
-
+// receives data from year.js and deletes event record
 router.delete("/api/year/", (req, res) => {
-    model.deleteYear(req.body.event_id, req.body.tier_id, req.body.year_id, (data) => {
-        res.json(data);
-    });
+    model.deleteEvent(req.body.event_id, req.body.tier_id, req.body.year_id, data => res.json(data));
 });
-
+// receives data from year.js and deletes tier record
 router.delete("/api/year/tier/", (req, res) => {
-    model.deleteYearTier(req.body, (data) => {
-        res.json(data);
-    });
+    model.deleteTier(req.body, data => res.json(data));
+});
+// receives data from comp.js and deletes competitor record
+router.delete("/api/comp/", (req, res) => {
+    model.deleteCompetitor(req.body, data => res.json(data));
 });
 
-router.delete("/api/comp/", (req, res) => {
-    model.deleteComp(req.body, (data) => {
-        res.json(data);
-    });
-});
-// ==================================================
-// EXPORTS
-// ==================================================
 module.exports = router;

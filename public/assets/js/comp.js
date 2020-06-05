@@ -2,8 +2,7 @@ $(() => {
     renderCompPage();
 
     $(document).on("click", ".button", (event) => {
-        var ID = $(event.target).attr("id");
-        if (ID === "comp-save-button") {
+        if ($(event.target).attr("id") === "comp-save-button") {
             $.ajax("/api/comp/update/", {
                 type: "PUT",
                 data: {
@@ -20,34 +19,23 @@ $(() => {
                 textEl.text(`Success! Changes Saved!`);
                 $("#view-dynamic-comp-info").append(textEl);
             })
-        }
-        else if (ID === "comp-delete-button") {
+        } else if ($(event.target).attr("id") === "comp-delete-button") {
             $.ajax("/api/comp/", {
                 type: "DELETE",
                 data: {
                     id: parseInt($(event.target).attr("data-id"))
                 }
-            }).then((data) => {
-                renderCompPage();
-            });
-        }
-        else if (ID = "add-comp-save-button") {
+            }).then(data => renderCompPage());
+        } else if ($(event.target).attr("id") === "add-comp-save-button") {
             renderAddMessage();
         }
-
     });
 
-    $(document).on("change", "#year-select", (event) => {
-        renderCompPage();
-    });
+    $(document).on("change", "#year-select", event => renderCompPage());
 
-    $(document).on("change", "#comp-select", (event) => {
-        renderCompInfo();
-    });
+    $(document).on("change", "#comp-select", event => renderCompInfo());
 
-    $(document).on("change", "#tier-select", (event) => {
-        renderCompAddInfo();
-    });
+    $(document).on("change", "#tier-select", event => renderCompAddInfo());
 
     function renderCompPage() {
         getCompData();
@@ -80,7 +68,7 @@ $(() => {
             textEl.attr("class", "item-title mx-auto");
             textEl.text(`Success! Competitor Added!`);
             $("#add-dynamic-comp-info").append(textEl);
-            $("#add-comp-number").val().trim(),
+            $("#add-comp-number").val(""),
             $("#add-first-name").val("");
             $("#add-last-name").val("");
             $("#add-team-name").val("");
@@ -107,13 +95,7 @@ $(() => {
     }
 
     function renderCompInfo() {
-        $.get("/api/comp/competitor/" + parseInt($("#comp-select").val()), (data) => {
-            if (data.team === 0) {
-                renderIndividual(data);
-            } else {
-                renderTeam(data);
-            }
-        });
+        $.get("/api/comp/competitor/" + parseInt($("#comp-select").val()), data => data.team === 0 ? renderIndividual(data) : renderTeam(data));
     }
 
     function renderCompAddInfo() {
@@ -156,10 +138,8 @@ $(() => {
         saveButtonEl.attr("class", "button mx-auto");
         saveButtonEl.text("Add Competitor");
         $.get("/api/comp/tier/" + parseInt($("#tier-select").val()), (res) => {
-            console.log("res", res);
             if (res[0].team === 0) {
                 $.get("/api/comp/org/", (data) => {
-                    console.log("org data", data);
                     var orgMenuEl = $("<select>");
                     orgMenuEl.attr("id", "org-select");
                     for (let i = 0; i < data.length; i++) {
@@ -178,10 +158,8 @@ $(() => {
                     $("#add-dynamic-comp-info").append(orgMenuEl);
                     $("#add-dynamic-comp-info").append(saveButtonEl);
                 });    
-            }
-            else {
+            } else {
                 $.get("/api/comp/org/", (data) => {
-                    console.log("org data", data);
                     var orgMenuEl = $("<select>");
                     orgMenuEl.attr("id", "org-select");
                     for (let i = 0; i < data.length; i++) {

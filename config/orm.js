@@ -1,6 +1,7 @@
 var connection = require("../config/connection.js");
 
 var orm = {
+    // SELECT QUERIES
     selectAllFromOneTable: (tableName, cb) => {
         if (tableName === "years") {
             var queryString = `SELECT * FROM years WHERE type = "year";`;
@@ -54,20 +55,50 @@ var orm = {
                 connection.query(queryString, (err, result) => {
                     if (err) throw err;
                     activeTiersObj.allEvents = [...result];
-                    var queryString = `SELECT * FROM competitors WHERE year_id = ${activeTiersObj.year_id};`;
+                    cb(activeTiersObj);
+                });
+            });
+        });
+    },
+    selectScoresByCompetitor: (compID, yearID, cb) => {
+        if (isNaN(compID)) {
+            cb([]);
+        } else {
+            var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                cb(result);
+            });
+        }
+    },
+    selectAllScoreReconciliation: (year_id, cb) => {
+        const resultObj = {year_id: year_id};
+        // pull records for tiers from years table for selected year
+        var queryString = `SELECT tier_id FROM years WHERE year_id = ${resultObj.year_id} AND type = "tier";`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            resultObj.tiers = [...result];
+            // pull records for competitors from competitors table for selected year
+            var queryString = `SELECT * FROM competitors WHERE year_id = ${resultObj.year_id};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                resultObj.competitors_table = [...result];
+                // pull records for tiers and events from scores table for selected year
+                var queryString = `SELECT competitor_id, event_id, year_id FROM scores WHERE year_id = ${resultObj.year_id};`;
+                connection.query(queryString, (err, result) => {
+                    if (err) throw err;
+                    resultObj.act = [...result];
+                    var queryString = `SELECT event_id, tier_id FROM years WHERE year_id = ${resultObj.year_id} AND type = "event";`;
                     connection.query(queryString, (err, result) => {
-                        if (err) throw err;
-                        activeTiersObj.competitors = [...result];
-                        cb(activeTiersObj);
+                        resultObj.events = [...result];
+                        cb(resultObj);
                     });
                 });
             });
         });
     },
-    insertOneRecord: (obj, cb) => {
-        var queryString = `INSERT INTO ${obj.table_name} ?;`;
-    },
-    addOneView: (body, cb) => {
+    // INSERT QUERIES
+    insertOneCategory: (body, cb) => {
         if (body.titleName === "Years") {
             var queryString = `INSERT INTO ${body.titleName.toLowerCase()} (type, value) VALUES ("year", ${parseInt(body.itemName)});`;
         }
@@ -85,48 +116,37 @@ var orm = {
             cb(result);
         });
     },
-    addOneEventYear: (body, cb) => {
+    insertOneEvent: (body, cb) => {
         var queryString = `INSERT INTO years (tier_id, event_id, year_id, type) VALUES (${body.tier_id}, ${body.event_id}, ${body.year_id}, 'event');`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    addOneTierYear: (body, cb) => {
+    insertOneTier: (body, cb) => {
         var queryString = `INSERT INTO years (tier_id, year_id, type) VALUES (${body.tier_id}, ${body.year_id}, 'tier');`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    updateOneView: (body, cb) => {
-        if (body.titleName === "Years") {
-            var queryString = `UPDATE ${body.titleName.toLowerCase()} SET value = ${parseInt(body.itemValue)} WHERE id = ${body.id};`;
-        }
-        else {
-            var queryString = `UPDATE ${body.titleName.toLowerCase()} SET name = '${body.itemValue}' WHERE id = ${body.id};`;
-        }
+    insertOneCompetitor: (body, cb) => {
+        var queryString = `INSERT INTO competitors (tier_id, comp_number, first_name, last_name, team_name, group_names, org_id, year_id) VALUES (${body.tier_id}, '${body.comp_number}', '${body.first_name}', '${body.last_name}', '${body.team_name}', '${body.group_names}', ${body.org_id}, ${body.year_id});`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
         });
     },
-    deleteOneView: (body, cb) => {
-        var queryString = `DELETE FROM ${body.titleName.toLowerCase()} WHERE id = ${body.id};`;
+    insertOneScore: (body, cb) => {
+        var queryString = `INSERT INTO scores (year_id, competitor_id, event_id) VALUES (${body.year_id}, ${body.competitor_id}, ${body.event_id});`;
         connection.query(queryString, (err, result) => {
-            if (err) throw err;
             cb(result);
         });
     },
-    deleteOneYear: (event_id, tier_id, year_id, cb) => {
-        var queryString = `DELETE FROM years WHERE event_id = ${event_id} AND year_id = ${year_id} AND tier_id = ${tier_id};`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    deleteYearTier: (body, cb) => {
-        var queryString = `DELETE FROM years WHERE year_id = ${body.year_id} AND tier_id = ${body.tier_id};`;
+    // UPDATE QUERIES
+    updateOneCategory: (body, cb) => {
+        var queryString = "";
+        body.titleName === "Years" ? queryString = `UPDATE ${body.titleName.toLowerCase()} SET value = ${parseInt(body.itemValue)} WHERE id = ${body.id};` : queryString = `UPDATE ${body.titleName.toLowerCase()} SET name = '${body.itemValue}' WHERE id = ${body.id};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
@@ -139,56 +159,46 @@ var orm = {
             cb(result);
         });
     },
+    updateScoresByCompetitor: (arr, cb) => {
+        const resultArr = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].value != null && arr[i].value != "") {
+                var queryString = `UPDATE scores SET ${arr[i].title} = ${arr[i].value} WHERE id = ${arr[i].id};`;
+                connection.query(queryString, (err, result) => {
+                    if (err) throw err;
+                    resultArr.push(result);
+                });
+            }
+        }
+        cb(resultArr);
+    },
+    // DELETE QUERIES
+    deleteOneCategory: (body, cb) => {
+        var queryString = `DELETE FROM ${body.titleName.toLowerCase()} WHERE id = ${body.id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    deleteOneEvent: (event_id, tier_id, year_id, cb) => {
+        var queryString = `DELETE FROM years WHERE event_id = ${event_id} AND year_id = ${year_id} AND tier_id = ${tier_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
+    deleteOneTier: (body, cb) => {
+        var queryString = `DELETE FROM years WHERE year_id = ${body.year_id} AND tier_id = ${body.tier_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
+        });
+    },
     deleteOneCompetitor: (body, cb) => {
         var queryString = `DELETE FROM competitors WHERE id = ${parseInt(body.id)};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
             cb(result);
-        });
-    },
-    addOneCompetitor: (body, cb) => {
-        var queryString = `INSERT INTO competitors (tier_id, comp_number, first_name, last_name, team_name, group_names, org_id, year_id) VALUES (${body.tier_id}, '${body.comp_number}', '${body.first_name}', '${body.last_name}', '${body.team_name}', '${body.group_names}', ${body.org_id}, ${body.year_id});`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    getCompetitorScores: (compID, yearID, cb) => {
-        var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            cb(result);
-        });
-    },
-    updateCompetitorScores: (arr, cb) => {
-        const resultArr = [];
-        for (let i = 0; i < arr.length; i++) {
-            var queryString = `UPDATE scores SET ${arr[i].title} = ${arr[i].value} WHERE id = ${arr[i].id};`;
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                resultArr.push(result);
-            });
-        }
-        cb(resultArr);
-    },
-    scoreReconciliation: (year_id, competitor_id, cb) => {
-        const resultObj = {
-            year_id: year_id,
-            competitor_id: competitor_id
-        };
-        // pull records for competitor id and year id from scores table
-        var queryString = `SELECT * FROM scores WHERE competitor_id = ${resultObj.competitor_id} AND year_id = ${resultObj.year_id};`;
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            resultObj.scores = [...result];
-            // pull records for events and year from year table
-            var queryString = `SELECT * FROM years WHERE year_id = ${resultObj.year_id};`;
-            connection.query(queryString, (err, result) => {
-                if (err) throw err;
-                resultObj.years = [...result];
-                console.log("resultObj", resultObj);
-                cb(resultObj);
-            });
         });
     }
 };

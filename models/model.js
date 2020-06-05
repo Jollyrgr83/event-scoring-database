@@ -2,94 +2,61 @@ var orm = require("../config/orm.js");
 
 var model = {
     getAllFromOneTable: (tableName, cb) => {
-        orm.selectAllFromOneTable(tableName, (res) => {
-            cb(res);
-        });
+        orm.selectAllFromOneTable(tableName, res => cb(res));
     },
     getAllCompetitorsByYear: (year, cb) => {
-        orm.selectAllCompetitorsByYear(year, (res) => {
-            cb(res);
-        });
+        orm.selectAllCompetitorsByYear(year, res => cb(res));
     },
     getOneCompetitorByID: (competitor_id, cb) => {
-        orm.selectOneCompetitorByID(competitor_id, (res) => {
-            cb(res);
-        });
+        orm.selectOneCompetitorByID(competitor_id, res => cb(res));
     },
     getTeamBooleanByTierID: (tier_id, cb) => {
-        orm.selectTeamBooleanByTierID(tier_id, (res) => {
-            cb(res);
-        });
+        orm.selectTeamBooleanByTierID(tier_id, res => cb(res));
     },
     getAllTiersByYearID: (year_id, cb) => {
-        orm.selectAllTiersByYearID(year_id, (res) => {
-            cb(res);
-        });
+        orm.selectAllTiersByYearID(year_id, res => cb(res));
     },
-    addView: (body, cb) => {
-        orm.addOneView(body, (res) => {
-            cb(res);
-        });
+    getCompetitorScores: (compID, yearID, cb) => {
+        orm.selectScoresByCompetitor(compID, yearID, res => cb(res));
     },
-    addEventYear: (body, cb) => {
-        orm.addOneEventYear(body, (res) => {
-            cb(res);
-        });
+    getScoreReconciliation: (year_id, cb) => {
+        orm.selectAllScoreReconciliation(year_id, res => cb(res));
     },
-    addTierYear: (body, cb) => {
-        orm.addOneTierYear(body, (res) => {
-            cb(res);
-        });
+    addCategory: (body, cb) => {
+        orm.insertOneCategory(body, res => cb(res));
     },
-    updateView: (body, cb) => {
-        orm.updateOneView(body, (res) => {
-            cb(res);
-        });
+    addEvent: (body, cb) => {
+        orm.insertOneEvent(body, res => cb(res));
     },
-    deleteView: (body, cb) => {
-        orm.deleteOneView(body, (res) => {
-            cb(res);
-        });
+    addTier: (body, cb) => {
+        orm.insertOneTier(body, res => cb(res));
     },
-    deleteYear: (event_id, tier_id, year_id, cb) => {
-        orm.deleteOneYear(event_id, tier_id, year_id, (res) => {
-            cb(res);
-        });
+    addCompetitor: (body, cb) => {
+        orm.insertOneCompetitor(body, res => cb(res));
     },
-    deleteYearTier: (body, cb) => {
-        orm.deleteYearTier(body, (res) => {
-            cb(res);
-        });
+    addScore: (body, cb) => {
+        orm.insertOneScore(body, res => cb(res));
     },
-    updateComp: (body, cb) => {
-        orm.updateOneCompetitor(body, (res) => {
-            cb(res);
-        });
+    updateCategory: (body, cb) => {
+        orm.updateOneCategory(body, res => cb(res));
     },
-    deleteComp: (body, cb) => {
-        orm.deleteOneCompetitor(body, (res) => {
-            cb(res);
-        });
+    updateCompetitor: (body, cb) => {
+        orm.updateOneCompetitor(body, res => cb(res));
     },
-    addOneComp: (body, cb) => {
-        orm.addOneCompetitor(body, (res) => {
-            cb(res);
-        });
+    updateCompetitorScores: (arr, cb) => {
+        orm.updateScoresByCompetitor(arr, res => cb(res));
     },
-    getCompScores: (compID, yearID, cb) => {
-        orm.getCompetitorScores(compID, yearID, (res) => {
-            cb(res);
-        });
+    deleteCategory: (body, cb) => {
+        orm.deleteOneCategory(body, res => cb(res));
     },
-    updateScores: (arr, cb) => {
-        orm.updateCompetitorScores(arr, (res) => {
-            cb(res);
-        });
+    deleteEvent: (event_id, tier_id, year_id, cb) => {
+        orm.deleteOneEvent(event_id, tier_id, year_id, res => cb(res));
     },
-    scoreReconciliation: (year_id, competitor_id, cb) => {
-        orm.scoreReconciliation(year_id, competitor_id, (res) => {
-            cb(res);
-        });
+    deleteTier: (body, cb) => {
+        orm.deleteOneTier(body, res => cb(res));
+    },
+    deleteCompetitor: (body, cb) => {
+        orm.deleteOneCompetitor(body, res => cb(res));
     }
 };
 

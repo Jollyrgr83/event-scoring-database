@@ -4,18 +4,15 @@ $(() => {
     $(document).on("click", ".button", (event) => {
         if ($(event.target).attr("id") === "view-menu-button") {
             getView($("#view-menu").val());
-        }
-        else if ($(event.target).attr("id") === "add-container-button") {
+        } else if ($(event.target).attr("id") === "add-container-button") {
             var titleName = $("#add-menu").val();
             var itemName = $("#add-container-input").val().trim();
             if (itemName === "" || (isNaN(parseInt(itemName)) && titleName === "Years")) {
                 renderAddMessage("error", titleName);
-            }
-            else {
+            } else {
                 if (titleName === "Tiers") {
                     var teamStatus = $("#tiers-add-select").val();
-                }
-                else if (titleName === "Organizations") {
+                } else if (titleName === "Organizations") {
                     var teamStatus = null;
                     var coopStatus = $("#organizations-add-select").val();
                 }
@@ -25,71 +22,42 @@ $(() => {
     });
 
     $(document).on("click", ".view-button", (event) => {
-        var clickClass = $(event.target).attr("class");
         var ID = parseInt($(event.target).attr("id"));
-        var titleName = $("#view-menu").val();
         var itemValue = $(`#input-${ID}`).val().trim();
         if (itemValue === "") {
             return;
-        }
-        else if (clickClass.indexOf("delete") != -1) {
-            clickClass = "delete";
+        } else if ($(event.target).attr("class").indexOf("delete") != -1) {
             $.ajax("/api/view/", {
                 type: "DELETE",
                 data: {
-                    titleName: titleName,
+                    titleName: $("#view-menu").val(),
                     id: ID
                 }
-            }).then((res) => {
-                console.log("res", res);
-                if (res.affectedRows === 1) {
-                    var titleName = $("#view-menu").val();
-                    getView(titleName);
-                }
-            });
-        }
-        else if (clickClass.indexOf("update") != -1) {
-            clickClass = "update";
+            }).then(res => getView($("#view-menu").val()));
+        } else if ($(event.target).attr("class").indexOf("update") != -1) {
             $.ajax("/api/view/", {
                 type: "PUT",
-                data: {
-                    titleName: titleName,
-                    id: ID,
-                    itemValue: itemValue
-                }
-            }).then((res) => {
-                console.log("res", res);
-                if (res.affectedRows === 1) {
-                    var titleName = $("#view-menu").val();
-                    getView(titleName, "update");
-                }
-            });
+                data: {titleName: $("#view-menu").val(), id: ID, itemValue: itemValue}
+            }).then(res => getView($("#view-menu").val(), "update"));
         }
-        
     });
 
-    $(document).on("change", "#add-menu", (event) => {
-        renderAddMenu();
-    });
+    $(document).on("change", "#add-menu", event => renderAddMenu());
 
     function getView(titleName, status) {
-        console.log("titleName", titleName);
         const dataObj = {
             titleName: titleName,
             tableName: titleName.toLowerCase(),
             status: status
         };
         $.get("/api/view/menu/" + dataObj.tableName, (data) => {
-            console.log("data", data);
             dataObj.data = [...data.data];
             renderViewMenu(dataObj);
         });
     }
 
     function renderViewMenu(dataObj) {
-        console.log("dataObj", JSON.stringify(dataObj));
         $("#view-container").empty();
-        $("#view-container").attr("class", "main-container mx-auto text-center show");
         var warningDivEl = $("<p>");
         warningDivEl.attr("class", "warning mx-auto text-center");
         var warningTitleEl = $("<p>");
@@ -138,7 +106,7 @@ $(() => {
         $("#add-container").empty();
         var pTitleEl = $("<p>");
         pTitleEl.attr("class", "item-title mx-auto");
-        pTitleEl.text(`Enter New ${titleName} Item Name:`);
+        titleName === "Years" ? pTitleEl.text("Enter Year") : pTitleEl.text(`Enter Name`);
         $("#add-container").append(pTitleEl);
         var inputEl = $("<input>");
         inputEl.attr("id", "add-container-input");
@@ -158,8 +126,7 @@ $(() => {
             optionNoEl.text("Teams");
             tiersSelectEl.append(optionNoEl);
             $("#add-container").append(tiersSelectEl);
-        }
-        else if (titleName === "Organizations") {
+        } else if (titleName === "Organizations") {
             var organizationsTextEl = $("<p>");
             organizationsTextEl.attr("class", "item-title mx-auto");
             organizationsTextEl.text("Is this organization a coop?");
@@ -177,7 +144,7 @@ $(() => {
         var buttonEl = $("<button>");
         buttonEl.attr("class", "button mx-auto");
         buttonEl.attr("id", "add-container-button");
-        buttonEl.text(`Add New ${titleName} Item`);
+        buttonEl.text(`Add New ${titleName.slice(0, -1)}`);
         $("#add-container").append(buttonEl);
         var messageEl = $("<div>");
         messageEl.attr("id", "add-message-container");
@@ -187,42 +154,27 @@ $(() => {
     function renderAddMessage(status, titleName, itemName, teamStatus, coopStatus) {
         $("#add-container").empty();
         if (status === "error") {
-            console.log("status was error");
             var textEl = $("<p>");
             textEl.attr("class", "item-title");
             textEl.text("Please ensure that your entry is not blank or is a valid number for a year entry.");
             renderAddMenu(titleName);
             $("#add-container").append(textEl);
-        }
-        else {
-            console.log("status was success");
-            const addObj = {
-                titleName: titleName,
-                itemName: itemName,
-            };
-            if (teamStatus === "Individuals" || teamStatus === "Teams") {
-                if (teamStatus === "Teams") {
-                    addObj.teamStatus = true;
-                }
-                else {
-                    addObj.teamStatus = false;
-                }
-            }
-            else if (coopStatus === "Yes" || coopStatus === "No") {
-                if (coopStatus === "Yes") {
-                    addObj.coopStatus = true;
-                }
-                else {
-                    addObj.coopStatus = false;
-                }
+        } else {
+            const addObj = {titleName: titleName, itemName: itemName};
+            if (teamStatus === "Individuals") {
+                addObj.teamStatus = true;
+            } else if (teamStatus === "Teams") {
+                addObj.teamStatus = false;
+            } else if (coopStatus === "Yes") {
+                addObj.coopStatus = true;
+            } else if (coopStatus === "No") {
+                addObj.coopStatus = false;
             }
             $.ajax("/api/view/", {
                 type: "POST",
                 data: addObj
             }).then((res) => {
-                console.log("response", res);
-                var titleName = $("#view-menu").val();
-                getView(titleName);
+                getView($("#view-menu").val());
                 var textEl = $("<p>");
                 textEl.attr("class", "item-title");
                 textEl.text(`Success! Item Added!`);

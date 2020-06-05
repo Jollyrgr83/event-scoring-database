@@ -1,35 +1,25 @@
 $(() => {
     getYearSetup();
 
-    $(document).on("change", "#year-select", (event) => {
-        getYearSetup();
-    });
+    $(document).on("change", "#year-select", event => getYearSetup());
 
     $(document).on("click", ".button", (event) => {
-        var ID = $(event.target).attr("id");
-        if (ID === "year-add-tier-button") {
+        if ($(event.target).attr("id") === "year-add-tier-button") {
             $.ajax("/api/year/tier/", {
                 type: "POST",
                 data: {
                     year_id: parseInt($("#year-select").val()),
                     tier_id: parseInt($("#tier-select").val())
                 }
-            }).then((res) => {
-                getYearSetup();
-            });
-        }
-        else if ($(event.target).attr("class").indexOf("delete") != -1) {
+            }).then(res => getYearSetup());
+        } else if ($(event.target).attr("class").indexOf("delete") != -1) {
             $.ajax("/api/year/tier/", {
                 type: "DELETE",
                 data: {
                     year_id: parseInt($("#year-select").val()),
                     tier_id: parseInt($(event.target).attr("data-tier_id"))
                 }
-            }).then((res) => {
-                if (res.affectedRows === 1) {
-                    getYearSetup();
-                }
-            });
+            }).then(res => getYearSetup());
         }
     });
 
@@ -41,11 +31,7 @@ $(() => {
                 tier_id: parseInt($(event.target).attr("data-tier_id")),
                 event_id: parseInt($(event.target).attr("data-event_id"))
             }
-        }).then((res) => {
-            if (res.affectedRows === 1) {
-                getYearSetup();
-            }
-        });      
+        }).then(res => getYearSetup());      
     });
 
     $(document).on("click", ".year-add-event-button", (event) => {
@@ -56,29 +42,15 @@ $(() => {
                 tier_id: parseInt($(event.target).attr("data-id")),
                 event_id: parseInt($(`#year-add-event-select-${parseInt($(event.target).attr("data-id"))}`).val())
             }
-        }).then((res) => {
-            getYearSetup();
-        });
+        }).then(res => getYearSetup());
     });
 
     function getYearSetup() {
-        var selectMenu = $("#year-select");
-        var selectMenuKeys = Object.keys(selectMenu["0"]);
-        for (let i = 0; i < selectMenuKeys.length; i++) {
-            if (selectMenu["0"][i].selected) {
-                var selectionValue = parseInt(selectMenu["0"][i].value);
-            }
-        }
-        console.log("selectionValue", selectionValue);
-        $.get("/api/year/" + selectionValue, (data) => {
-            console.log("year data: ", data);
-            renderYearSetup(data);
-        });
+        $.get("/api/year/" + parseInt($("#year-select").val()), data => renderYearSetup(data));
     }
 
     function renderYearSetup(data) {
-        var main = $("#dynamic");
-        main.empty();
+        $("#dynamic").empty();
         for (let i = 0; i < data.tiers.length; i++) {
             var containerEl = $("<section>");
             containerEl.attr("class", "main-container mx-auto text-center");
@@ -128,7 +100,7 @@ $(() => {
             delTierButtonEl.attr("style", "background-color: red; border: solid 2px red;");
             delTierButtonEl.text("Delete Tier");
             containerEl.append(delTierButtonEl);
-            main.append(containerEl);
+            $("#dynamic").append(containerEl);
         }
     }
 });
