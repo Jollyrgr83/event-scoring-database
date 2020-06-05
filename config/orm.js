@@ -2,11 +2,11 @@ var connection = require("../config/connection.js");
 
 var orm = {
     // SELECT QUERIES
-    selectAllFromOneTable: (tableName, cb) => {
-        if (tableName === "years") {
+    selectAllFromOneTable: (table_name, cb) => {
+        if (table_name === "years") {
             var queryString = `SELECT * FROM years WHERE type = "year";`;
         } else {
-            var queryString = `SELECT * FROM ${tableName};`;
+            var queryString = `SELECT * FROM ${table_name};`;
         }
         connection.query(queryString, (err, result) => {
             if (err) throw err;
@@ -60,11 +60,11 @@ var orm = {
             });
         });
     },
-    selectScoresByCompetitor: (compID, yearID, cb) => {
-        if (isNaN(compID)) {
+    selectScoresByCompetitor: (competitor_id, year_id, cb) => {
+        if (isNaN(competitor_id)) {
             cb([]);
         } else {
-            var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${compID} AND scores.year_id = ${yearID};`;
+            var queryString = `SELECT scores.id, scores.score, scores.time_minutes, scores.time_seconds, events.name FROM scores INNER JOIN events ON (scores.event_id = events.id) WHERE scores.competitor_id = ${competitor_id} AND scores.year_id = ${year_id};`;
             connection.query(queryString, (err, result) => {
                 if (err) throw err;
                 cb(result);
@@ -94,6 +94,20 @@ var orm = {
                         cb(resultObj);
                     });
                 });
+            });
+        });
+    },
+    selectAllScoresByYearID: (year_id, cb) => {
+        const scoreObj = {};
+        var queryString = `SELECT * FROM scores WHERE year_id = ${year_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            scoreObj.scores = [...result];
+            var queryString = `SELECT * FROM competitors WHERE year_id = ${year_id};`;
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+                scoreObj.competitors = [...result];
+                cb(scoreObj);
             });
         });
     },

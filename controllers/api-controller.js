@@ -104,6 +104,10 @@ router.get("/api/score/reconcile/:year_id", (req, res) => {
         res.json(obj);
     });
 });
+// sends all scores and competitor data for selected year to report.js
+router.get("/api/report/all/:year_id", (req, res) => {
+    model.getAllScoresByYearID(parseInt(req.params.year_id), data => res.json(data));
+});
 // receives data from view.js and adds new category (tier, event, organization, year)
 router.post("/api/view/", (req, res) => {
     model.addCategory(req.body, data => res.json(data));

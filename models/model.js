@@ -1,8 +1,8 @@
 var orm = require("../config/orm.js");
 
 var model = {
-    getAllFromOneTable: (tableName, cb) => {
-        orm.selectAllFromOneTable(tableName, res => cb(res));
+    getAllFromOneTable: (table_name, cb) => {
+        orm.selectAllFromOneTable(table_name, res => cb(res));
     },
     getAllCompetitorsByYear: (year, cb) => {
         orm.selectAllCompetitorsByYear(year, res => cb(res));
@@ -16,11 +16,14 @@ var model = {
     getAllTiersByYearID: (year_id, cb) => {
         orm.selectAllTiersByYearID(year_id, res => cb(res));
     },
-    getCompetitorScores: (compID, yearID, cb) => {
-        orm.selectScoresByCompetitor(compID, yearID, res => cb(res));
+    getCompetitorScores: (competitor_id, year_id, cb) => {
+        orm.selectScoresByCompetitor(competitor_id, year_id, res => cb(res));
     },
     getScoreReconciliation: (year_id, cb) => {
         orm.selectAllScoreReconciliation(year_id, res => cb(res));
+    },
+    getAllScoresByYearID: (year_id, cb) => {
+        orm.selectAllScoresByYearID(year_id, res => cb(res));
     },
     addCategory: (body, cb) => {
         orm.insertOneCategory(body, res => cb(res));

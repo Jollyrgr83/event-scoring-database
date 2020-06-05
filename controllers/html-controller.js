@@ -45,7 +45,14 @@ router.get("/score", (req, res) => {
 });
 
 router.get("/reports", (req, res) => {
-    res.render("reports", {title: "View/Print Reports"});
+    let hbsYearObj = {arrays: [{title: "View/Print Reports", years: [], tiers: []}]};
+    model.getAllFromOneTable("years", (data) => {
+        hbsYearObj.arrays[0].years = [...data];
+        model.getAllFromOneTable("tiers", (data) => {
+            hbsYearObj.arrays[0].tiers = [...data];
+            res.render("reports", hbsYearObj);
+        });
+    });
 });
 
 module.exports = router;
