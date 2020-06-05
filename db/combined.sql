@@ -44,9 +44,9 @@ CREATE TABLE scores (
     year_id INT NOT NULL,
     competitor_id INT NOT NULL,
     event_id INT NOT NULL,
-    score INT NOT NULL,
-    time_minutes INT NOT NULL,
-    time_seconds INT NOT NULL,
+    score INT NULL,
+    time_minutes INT NULL,
+    time_seconds INT NULL,
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
