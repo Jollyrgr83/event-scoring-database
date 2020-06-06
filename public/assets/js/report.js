@@ -20,13 +20,6 @@ $(() => {
     function getAll() {
         $.get("/api/report/all/" + parseInt($("#year-select").val()), (data) => {
             console.log("all scores: ", data);
-            $("#dynamic").empty();
-            var div = $("<div>");
-            div.val(data);
-            var divs = $("<div>");
-            div.val(JSON.stringify(data));
-            $("#dynamic").append(div);
-            $("#dynamic").append(divs);
         });
     }
 });

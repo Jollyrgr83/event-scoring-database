@@ -106,7 +106,33 @@ router.get("/api/score/reconcile/:year_id", (req, res) => {
 });
 // sends all scores and competitor data for selected year to report.js
 router.get("/api/report/all/:year_id", (req, res) => {
-    model.getAllScoresByYearID(parseInt(req.params.year_id), data => res.json(data));
+    model.getAllScoresByYearID(parseInt(req.params.year_id), (data) => {
+        const obj = {data: data};
+        let compArr = [];
+        for (let i = 0; i < data.competitors.length; i++) {
+            let tempArr = [];
+            for (let j = 0; j < data.scores.length; j++) {
+                if (data.scores[j].competitor_id === data.competitors[i].id) {
+                   tempArr.push(data.scores[j]);
+                }
+            }
+            var score = 0;
+            var time = 0;
+            for (let j = 0; j <tempArr.length; j++) {
+                score+=tempArr[j].score;
+                tempArr[j].total_seconds = (tempArr[j].time_minutes * 60) +tempArr[j].time_seconds;
+                time+=tempArr[j].total_seconds;
+            }
+            tempArr.push({id: "overall", score: score, total_seconds: time});
+            data.competitors[i].events = {};
+            for (let j = 0; j < tempArr.length; j++) {
+                data.competitors[i].events[tempArr[j].id] = tempArr[j];
+            }
+            compArr.push(data.competitors[i]);
+        }
+        obj.competitors = [...compArr];
+        res.json(obj);
+    });
 });
 // receives data from view.js and adds new category (tier, event, organization, year)
 router.post("/api/view/", (req, res) => {

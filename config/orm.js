@@ -90,6 +90,7 @@ var orm = {
                     resultObj.act = [...result];
                     var queryString = `SELECT event_id, tier_id FROM years WHERE year_id = ${resultObj.year_id} AND type = "event";`;
                     connection.query(queryString, (err, result) => {
+                        if (err) throw err;
                         resultObj.events = [...result];
                         cb(resultObj);
                     });
@@ -98,16 +99,32 @@ var orm = {
         });
     },
     selectAllScoresByYearID: (year_id, cb) => {
-        const scoreObj = {};
-        var queryString = `SELECT * FROM scores WHERE year_id = ${year_id};`;
+        const scoreObj = {year_id: year_id};
+        // pull records for tiers from years table for selected year
+        var queryString = `SELECT years.tier_id, tiers.name FROM years LEFT JOIN tiers ON (tiers.id = years.tier_id) WHERE year_id = ${scoreObj.year_id} AND type = "tier";`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
-            scoreObj.scores = [...result];
-            var queryString = `SELECT * FROM competitors WHERE year_id = ${year_id};`;
+            scoreObj.tiers = [...result];
+            var queryString = `SELECT years.event_id, events.name FROM years LEFT JOIN events ON (events.id = years.event_id) WHERE year_id = ${scoreObj.year_id} AND type = "event";`;
             connection.query(queryString, (err, result) => {
                 if (err) throw err;
-                scoreObj.competitors = [...result];
-                cb(scoreObj);
+                scoreObj.events = [...result];
+                var queryString = `SELECT * FROM competitors WHERE year_id = ${scoreObj.year_id};`;
+                connection.query(queryString, (err, result) => {
+                    if (err) throw err;
+                    scoreObj.competitors = [...result];
+                    var queryString = `SELECT * FROM scores WHERE year_id = ${scoreObj.year_id};`;
+                    connection.query(queryString, (err, result) => {
+                        if (err) throw err;
+                        scoreObj.scores = [...result];
+                        var queryString = `SELECT * FROM organizations;`;
+                        connection.query(queryString, (err, result) => {
+                            if (err) throw err;
+                            scoreObj.organizations = [...result];
+                            cb(scoreObj);
+                        });
+                    });
+                });
             });
         });
     },
