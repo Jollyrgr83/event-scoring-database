@@ -19,7 +19,7 @@ $(() => {
 
     function getAll() {
         $.get("/api/report/all/" + parseInt($("#year-select").val()), (data) => {
-            console.log("all scores: ", data);
+            console.log("data:", data);
         });
     }
 });

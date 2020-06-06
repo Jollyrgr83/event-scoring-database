@@ -20,7 +20,7 @@ router.get("/api/view/menu/:tableName", (req, res) => {
 });
 // sends data to year.js to render the tier and event information for the selected year 
 router.get("/api/year/:id", (req, res) => {
-    model.getAllTiersByYearID(parseInt(req.params.id), data => res.json(data));
+    model.getAllYearSetupData(parseInt(req.params.id), data => res.json(data));
 });
 // sends data to comp.js to render competitor selection menu in view/edit competitors section
 router.get("/api/comp/year/:year", (req, res) => {
@@ -106,32 +106,46 @@ router.get("/api/score/reconcile/:year_id", (req, res) => {
 });
 // sends all scores and competitor data for selected year to report.js
 router.get("/api/report/all/:year_id", (req, res) => {
-    model.getAllScoresByYearID(parseInt(req.params.year_id), (data) => {
-        const obj = {data: data};
-        let compArr = [];
-        for (let i = 0; i < data.competitors.length; i++) {
-            let tempArr = [];
-            for (let j = 0; j < data.scores.length; j++) {
-                if (data.scores[j].competitor_id === data.competitors[i].id) {
-                   tempArr.push(data.scores[j]);
+    // get all tiers for selected year
+    model.getAllTiersEventsByYearID(parseInt(req.params.year_id), (data) => {
+        const tiersObj = {tiers: {}};
+        // create properties in tiersObj.tiers for tier_id
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].type === "tier") {
+                tiersObj.tiers[data[i].tier_id] = {};
+            }
+        }
+        // create properties with empty array values in tiersObj.tiers.[tier_id] for each event_id associated with that tier_id
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].type === "event") {
+                tiersObj.tiers[data[i].tier_id][data[i].event_id] = [];
+            }
+        }
+        // get all scores for selected year
+        model.getAllScoresByYearID(parseInt(req.params.year_id), (data) => {
+            // push score objects to arrays in matching tier_id and event_id properties in tiersObj 
+            for (let i = 0; i < data.length; i++) {
+                tiersObj.tiers[data[i].tier_id][data[i].event_id].push(data[i]);
+            }
+            let tierArr = Object.keys(tiersObj.tiers);
+            // for each tier_id
+            for (let i = 0; i < tierArr.length; i++) {
+                let eventArr = Object.keys(tiersObj.tiers[tierArr[i]]);
+                // for each event_id in the tier_id property
+                for (let j = 0; j < eventArr.length; j++) {
+                    // sort and reverse the score objects by highest score and by lowest time if score is equal (uses the compare function declared below)
+                    tiersObj.tiers[tierArr[i]][eventArr[j]].sort(compare).reverse();
                 }
             }
-            var score = 0;
-            var time = 0;
-            for (let j = 0; j <tempArr.length; j++) {
-                score+=tempArr[j].score;
-                tempArr[j].total_seconds = (tempArr[j].time_minutes * 60) +tempArr[j].time_seconds;
-                time+=tempArr[j].total_seconds;
-            }
-            tempArr.push({id: "overall", score: score, total_seconds: time});
-            data.competitors[i].events = {};
-            for (let j = 0; j < tempArr.length; j++) {
-                data.competitors[i].events[tempArr[j].id] = tempArr[j];
-            }
-            compArr.push(data.competitors[i]);
-        }
-        obj.competitors = [...compArr];
-        res.json(obj);
+            // get all names and metadata for rendering report page
+            model.getAllNamesByYearID(parseInt(req.params.year_id), (data) => {
+                tiersObj.comp_ref = data.comp_ref;
+                tiersObj.org_ref = data.org_ref;
+                tiersObj.tier_ref = data.tier_ref;
+                tiersObj.event_ref = data.event_ref;
+                res.json(tiersObj);
+            });
+        });
     });
 });
 // receives data from view.js and adds new category (tier, event, organization, year)
@@ -178,5 +192,20 @@ router.delete("/api/year/tier/", (req, res) => {
 router.delete("/api/comp/", (req, res) => {
     model.deleteCompetitor(req.body, data => res.json(data));
 });
+
+// function used by sort to sort by highest score then by lowest time if tied
+function compare(a, b) {
+    if (a.score < b.score) {
+      return -1;
+    } else if (a.score < b.score) {
+        return 1;
+    } else if (a.score === b.score) {
+        if (a.total_seconds < b.total_seconds) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+}
 
 module.exports = router;

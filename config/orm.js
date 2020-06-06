@@ -34,7 +34,7 @@ var orm = {
             cb(result);
         });
     },
-    selectAllTiersByYearID: (year_id, cb) => {
+    selectAllYearSetupData: (year_id, cb) => {
         const activeTiersObj = {year_id: year_id};
         var queryString = `SELECT years.tier_id, tiers.name FROM years INNER JOIN tiers ON (years.tier_id = tiers.id) WHERE years.year_id = ${activeTiersObj.year_id} AND years.type = 'tier';`;
         connection.query(queryString, (err, result) => {
@@ -58,6 +58,13 @@ var orm = {
                     cb(activeTiersObj);
                 });
             });
+        });
+    },
+    selectAllTiersEventsByYearID: (year_id, cb) => {
+        var queryString = `SELECT tier_id, event_id, type FROM years WHERE year_id = ${year_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            cb(result);
         });
     },
     selectScoresByCompetitor: (competitor_id, year_id, cb) => {
@@ -99,30 +106,63 @@ var orm = {
         });
     },
     selectAllScoresByYearID: (year_id, cb) => {
-        const scoreObj = {year_id: year_id};
-        // pull records for tiers from years table for selected year
-        var queryString = `SELECT years.tier_id, tiers.name FROM years LEFT JOIN tiers ON (tiers.id = years.tier_id) WHERE year_id = ${scoreObj.year_id} AND type = "tier";`;
+        var queryString = `SELECT scores.competitor_id, scores.score, scores.time_minutes, scores.time_seconds, scores.event_id, competitors.tier_id FROM scores INNER JOIN competitors ON (scores.competitor_id = competitors.id) WHERE scores.year_id = ${year_id};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
-            scoreObj.tiers = [...result];
-            var queryString = `SELECT years.event_id, events.name FROM years LEFT JOIN events ON (events.id = years.event_id) WHERE year_id = ${scoreObj.year_id} AND type = "event";`;
+            let retArr = result.map(x => {
+                return {competitor_id: x.competitor_id, score: x.score, total_seconds: (x.time_minutes * 60) + x.time_seconds, event_id: x.event_id, tier_id: x.tier_id};
+            });
+            cb(retArr);
+        });
+    },
+    selectAllNamesByYearID: (year_id, cb) => {
+        const obj = {comp_ref: {}, org_ref: {}, tier_ref: {}, event_ref: {}};
+        // get all competitor information for selected year
+        var queryString = `SELECT id, comp_number, first_name, last_name, team_name, group_names, org_id, tier_id FROM competitors WHERE year_id = ${year_id};`;
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            for (let i = 0; i < result.length; i++) {
+                obj.comp_ref[result[i].id] = {};
+                obj.comp_ref[result[i].id].comp_number = result[i].comp_number;
+                obj.comp_ref[result[i].id].first_name = result[i].first_name;
+                obj.comp_ref[result[i].id].last_name = result[i].last_name;
+                obj.comp_ref[result[i].id].team_name = result[i].team_name;
+                obj.comp_ref[result[i].id].group_names = result[i].group_names;
+                obj.comp_ref[result[i].id].org_id = result[i].org_id;
+                obj.comp_ref[result[i].id].tier_id = result[i].tier_id;
+            }
+            // get all organization names
+            var queryString = `SELECT id, name, coop FROM organizations;`;
             connection.query(queryString, (err, result) => {
                 if (err) throw err;
-                scoreObj.events = [...result];
-                var queryString = `SELECT * FROM competitors WHERE year_id = ${scoreObj.year_id};`;
+                for (let i = 0; i < result.length; i++) {
+                    obj.org_ref[result[i].id] = {};
+                    obj.org_ref[result[i].id].name = result[i].name;
+                    obj.org_ref[result[i].id].coop = result[i].coop;
+                }
+                // get all tier names
+                var queryString = `SELECT id, name, team FROM tiers;`;
                 connection.query(queryString, (err, result) => {
                     if (err) throw err;
-                    scoreObj.competitors = [...result];
-                    var queryString = `SELECT * FROM scores WHERE year_id = ${scoreObj.year_id};`;
+                    for (let i = 0; i < result.length; i++) {
+                        obj.tier_ref[result[i].id] = {};
+                        obj.tier_ref[result[i].id].name = result[i].name;
+                        obj.tier_ref[result[i].id].team = result[i].team;
+                    }
+                    // get all event names
+                    var queryString = `SELECT id, name FROM events;`;
                     connection.query(queryString, (err, result) => {
                         if (err) throw err;
-                        scoreObj.scores = [...result];
-                        var queryString = `SELECT * FROM organizations;`;
-                        connection.query(queryString, (err, result) => {
-                            if (err) throw err;
-                            scoreObj.organizations = [...result];
-                            cb(scoreObj);
-                        });
+                        for (let i = 0; i < result.length; i++) {
+                            obj.event_ref[result[i].id] = {};
+                            obj.event_ref[result[i].id] = result[i].name;
+                        }
+                        let keys = Object.keys(obj.comp_ref);
+                        for (let i = 0; i < keys.length; i++) {
+                            obj.comp_ref[keys[i]].org_name = obj.org_ref[obj.comp_ref[keys[i]].org_id].name;
+                            obj.comp_ref[keys[i]].tier_name = obj.tier_ref[obj.comp_ref[keys[i]].tier_id].name;
+                        }
+                        cb(obj);
                     });
                 });
             });
