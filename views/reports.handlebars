@@ -27,22 +27,21 @@
             <p class="item-title mx-auto">Select Report Type</p>
 
             <select id="report-select">
-                <option value="0">View Top 3</option>
+                <option value="0">View Awards Layout (Top 3)</option>
                 <option value="1">View All Results</option>
-                <option value="2">View by Competition Tier</option>
-                <option value="3">View by Organization</option>
+                <option value="2">View by Organization</option>
+                <option value="3">View by Competitor</option>
             </select>
+
+            <p class="item-title mx-auto">Select Competition Tier</p>
+
+            <select id="tier-select"></select>
 
             <div id="dynamic-menu"></div>
 
             <p class="item-title mx-auto">Select Event/Overall</p>
 
-            <select id="event-select">
-                <option value="0">[Event Name]</option>
-                <option value="1">[Event Name]</option>
-                <option value="2">[Event Name]</option>
-                <option value="3">Overall</option>
-            </select>
+            <select id="event-select"></select>
         
         </section>
 
@@ -52,59 +51,9 @@
 
         </section>
 
-        <section id="#dynamic" class="main-container mx-auto text-center"></section>
+        <section id="dynamic" class="main-container mx-auto text-center"></section>
 
     </main>
-
-    <section class="main-container mx-auto text-center">
-
-        <p class="mini-title mx-auto">Hurtman Rescue</p>
-
-        <div class="result-container mx-auto">
-
-            <p class="mini-title mx-auto">Place: 1</p>
-
-            <p class="item-title mx-auto">John Smith</p>
-            <p class="item-title mx-auto">Black River Electric Coop</p>
-            <p class="item-title mx-auto">98</p>
-            <p class="item-title mx-auto">25:58</p>
-
-        </div>
-
-        <div class="result-container mx-auto">
-
-            <p class="mini-title mx-auto">Place: 2</p>
-
-            <p class="item-title mx-auto">John Smith</p>
-            <p class="item-title mx-auto">Black River Electric Coop</p>
-            <p class="item-title mx-auto">98</p>
-            <p class="item-title mx-auto">25:58</p>
-
-        </div>
-
-        <div class="result-container mx-auto">
-
-            <p class="mini-title mx-auto">Place: 3</p>
-
-            <p class="item-title mx-auto">John Smith</p>
-            <p class="item-title mx-auto">Black River Electric Coop</p>
-            <p class="item-title mx-auto">98</p>
-            <p class="item-title mx-auto">25:58</p>
-
-        </div>
-
-        <div class="result-container mx-auto">
-
-            <p class="mini-title mx-auto">Place: 4</p>
-
-            <p class="item-title mx-auto">John Smith</p>
-            <p class="item-title mx-auto">Black River Electric Coop</p>
-            <p class="item-title mx-auto">98</p>
-            <p class="item-title mx-auto">25:58</p>
-
-        </div>
-
-    </section>
 
     {{> main/nav-menu-block}}
 
