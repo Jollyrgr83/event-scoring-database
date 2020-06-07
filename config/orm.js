@@ -109,10 +109,44 @@ var orm = {
         var queryString = `SELECT scores.competitor_id, scores.score, scores.time_minutes, scores.time_seconds, scores.event_id, competitors.tier_id FROM scores INNER JOIN competitors ON (scores.competitor_id = competitors.id) WHERE scores.year_id = ${year_id};`;
         connection.query(queryString, (err, result) => {
             if (err) throw err;
-            let retArr = result.map(x => {
-                return {competitor_id: x.competitor_id, score: x.score, total_seconds: (x.time_minutes * 60) + x.time_seconds, event_id: x.event_id, tier_id: x.tier_id};
-            });
-            cb(retArr);
+            for (let i = 0; i < result.length; i++) {
+                result[i].total_seconds = result[i].time_seconds + (result[i].time_minutes * 60);
+            }
+            const obj = {};
+            for (let i = 0; i < result.length; i++) {
+                if (obj[result[i].competitor_id]) {
+                    obj[result[i].competitor_id].score += result[i].score;
+                    obj[result[i].competitor_id].total_seconds += (result[i].time_minutes * 60) + result[i].time_seconds;
+                } else {
+                    obj[result[i].competitor_id] = {score: result[i].score, total_seconds: (result[i].time_minutes * 60) + result[i].time_seconds, competitor_id: result[i].competitor_id, event_id: "overall", tier_id: result[i].tier_id};
+                }
+            }
+            let keys = Object.keys(obj);
+            for (let i = 0; i < keys.length; i++) {
+                result.push(obj[keys[i]]);
+            }
+            cb(result);
+        });
+    },
+    selectOverallScoresByYearID: (year_id, cb) => {
+        var queryString = `SELECT scores.competitor_id, scores.score, scores.time_minutes, scores.time_seconds, scores.event_id, competitors.tier_id FROM scores INNER JOIN competitors ON (scores.competitor_id = competitors.id) WHERE scores.year_id = ${year_id};`;
+        const obj = {};
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+            for (let i = 0; i < result.length; i++) {
+                if (obj[result[i].competitor_id]) {
+                    obj[result[i].competitor_id].score += result[i].score;
+                    obj[result[i].competitor_id].total_seconds += ((result[i].time_minutes * 60) + result[i].time_seconds);
+                } else {
+                    obj[result[i].competitor_id] = {score: result[i].score, total_seconds: (result[i].time_minutes * 60) + result[i].time_seconds, competitor_id: result[i].competitor_id, event_id: "overall", tier_id: result[i].tier_id};
+                }
+            }
+            let keys = Object.keys(obj);
+            let arr = [];
+            for (let i = 0; i < keys.length; i++) {
+                arr.push(obj[keys[i]]);
+            }
+            cb(arr);
         });
     },
     selectAllNamesByYearID: (year_id, cb) => {

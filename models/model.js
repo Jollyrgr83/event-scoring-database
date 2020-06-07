@@ -31,6 +31,9 @@ var model = {
     getAllNamesByYearID: (year_id, cb) => {
         orm.selectAllNamesByYearID(year_id, res => cb(res));
     },
+    getOverallScoresByYearID: (year_id, cb) => {
+        orm.selectOverallScoresByYearID(year_id, res => cb(res));
+    },
     addCategory: (body, cb) => {
         orm.insertOneCategory(body, res => cb(res));
     },

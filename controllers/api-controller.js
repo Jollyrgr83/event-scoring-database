@@ -121,6 +121,10 @@ router.get("/api/report/all/:year_id", (req, res) => {
                 tiersObj.tiers[data[i].tier_id][data[i].event_id] = [];
             }
         }
+        let keys = Object.keys(tiersObj.tiers);
+        for (let i = 0; i < keys.length; i++) {
+            tiersObj.tiers[keys[i]]["overall"] = [];
+        }
         // get all scores for selected year
         model.getAllScoresByYearID(parseInt(req.params.year_id), (data) => {
             // push score objects to arrays in matching tier_id and event_id properties in tiersObj 
