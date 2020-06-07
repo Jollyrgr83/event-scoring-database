@@ -202,9 +202,13 @@ select:enabled, select:focus, select:active {
     box-shadow: 2px 2px 5px black;
     margin-top: 10px;
 }
-.hide {
-    display: none;
-}
-.show {
-    display: block;
+.result-container {
+    border-radius: 15px;
+    border: solid 2.5px rgb(39, 89, 55);
+    max-width: 90%;
+    width: 400px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px black;
+    background-color: lightgray;
 }

@@ -12,8 +12,6 @@
 
     <main>
 
-        <section id="#dynamic"></section>
-
         <section class="main-container mx-auto text-center">
 
             <p class="item-title mx-auto">Select Competition Year</p>
@@ -26,41 +24,45 @@
                 {{/each}}
             </select>
 
+            <p class="item-title mx-auto">Select Report Type</p>
+
+            <select id="report-select">
+                <option value="0">View Top 3</option>
+                <option value="1">View All Results</option>
+                <option value="2">View by Competition Tier</option>
+                <option value="3">View by Organization</option>
+            </select>
+
+            <div id="dynamic-menu"></div>
+
+            <p class="item-title mx-auto">Select Event/Overall</p>
+
+            <select id="event-select">
+                <option value="0">[Event Name]</option>
+                <option value="1">[Event Name]</option>
+                <option value="2">[Event Name]</option>
+                <option value="3">Overall</option>
+            </select>
+        
         </section>
 
-    <section class="main-container mx-auto text-center">
+        <section class="main-container mx-auto text-center">
 
-        <p class="item-title mx-auto">Select Report Type</p>
+            <button id="print" class="button">Create pdf</button>
 
-        <select id="report-select">
-            <option value="0">View Top 3</option>
-            <option value="1">View All Results</option>
-            <option value="2">View by Competition Tier</option>
-            <option value="3">View by Organization</option>
-        </select>
+        </section>
 
-    </section>
+        <section id="#dynamic" class="main-container mx-auto text-center"></section>
+
+    </main>
 
     <section class="main-container mx-auto text-center">
 
-        <p class="item-title mx-auto">Select Event/Overall</p>
+        <p class="mini-title mx-auto">Hurtman Rescue</p>
 
-        <select id="event-select">
-            <option value="0">[Event Name]</option>
-            <option value="1">[Event Name]</option>
-            <option value="2">[Event Name]</option>
-            <option value="3">Overall</option>
-        </select>
+        <div class="result-container mx-auto">
 
-    </section>
-
-    <section class="main-container mx-auto text-center">
-
-        <p class="mini-title mx-auto">[Event Name]</p>
-
-        <div class="main-container mx-auto">
-
-            <p class="mini-title mx-auto">First Place</p>
+            <p class="mini-title mx-auto">Place: 1</p>
 
             <p class="item-title mx-auto">John Smith</p>
             <p class="item-title mx-auto">Black River Electric Coop</p>
@@ -69,20 +71,9 @@
 
         </div>
 
-        <div class="main-container mx-auto">
+        <div class="result-container mx-auto">
 
-            <p class="mini-title mx-auto">Second Place</p>
-
-            <p class="item-title mx-auto">John Smith</p>
-            <p class="item-title mx-auto">Black River Electric Coop</p>
-            <p class="item-title mx-auto">98</p>
-            <p class="item-title mx-auto">25:58</p>
-
-        </div>
-
-        <div class="main-container mx-auto">
-
-            <p class="mini-title mx-auto">Third Place</p>
+            <p class="mini-title mx-auto">Place: 2</p>
 
             <p class="item-title mx-auto">John Smith</p>
             <p class="item-title mx-auto">Black River Electric Coop</p>
@@ -91,11 +82,27 @@
 
         </div>
 
-    </section>
+        <div class="result-container mx-auto">
 
-    <section class="main-container mx-auto text-center">
+            <p class="mini-title mx-auto">Place: 3</p>
 
-        <button id="print" class="button">Create pdf</button>
+            <p class="item-title mx-auto">John Smith</p>
+            <p class="item-title mx-auto">Black River Electric Coop</p>
+            <p class="item-title mx-auto">98</p>
+            <p class="item-title mx-auto">25:58</p>
+
+        </div>
+
+        <div class="result-container mx-auto">
+
+            <p class="mini-title mx-auto">Place: 4</p>
+
+            <p class="item-title mx-auto">John Smith</p>
+            <p class="item-title mx-auto">Black River Electric Coop</p>
+            <p class="item-title mx-auto">98</p>
+            <p class="item-title mx-auto">25:58</p>
+
+        </div>
 
     </section>
 

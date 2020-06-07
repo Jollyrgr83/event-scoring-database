@@ -147,6 +147,7 @@ router.get("/api/report/all/:year_id", (req, res) => {
                 tiersObj.org_ref = data.org_ref;
                 tiersObj.tier_ref = data.tier_ref;
                 tiersObj.event_ref = data.event_ref;
+                tiersObj.event_ref["overall"] = "Overall";
                 res.json(tiersObj);
             });
         });

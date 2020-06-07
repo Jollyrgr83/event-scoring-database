@@ -128,27 +128,6 @@ var orm = {
             cb(result);
         });
     },
-    selectOverallScoresByYearID: (year_id, cb) => {
-        var queryString = `SELECT scores.competitor_id, scores.score, scores.time_minutes, scores.time_seconds, scores.event_id, competitors.tier_id FROM scores INNER JOIN competitors ON (scores.competitor_id = competitors.id) WHERE scores.year_id = ${year_id};`;
-        const obj = {};
-        connection.query(queryString, (err, result) => {
-            if (err) throw err;
-            for (let i = 0; i < result.length; i++) {
-                if (obj[result[i].competitor_id]) {
-                    obj[result[i].competitor_id].score += result[i].score;
-                    obj[result[i].competitor_id].total_seconds += ((result[i].time_minutes * 60) + result[i].time_seconds);
-                } else {
-                    obj[result[i].competitor_id] = {score: result[i].score, total_seconds: (result[i].time_minutes * 60) + result[i].time_seconds, competitor_id: result[i].competitor_id, event_id: "overall", tier_id: result[i].tier_id};
-                }
-            }
-            let keys = Object.keys(obj);
-            let arr = [];
-            for (let i = 0; i < keys.length; i++) {
-                arr.push(obj[keys[i]]);
-            }
-            cb(arr);
-        });
-    },
     selectAllNamesByYearID: (year_id, cb) => {
         const obj = {comp_ref: {}, org_ref: {}, tier_ref: {}, event_ref: {}};
         // get all competitor information for selected year
@@ -166,7 +145,7 @@ var orm = {
                 obj.comp_ref[result[i].id].tier_id = result[i].tier_id;
             }
             // get all organization names
-            var queryString = `SELECT id, name, coop FROM organizations;`;
+            var queryString = `SELECT organizations.id, organizations.name, organizations.coop FROM organizations RIGHT JOIN competitors ON (competitors.org_id = organizations.id) WHERE competitors.year_id = ${year_id};`;
             connection.query(queryString, (err, result) => {
                 if (err) throw err;
                 for (let i = 0; i < result.length; i++) {
