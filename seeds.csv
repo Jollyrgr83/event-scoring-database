@@ -1,0 +1,651 @@
+﻿competitor_id,year_id,tier_id,event_id,comp_number,first_name,last_name,team_name,group_names,org_id,score,time_minutes,time_seconds
+1,1,1,1,103,Pope,Logan,null,null,6,97,7,39.1
+2,1,1,1,104,Elston,Lucas,null,null,6,100,6,38.37
+3,1,1,1,105,Hopper,Zack,null,null,6,98,8,51.91
+4,1,1,1,106,Traenkner,Caleb,null,null,6,98,7,11.03
+5,1,1,1,107,Cunupp,Bruce,null,null,6,99,7,30.13
+6,1,1,1,108,Childers,Zack,null,null,6,97,7,26.16
+7,1,1,1,109,Garrett,Jeremy,null,null,1,98,8,14.44
+8,1,1,1,110,Roper,DJ,null,null,5,96,9,6.56
+9,1,1,1,111,Sims,Michael,null,null,5,97,8,41.56
+10,1,1,1,112,Steward,Jake,null,null,5,94,6,52.21
+11,1,1,1,113,Thomas,Corey,null,null,2,96,7,26.22
+12,1,1,1,114,Owens,Henry,null,null,2,98,8,28.97
+13,1,1,1,115,"Boatwright, Jr",Wyman,null,null,3,96,8,37.81
+14,1,1,1,116,Cox,Chase,null,null,3,97,10,28.14
+15,1,1,1,117,Avant,Ethan,null,null,3,98,12,18.69
+16,1,1,1,118,Hughes,Aaron,null,null,1,99,9,1.66
+17,1,1,1,119,Rostad,Jacob,null,null,1,97,7,21.12
+18,1,1,1,120,Shillinglaw,Joseph,null,null,1,99,9,8.36
+19,1,1,1,121,Boatwright,Drew,null,null,1,96,8,27.35
+20,1,1,1,122,Brown,Will,null,null,1,99,10,25.25
+21,1,1,1,123,Sawyer,Josh,null,null,1,97,8,13.09
+22,1,1,1,124,Graves,Reggie,null,null,1,99,7,39.62
+23,1,1,1,125,Ham,Josh,null,null,1,97,7,38.44
+24,1,1,1,126,Windham,JT,null,null,1,97,10,12.59
+25,1,1,1,127,Powell,Michael,null,null,1,97,8,16.13
+26,1,1,1,128,Mishoe,Wilson,null,null,1,97,7,39.19
+27,1,1,1,129,Melton,Hunter,null,null,1,97,8,26.22
+28,1,1,1,130,Anderson,Jamie,null,null,1,99,10,48.13
+29,1,1,1,131,Strong,Peter,null,null,4,95,11,33.65
+30,1,1,1,132,Bello,Jose,null,null,4,93,11,43.72
+31,1,1,1,133,Mcalhaney,Randall,null,null,4,96,8,27.66
+32,1,1,1,134,Martin,Matthew,null,null,1,97,8,25.15
+33,1,2,2,201,null,null,SC 1,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,100,2,37.25
+34,1,2,2,202,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Anson Perry,5,100,2,10.28
+35,1,2,2,203,null,null,BEC 1,William Burbage - Mark Milovich - Wesley Mason,2,100,2,34.75
+36,1,2,2,204,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,2,10.65
+37,1,2,2,205,null,null,SC 2,Jay Ayers - Johnny Brinson - Kevin Rhode,1,100,1,49.88
+38,1,2,2,206,null,null,SC 3,Chad Williams - Dow Hardee - Joe Sawyer,1,98,2,8.16
+39,1,2,2,207,null,null,SC 4,Jake Murray - Tyler Davison - Travis Wiggins,1,100,2,49.19
+40,1,2,2,208,null,null,PEC 1,Tarl Graham - Thomas Scaachi - David White,4,100,2,53.91
+41,1,2,2,209,null,null,SC 5,Sport Rabon - Chris Osha - McKenzie Johnson,1,96,3,15
+1,1,1,2,103,Pope,Logan,null,null,6,100,2,29.53
+2,1,1,2,104,Elston,Lucas,null,null,6,100,2,51.54
+3,1,1,2,105,Hopper,Zack,null,null,6,100,2,29.31
+4,1,1,2,106,Traenkner,Caleb,null,null,6,98,3,56.28
+5,1,1,2,107,Cunupp,Bruce,null,null,6,100,2,5.5
+6,1,1,2,108,Childers,Zack,null,null,6,80,5,20.72
+7,1,1,2,109,Garrett,Jeremy,null,null,1,100,2,22.13
+8,1,1,2,110,Roper,DJ,null,null,5,96,2,53.19
+9,1,1,2,111,Sims,Michael,null,null,5,100,1,53.47
+10,1,1,2,112,Steward,Jake,null,null,5,100,2,10.59
+11,1,1,2,113,Thomas,Corey,null,null,2,100,2,24.16
+12,1,1,2,114,Owens,Henry,null,null,2,100,2,14.77
+13,1,1,2,115,"Boatwright, Jr",Wyman,null,null,3,98,3,10.79
+14,1,1,2,116,Cox,Chase,null,null,3,98,3,11.9
+15,1,1,2,117,Avant,Ethan,null,null,3,100,2,29.56
+16,1,1,2,118,Hughes,Aaron,null,null,1,100,2,14.96
+17,1,1,2,119,Rostad,Jacob,null,null,1,100,2,40.16
+18,1,1,2,120,Shillinglaw,Joseph,null,null,1,100,2,5.53
+19,1,1,2,121,Boatwright,Drew,null,null,1,100,2,10.69
+20,1,1,2,122,Brown,Will,null,null,1,100,2,45.1
+21,1,1,2,123,Sawyer,Josh,null,null,1,100,2,31.38
+22,1,1,2,124,Graves,Reggie,null,null,1,100,3,26.25
+23,1,1,2,125,Ham,Josh,null,null,1,100,2,21.24
+24,1,1,2,126,Windham,JT,null,null,1,100,2,29.79
+25,1,1,2,127,Powell,Michael,null,null,1,100,2,50.09
+26,1,1,2,128,Mishoe,Wilson,null,null,1,100,2,28.17
+27,1,1,2,129,Melton,Hunter,null,null,1,100,2,26.69
+28,1,1,2,130,Anderson,Jamie,null,null,1,100,2,4.84
+29,1,1,2,131,Strong,Peter,null,null,4,88,12,40.72
+30,1,1,2,132,Bello,Jose,null,null,4,96,3,33.31
+31,1,1,2,133,Mcalhaney,Randall,null,null,4,100,2,42.56
+32,1,1,2,134,Martin,Matthew,null,null,1,100,2,33.97
+33,1,2,13,201,null,null,SC 1,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,94,2,7.38
+34,1,2,13,202,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Anson Perry,5,100,1,55.12
+35,1,2,13,203,null,null,BEC 1,William Burbage - Mark Milovich - Wesley Mason,2,98,2,7.09
+36,1,2,13,204,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,94,2,4.47
+37,1,2,13,205,null,null,SC 2,Jay Ayers - Johnny Brinson - Kevin Rhode,1,96,2,0.32
+38,1,2,13,206,null,null,SC 3,Chad Williams - Dow Hardee - Joe Sawyer,1,100,1,39.5
+39,1,2,13,207,null,null,SC 4,Jake Murray - Tyler Davison - Travis Wiggins,1,98,2,30.94
+40,1,2,13,208,null,null,PEC 1,Tarl Graham - Thomas Scaachi - David White,4,92,2,29.56
+41,1,2,13,209,null,null,SC 5,Sport Rabon - Chris Osha - McKenzie Johnson,1,98,2,4.85
+1,1,1,13,103,Pope,Logan,null,null,6,100,1,49.22
+2,1,1,13,104,Elston,Lucas,null,null,6,100,1,56.87
+3,1,1,13,105,Hopper,Zack,null,null,6,96,2,12.44
+4,1,1,13,106,Traenkner,Caleb,null,null,6,98,1,47.15
+5,1,1,13,107,Cunupp,Bruce,null,null,6,98,1,41.15
+6,1,1,13,108,Childers,Zack,null,null,6,100,1,39.25
+7,1,1,13,109,Garrett,Jeremy,null,null,1,100,1,55.03
+8,1,1,13,110,Roper,DJ,null,null,5,100,1,48.1
+9,1,1,13,111,Sims,Michael,null,null,5,100,1,23.72
+10,1,1,13,112,Steward,Jake,null,null,5,94,2,6.35
+11,1,1,13,113,Thomas,Corey,null,null,2,98,1,56.16
+12,1,1,13,114,Owens,Henry,null,null,2,98,2,15.81
+13,1,1,13,115,"Boatwright, Jr",Wyman,null,null,3,100,1,33.94
+14,1,1,13,116,Cox,Chase,null,null,3,100,1,33.72
+15,1,1,13,117,Avant,Ethan,null,null,3,100,1,40.28
+16,1,1,13,118,Hughes,Aaron,null,null,1,100,1,19.78
+17,1,1,13,119,Rostad,Jacob,null,null,1,98,2,12.93
+18,1,1,13,120,Shillinglaw,Joseph,null,null,1,94,2,22.32
+19,1,1,13,121,Boatwright,Drew,null,null,1,100,1,25.19
+20,1,1,13,122,Brown,Will,null,null,1,100,1,56.16
+21,1,1,13,123,Sawyer,Josh,null,null,1,98,1,28.16
+22,1,1,13,124,Graves,Reggie,null,null,1,96,2,0.63
+23,1,1,13,125,Ham,Josh,null,null,1,100,1,49.87
+24,1,1,13,126,Windham,JT,null,null,1,98,1,56.69
+25,1,1,13,127,Powell,Michael,null,null,1,98,2,20.81
+26,1,1,13,128,Mishoe,Wilson,null,null,1,100,1,42.09
+27,1,1,13,129,Melton,Hunter,null,null,1,100,1,29.31
+28,1,1,13,130,Anderson,Jamie,null,null,1,100,1,40.94
+29,1,1,13,131,Strong,Peter,null,null,4,94,2,26.87
+30,1,1,13,132,Bello,Jose,null,null,4,96,2,4.65
+31,1,1,13,133,Mcalhaney,Randall,null,null,4,96,2,7.37
+32,1,1,13,134,Martin,Matthew,null,null,1,98,1,36.13
+33,1,2,14,201,null,null,SC 1,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,98,9,49.47
+34,1,2,14,202,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Anson Perry,5,98,9,48.81
+35,1,2,14,203,null,null,BEC 1,William Burbage - Mark Milovich - Wesley Mason,2,100,7,47.94
+36,1,2,14,204,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,94,12,35.68
+37,1,2,14,205,null,null,SC 2,Jay Ayers - Johnny Brinson - Kevin Rhode,1,100,8,12.28
+38,1,2,14,206,null,null,SC 3,Chad Williams - Dow Hardee - Joe Sawyer,1,100,6,51.47
+39,1,2,14,207,null,null,SC 4,Jake Murray - Tyler Davison - Travis Wiggins,1,100,8,51.19
+40,1,2,14,208,null,null,PEC 1,Tarl Graham - Thomas Scaachi - David White,4,94,16,7.25
+41,1,2,14,209,null,null,SC 5,Sport Rabon - Chris Osha - McKenzie Johnson,1,90,9,34.63
+1,1,1,4,103,Pope,Logan,null,null,6,100,3,52.82
+2,1,1,4,104,Elston,Lucas,null,null,6,100,4,13.25
+3,1,1,4,105,Hopper,Zack,null,null,6,100,5,21.5
+4,1,1,4,106,Traenkner,Caleb,null,null,6,100,4,45.72
+5,1,1,4,107,Cunupp,Bruce,null,null,6,100,2,31.78
+6,1,1,4,108,Childers,Zack,null,null,6,100,3,44.94
+7,1,1,4,109,Garrett,Jeremy,null,null,1,100,2,22.84
+8,1,1,4,110,Roper,DJ,null,null,5,100,3,25.22
+9,1,1,4,111,Sims,Michael,null,null,5,100,3,15.25
+10,1,1,4,112,Steward,Jake,null,null,5,100,2,36.94
+11,1,1,4,113,Thomas,Corey,null,null,2,100,2,55.91
+12,1,1,4,114,Owens,Henry,null,null,2,100,3,2.97
+13,1,1,4,115,"Boatwright, Jr",Wyman,null,null,3,100,2,5.97
+14,1,1,4,116,Cox,Chase,null,null,3,100,2,5.41
+15,1,1,4,117,Avant,Ethan,null,null,3,100,2,39.31
+16,1,1,4,118,Hughes,Aaron,null,null,1,100,2,49.46
+17,1,1,4,119,Rostad,Jacob,null,null,1,100,3,59.16
+18,1,1,4,120,Shillinglaw,Joseph,null,null,1,100,3,12.84
+19,1,1,4,121,Boatwright,Drew,null,null,1,100,2,29.02
+20,1,1,4,122,Brown,Will,null,null,1,100,2,28.47
+21,1,1,4,123,Sawyer,Josh,null,null,1,100,2,26.66
+22,1,1,4,124,Graves,Reggie,null,null,1,100,3,33.44
+23,1,1,4,125,Ham,Josh,null,null,1,100,3,2.56
+24,1,1,4,126,Windham,JT,null,null,1,100,3,7.84
+25,1,1,4,127,Powell,Michael,null,null,1,98,6,40.78
+26,1,1,4,128,Mishoe,Wilson,null,null,1,100,3,53.81
+27,1,1,4,129,Melton,Hunter,null,null,1,100,3,4.19
+28,1,1,4,130,Anderson,Jamie,null,null,1,100,3,9.31
+29,1,1,4,131,Strong,Peter,null,null,4,98,8,25.63
+30,1,1,4,132,Bello,Jose,null,null,4,100,5,57.5
+31,1,1,4,133,Mcalhaney,Randall,null,null,4,100,4,20.6
+32,1,1,4,134,Martin,Matthew,null,null,1,100,2,1.32
+33,1,2,11,201,null,null,SC 1,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,96,10,44.65
+34,1,2,11,202,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Anson Perry,5,96,12,59.71
+35,1,2,11,203,null,null,BEC 1,William Burbage - Mark Milovich - Wesley Mason,2,100,9,2.66
+36,1,2,11,204,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,96,9,27.66
+37,1,2,11,205,null,null,SC 2,Jay Ayers - Johnny Brinson - Kevin Rhode,1,100,7,46.54
+38,1,2,11,206,null,null,SC 3,Chad Williams - Dow Hardee - Joe Sawyer,1,100,7,20.25
+39,1,2,11,207,null,null,SC 4,Jake Murray - Tyler Davison - Travis Wiggins,1,100,8,54.59
+40,1,2,11,208,null,null,PEC 1,Tarl Graham - Thomas Scaachi - David White,4,84,18,57.34
+41,1,2,11,209,null,null,SC 5,Sport Rabon - Chris Osha - McKenzie Johnson,1,98,11,16.4
+1,1,1,15,103,Pope,Logan,null,null,6,100,3,4.91
+2,1,1,15,104,Elston,Lucas,null,null,6,100,3,55.12
+3,1,1,15,105,Hopper,Zack,null,null,6,94,7,35.5
+4,1,1,15,106,Traenkner,Caleb,null,null,6,100,4,29.36
+5,1,1,15,107,Cunupp,Bruce,null,null,6,100,2,36.81
+6,1,1,15,108,Childers,Zack,null,null,6,100,1,42.42
+7,1,1,15,109,Garrett,Jeremy,null,null,1,100,2,24.11
+8,1,1,15,110,Roper,DJ,null,null,5,100,2,57.96
+9,1,1,15,111,Sims,Michael,null,null,5,100,2,2.34
+10,1,1,15,112,Steward,Jake,null,null,5,100,2,4.69
+11,1,1,15,113,Thomas,Corey,null,null,2,100,2,29.56
+12,1,1,15,114,Owens,Henry,null,null,2,100,2,37.93
+13,1,1,15,115,"Boatwright, Jr",Wyman,null,null,3,100,1,38.16
+14,1,1,15,116,Cox,Chase,null,null,3,100,2,22.93
+15,1,1,15,117,Avant,Ethan,null,null,3,100,1,31.28
+16,1,1,15,118,Hughes,Aaron,null,null,1,100,1,38.43
+17,1,1,15,119,Rostad,Jacob,null,null,1,100,4,5.6
+18,1,1,15,120,Shillinglaw,Joseph,null,null,1,100,2,40.43
+19,1,1,15,121,Boatwright,Drew,null,null,1,100,1,39
+20,1,1,15,122,Brown,Will,null,null,1,98,3,6.15
+21,1,1,15,123,Sawyer,Josh,null,null,1,100,1,30.37
+22,1,1,15,124,Graves,Reggie,null,null,1,100,2,31.21
+23,1,1,15,125,Ham,Josh,null,null,1,98,3,5.09
+24,1,1,15,126,Windham,JT,null,null,1,100,2,54.4
+25,1,1,15,127,Powell,Michael,null,null,1,100,3,11.87
+26,1,1,15,128,Mishoe,Wilson,null,null,1,98,4,43.35
+27,1,1,15,129,Melton,Hunter,null,null,1,100,2,50.51
+28,1,1,15,130,Anderson,Jamie,null,null,1,100,2,11.3
+29,1,1,15,131,Strong,Peter,null,null,4,84,16,13.34
+30,1,1,15,132,Bello,Jose,null,null,4,100,3,35.16
+31,1,1,15,133,Mcalhaney,Randall,null,null,4,100,3,17.3
+32,1,1,15,134,Martin,Matthew,null,null,1,100,1,51
+33,1,2,6,201,null,null,SC 1,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,86,9,0
+34,1,2,6,202,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Anson Perry,5,98,4,23.59
+35,1,2,6,203,null,null,BEC 1,William Burbage - Mark Milovich - Wesley Mason,2,100,4,38.88
+36,1,2,6,204,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,3,23.88
+37,1,2,6,205,null,null,SC 2,Jay Ayers - Johnny Brinson - Kevin Rhode,1,100,3,28.53
+38,1,2,6,206,null,null,SC 3,Chad Williams - Dow Hardee - Joe Sawyer,1,100,2,47.09
+39,1,2,6,207,null,null,SC 4,Jake Murray - Tyler Davison - Travis Wiggins,1,100,5,14.25
+40,1,2,6,208,null,null,PEC 1,Tarl Graham - Thomas Scaachi - David White,4,88,9,0
+41,1,2,6,209,null,null,SC 5,Sport Rabon - Chris Osha - McKenzie Johnson,1,100,3,52.25
+42,2,1,1,101,Lee,Cochran,null,null,1,97,5,54.1
+43,2,1,1,103,Grayson,Smith,null,null,6,93,7,26.03
+44,2,1,1,104,Alex,Pittman,null,null,6,95,7,31.62
+45,2,1,1,105,Dustin,Victor,null,null,6,95,10,9.47
+46,2,1,1,106,Bruce,Cunupp,null,null,6,94,7,54.85
+47,2,1,1,107,Lucas,Elston,null,null,6,98,5,46.44
+48,2,1,1,108,Jake,Stewart,null,null,5,94,6,3.41
+49,2,1,1,109,D.J.,Roper,null,null,5,95,10,27.85
+50,2,1,1,110,Cameron,Kenner,null,null,7,95,8,7.81
+51,2,1,1,111,Cody,Fulmer,null,null,7,94,9,51.66
+52,2,1,1,112,Josh,Hughes,null,null,7,95,8,20.93
+53,2,1,1,113,Garen,Murray,null,null,8,94,8,39.43
+54,2,1,1,114,Daniel,Sams,null,null,8,94,10,31.47
+55,2,1,1,116,Kyle,Patrick,null,null,6,89,11,54.47
+56,2,1,1,117,Austin,Seitz,null,null,9,99,7,43.34
+57,2,1,1,118,Joseph,Kruger,null,null,9,93,10,9.97
+58,2,1,1,119,Corey,Thomas,null,null,2,94,7,56.25
+59,2,1,1,120,Jacob,O'Dea,null,null,2,95,7,55.75
+60,2,1,1,121,Colby,Moore,null,null,2,97,8,11.34
+61,2,1,1,122,Henry,Owens,null,null,2,96,8,36.44
+62,2,1,1,123,Austin,Griswold,null,null,1,97,9,50.79
+63,2,1,1,124,Jamie,Anderson,null,null,1,98,10,7.09
+64,2,1,1,125,Brenton,Hollingsworth,null,null,6,96,11,38.46
+65,2,1,1,126,Joseph,Shillinglaw,null,null,1,98,5,19.72
+66,2,1,1,127,Joseph,Watson,null,null,10,96,11,2.62
+67,2,1,1,128,Barett,Altman,null,null,10,96,11,42.25
+68,2,1,1,129,Greg,Beckum,null,null,10,98,8,31.32
+69,2,1,1,130,Scott,Truett,null,null,10,95,10,11
+70,2,1,1,131,Russ,Wannamaker,null,null,11,96,7,58.43
+71,2,1,1,132,Hunter,Melton,null,null,1,97,9,33.62
+72,2,1,1,133,Charlie,Thompkins,null,null,1,99,9,20.03
+73,2,1,1,134,Conner,Brown,null,null,1,90,7,42.47
+74,2,1,1,135,Aaron Thomas,Hughes,null,null,1,96,8,5.75
+75,2,1,1,136,Josh,Sawyer,null,null,1,97,6,19.88
+76,2,1,1,137,Drew,Boatwright,null,null,1,96,10,32.94
+77,2,1,1,138,William,Gregory,null,null,1,95,10,27.15
+78,2,1,1,139,David,Blizzard,null,null,11,95,8,18.06
+79,2,1,1,140,Dakota,Smith,null,null,12,98,7,52.16
+80,2,1,1,141,Phillip,Padgett,null,null,12,96,8,4.69
+81,2,1,1,142,Caleb,Black,null,null,12,98,7,32.69
+82,2,1,1,143,Scooter,Carter,null,null,1,96,12,4.1
+83,2,1,1,144,Judson,Ward,null,null,1,98,7,54.56
+84,2,1,1,147,Peter,Strong,null,null,4,94,7,51.03
+85,2,1,1,148,Leighton,Brown,null,null,4,91,7,20.29
+86,2,1,1,149,Andrew,Just,null,null,4,97,6,59.47
+87,2,2,2,201,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Mark McCall,5,100,2,19.41
+88,2,2,2,202,null,null,Blue Ridge 2,Michael Sims - Jacob Kelley - Anson Perry - Sam McMillan,5,100,1,53.85
+89,2,2,2,203,null,null,Broad River 1,Cameron Smith - Tyler Gibson - Steve Adams - David Upchurch,8,100,2,49.03
+90,2,2,2,204,null,null,Black River 1,Jacob Davis - Shane Newman - Ryan Munn - David Chambers,9,98,3,20.82
+91,2,2,2,205,null,null,BEC 1,Mark Millovich - William Burbage - Wesley Mason,2,100,2,2.72
+92,2,2,2,206,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,1,45.75
+93,2,2,2,207,null,null,SC 1,Jay Ayers - Johnny Brinson - Kevin Rhode - Greg Welch,1,98,1,51.06
+94,2,2,2,208,null,null,Pee Dee 1,Chris Blackmon - Allen Kinsaul - Eugene Bryant - Sean Stephens,10,100,2,15.34
+95,2,2,2,211,null,null,Tri-County 1,Ryan Jones - Wesley Bilton - Parker Kenney,11,100,2,19.85
+96,2,2,2,212,null,null,Marlboro 1,Justin Cheek - Caleb Bailey - Tommy Hayes - Johnny Rogers,13,78,4,14.03
+97,2,2,2,213,null,null,SC 2,Matthew Martin - Sport Rabon - Mack Johnson,1,98,1,56.63
+98,2,2,2,214,null,null,SEC 1,Channing Matthews - Corbett Collins - Russell Tedder,15,96,2,31.19
+99,2,2,2,215,null,null,SC 3,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,98,1,57.54
+100,2,2,2,216,null,null,SC 4,Chad Williams - Dow Hardee - Joe Sawyer - Drew Jordan,1,100,1,55.56
+101,2,2,2,217,null,null,PEC 1,Thomas Scaachi - Tarl Graham - Kurt Brunn - David White,4,88,6,38.75
+102,2,2,2,218,null,null,Lynches River 1,Joe Wright - Alex Honeycutt - CJ Roberts - James Eason,14,98,3,3.66
+42,2,1,2,101,Lee,Cochran,null,null,1,98,3,21.68
+43,2,1,2,103,Grayson,Smith,null,null,6,100,2,0.69
+44,2,1,2,104,Alex,Pittman,null,null,6,98,2,50.29
+45,2,1,2,105,Dustin,Victor,null,null,6,100,2,31.59
+46,2,1,2,106,Bruce,Cunupp,null,null,6,100,1,31.68
+47,2,1,2,107,Lucas,Elston,null,null,6,100,3,31.16
+48,2,1,2,108,Jake,Stewart,null,null,5,100,2,12.97
+49,2,1,2,109,D.J.,Roper,null,null,5,100,2,42.47
+50,2,1,2,110,Cameron,Kenner,null,null,7,98,3,48.32
+51,2,1,2,111,Cody,Fulmer,null,null,7,98,2,8.09
+52,2,1,2,112,Josh,Hughes,null,null,7,96,3,25.53
+53,2,1,2,113,Garen,Murray,null,null,8,100,2,15.5
+54,2,1,2,114,Daniel,Sams,null,null,8,96,2,46.37
+55,2,1,2,116,Kyle,Patrick,null,null,6,100,2,7.15
+56,2,1,2,117,Austin,Seitz,null,null,9,100,2,56.16
+57,2,1,2,118,Joseph,Kruger,null,null,9,100,3,20.62
+58,2,1,2,119,Corey,Thomas,null,null,2,100,2,46.32
+59,2,1,2,120,Jacob,O'Dea,null,null,2,100,2,48.97
+60,2,1,2,121,Colby,Moore,null,null,2,100,3,1.56
+61,2,1,2,122,Henry,Owens,null,null,2,100,1,59.03
+62,2,1,2,123,Austin,Griswold,null,null,1,100,2,31.66
+63,2,1,2,124,Jamie,Anderson,null,null,1,84,2,28.97
+64,2,1,2,125,Brenton,Hollingsworth,null,null,6,100,3,5.31
+65,2,1,2,126,Joseph,Shillinglaw,null,null,1,100,2,13.53
+66,2,1,2,127,Joseph,Watson,null,null,10,100,2,27.97
+67,2,1,2,128,Barett,Altman,null,null,10,98,3,51.43
+68,2,1,2,129,Greg,Beckum,null,null,10,100,2,34.19
+69,2,1,2,130,Scott,Truett,null,null,10,100,3,12.41
+70,2,1,2,131,Russ,Wannamaker,null,null,11,100,2,23.19
+71,2,1,2,132,Hunter,Melton,null,null,1,100,2,1.88
+72,2,1,2,133,Charlie,Thompkins,null,null,1,100,2,18.9
+73,2,1,2,134,Conner,Brown,null,null,1,100,2,17.44
+74,2,1,2,135,Aaron Thomas,Hughes,null,null,1,100,2,21.09
+75,2,1,2,136,Josh,Sawyer,null,null,1,100,2,14.19
+76,2,1,2,137,Drew,Boatwright,null,null,1,100,1,49.59
+77,2,1,2,138,William,Gregory,null,null,1,100,2,26.66
+78,2,1,2,139,David,Blizzard,null,null,11,100,2,48.56
+79,2,1,2,140,Dakota,Smith,null,null,12,100,4,7.37
+80,2,1,2,141,Phillip,Padgett,null,null,12,100,4,12.22
+81,2,1,2,142,Caleb,Black,null,null,12,86,5,27.5
+82,2,1,2,143,Scooter,Carter,null,null,1,100,2,20.78
+83,2,1,2,144,Judson,Ward,null,null,1,100,3,7.72
+84,2,1,2,147,Peter,Strong,null,null,4,88,7,17.32
+85,2,1,2,148,Leighton,Brown,null,null,4,100,2,41.59
+86,2,1,2,149,Andrew,Just,null,null,4,90,5,1.66
+87,2,2,5,201,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Mark McCall,5,100,7,50.82
+88,2,2,5,202,null,null,Blue Ridge 2,Michael Sims - Jacob Kelley - Anson Perry - Sam McMillan,5,100,7,18.78
+89,2,2,5,203,null,null,Broad River 1,Cameron Smith - Tyler Gibson - Steve Adams - David Upchurch,8,100,9,45.4
+90,2,2,5,204,null,null,Black River 1,Jacob Davis - Shane Newman - Ryan Munn - David Chambers,9,98,11,42.02
+91,2,2,5,205,null,null,BEC 1,Mark Millovich - William Burbage - Wesley Mason,2,100,7,7.47
+92,2,2,5,206,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,8,23.12
+93,2,2,5,207,null,null,SC 1,Jay Ayers - Johnny Brinson - Kevin Rhode - Greg Welch,1,100,6,54.22
+94,2,2,5,208,null,null,Pee Dee 1,Chris Blackmon - Allen Kinsaul - Eugene Bryant - Sean Stephens,10,98,13,49.91
+95,2,2,5,211,null,null,Tri-County 1,Ryan Jones - Wesley Bilton - Parker Kenney,11,100,10,35.85
+96,2,2,5,212,null,null,Marlboro 1,Justin Cheek - Caleb Bailey - Tommy Hayes - Johnny Rogers,13,98,10,49.99
+97,2,2,5,213,null,null,SC 2,Matthew Martin - Sport Rabon - Mack Johnson,1,100,5,37.11
+98,2,2,5,214,null,null,SEC 1,Channing Matthews - Corbett Collins - Russell Tedder,15,100,9,34.14
+99,2,2,5,215,null,null,SC 3,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,100,7,4.84
+100,2,2,5,216,null,null,SC 4,Chad Williams - Dow Hardee - Joe Sawyer - Drew Jordan,1,100,6,39.91
+101,2,2,5,217,null,null,PEC 1,Thomas Scaachi - Tarl Graham - Kurt Brunn - David White,4,100,10,22.91
+102,2,2,5,218,null,null,Lynches River 1,Joe Wright - Alex Honeycutt - CJ Roberts - James Eason,14,100,10,38.41
+42,2,1,9,101,Lee,Cochran,null,null,1,100,4,6.59
+43,2,1,9,103,Grayson,Smith,null,null,6,98,4,51.75
+44,2,1,9,104,Alex,Pittman,null,null,6,100,5,34.72
+45,2,1,9,105,Dustin,Victor,null,null,6,98,4,23.19
+46,2,1,9,106,Bruce,Cunupp,null,null,6,100,3,25.63
+47,2,1,9,107,Lucas,Elston,null,null,6,100,6,1.5
+48,2,1,9,108,Jake,Stewart,null,null,5,100,3,8
+49,2,1,9,109,D.J.,Roper,null,null,5,100,5,22.69
+50,2,1,9,110,Cameron,Kenner,null,null,7,100,10,37.24
+51,2,1,9,111,Cody,Fulmer,null,null,7,100,4,26.16
+52,2,1,9,112,Josh,Hughes,null,null,7,100,6,25.54
+53,2,1,9,113,Garen,Murray,null,null,8,100,5,29.66
+54,2,1,9,114,Daniel,Sams,null,null,8,100,5,39.38
+55,2,1,9,116,Kyle,Patrick,null,null,6,100,6,24.84
+56,2,1,9,117,Austin,Seitz,null,null,9,100,6,12.75
+57,2,1,9,118,Joseph,Kruger,null,null,9,100,6,28.05
+58,2,1,9,119,Corey,Thomas,null,null,2,98,3,50.37
+59,2,1,9,120,Jacob,O'Dea,null,null,2,98,5,45.63
+60,2,1,9,121,Colby,Moore,null,null,2,100,5,3.93
+61,2,1,9,122,Henry,Owens,null,null,2,100,3,17.47
+62,2,1,9,123,Austin,Griswold,null,null,1,100,4,21.69
+63,2,1,9,124,Jamie,Anderson,null,null,1,98,5,23.16
+64,2,1,9,125,Brenton,Hollingsworth,null,null,6,100,6,52.18
+65,2,1,9,126,Joseph,Shillinglaw,null,null,1,100,3,24.11
+66,2,1,9,127,Joseph,Watson,null,null,10,100,4,27.46
+67,2,1,9,128,Barett,Altman,null,null,10,98,5,28.56
+68,2,1,9,129,Greg,Beckum,null,null,10,98,6,40.98
+69,2,1,9,130,Scott,Truett,null,null,10,100,11,37.67
+70,2,1,9,131,Russ,Wannamaker,null,null,11,100,3,57.51
+71,2,1,9,132,Hunter,Melton,null,null,1,100,3,57.62
+72,2,1,9,133,Charlie,Thompkins,null,null,1,100,3,5.19
+73,2,1,9,134,Conner,Brown,null,null,1,100,3,28.66
+74,2,1,9,135,Aaron Thomas,Hughes,null,null,1,100,3,2.96
+75,2,1,9,136,Josh,Sawyer,null,null,1,100,4,20.47
+76,2,1,9,137,Drew,Boatwright,null,null,1,100,2,53.91
+77,2,1,9,138,William,Gregory,null,null,1,100,3,8.72
+78,2,1,9,139,David,Blizzard,null,null,11,100,5,58.53
+79,2,1,9,140,Dakota,Smith,null,null,12,100,8,23.13
+80,2,1,9,141,Phillip,Padgett,null,null,12,100,9,7.3
+81,2,1,9,142,Caleb,Black,null,null,12,100,7,9.66
+82,2,1,9,143,Scooter,Carter,null,null,1,100,3,20.75
+83,2,1,9,144,Judson,Ward,null,null,1,100,4,9.16
+84,2,1,9,147,Peter,Strong,null,null,4,82,14,38.86
+85,2,1,9,148,Leighton,Brown,null,null,4,100,4,42.56
+86,2,1,9,149,Andrew,Just,null,null,4,100,6,45.35
+87,2,2,10,201,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Mark McCall,5,100,7,54.84
+88,2,2,10,202,null,null,Blue Ridge 2,Michael Sims - Jacob Kelley - Anson Perry - Sam McMillan,5,100,8,39.31
+89,2,2,10,203,null,null,Broad River 1,Cameron Smith - Tyler Gibson - Steve Adams - David Upchurch,8,96,13,23.81
+90,2,2,10,204,null,null,Black River 1,Jacob Davis - Shane Newman - Ryan Munn - David Chambers,9,86,15,0
+91,2,2,10,205,null,null,BEC 1,Mark Millovich - William Burbage - Wesley Mason,2,100,7,10.75
+92,2,2,10,206,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,7,3.16
+93,2,2,10,207,null,null,SC 1,Jay Ayers - Johnny Brinson - Kevin Rhode - Greg Welch,1,100,6,28.31
+94,2,2,10,208,null,null,Pee Dee 1,Chris Blackmon - Allen Kinsaul - Eugene Bryant - Sean Stephens,10,98,11,4.25
+95,2,2,10,211,null,null,Tri-County 1,Ryan Jones - Wesley Bilton - Parker Kenney,11,94,14,32.57
+96,2,2,10,212,null,null,Marlboro 1,Justin Cheek - Caleb Bailey - Tommy Hayes - Johnny Rogers,13,98,14,13.87
+97,2,2,10,213,null,null,SC 2,Matthew Martin - Sport Rabon - Mack Johnson,1,100,5,59.09
+98,2,2,10,214,null,null,SEC 1,Channing Matthews - Corbett Collins - Russell Tedder,15,100,9,45.56
+99,2,2,10,215,null,null,SC 3,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,100,7,15.53
+100,2,2,10,216,null,null,SC 4,Chad Williams - Dow Hardee - Joe Sawyer - Drew Jordan,1,100,6,24.59
+101,2,2,10,217,null,null,PEC 1,Thomas Scaachi - Tarl Graham - Kurt Brunn - David White,4,98,10,58
+102,2,2,10,218,null,null,Lynches River 1,Joe Wright - Alex Honeycutt - CJ Roberts - James Eason,14,86,15,0
+42,2,1,5,101,Lee,Cochran,null,null,1,100,4,5.87
+43,2,1,5,103,Grayson,Smith,null,null,6,100,4,43.68
+44,2,1,5,104,Alex,Pittman,null,null,6,100,4,35.25
+45,2,1,5,105,Dustin,Victor,null,null,6,100,3,31.41
+46,2,1,5,106,Bruce,Cunupp,null,null,6,100,3,1.97
+47,2,1,5,107,Lucas,Elston,null,null,6,100,4,42.59
+48,2,1,5,108,Jake,Stewart,null,null,5,100,4,4.56
+49,2,1,5,109,D.J.,Roper,null,null,5,100,4,32.07
+50,2,1,5,110,Cameron,Kenner,null,null,7,100,7,21.94
+51,2,1,5,111,Cody,Fulmer,null,null,7,100,4,58.97
+52,2,1,5,112,Josh,Hughes,null,null,7,100,7,43.56
+53,2,1,5,113,Garen,Murray,null,null,8,98,4,57.5
+54,2,1,5,114,Daniel,Sams,null,null,8,100,5,4.93
+55,2,1,5,116,Kyle,Patrick,null,null,6,100,4,46.94
+56,2,1,5,117,Austin,Seitz,null,null,9,98,5,14.12
+57,2,1,5,118,Joseph,Kruger,null,null,9,100,5,25.97
+58,2,1,5,119,Corey,Thomas,null,null,2,100,3,29.94
+59,2,1,5,120,Jacob,O'Dea,null,null,2,100,3,41.19
+60,2,1,5,121,Colby,Moore,null,null,2,100,3,59.66
+61,2,1,5,122,Henry,Owens,null,null,2,100,3,39.85
+62,2,1,5,123,Austin,Griswold,null,null,1,100,4,3.75
+63,2,1,5,124,Jamie,Anderson,null,null,1,100,2,57.91
+64,2,1,5,125,Brenton,Hollingsworth,null,null,6,100,5,56.09
+65,2,1,5,126,Joseph,Shillinglaw,null,null,1,100,3,15.88
+66,2,1,5,127,Joseph,Watson,null,null,10,98,6,59.04
+67,2,1,5,128,Barett,Altman,null,null,10,98,5,20.19
+68,2,1,5,129,Greg,Beckum,null,null,10,100,4,59.28
+69,2,1,5,130,Scott,Truett,null,null,10,100,7,12.1
+70,2,1,5,131,Russ,Wannamaker,null,null,11,100,4,36.57
+71,2,1,5,132,Hunter,Melton,null,null,1,100,3,18.57
+72,2,1,5,133,Charlie,Thompkins,null,null,1,100,3,50.97
+73,2,1,5,134,Conner,Brown,null,null,1,100,3,20.85
+74,2,1,5,135,Aaron Thomas,Hughes,null,null,1,100,3,23.22
+75,2,1,5,136,Josh,Sawyer,null,null,1,90,4,11.96
+76,2,1,5,137,Drew,Boatwright,null,null,1,100,3,8.71
+77,2,1,5,138,William,Gregory,null,null,1,100,3,11.53
+78,2,1,5,139,David,Blizzard,null,null,11,100,5,30.75
+79,2,1,5,140,Dakota,Smith,null,null,12,100,7,8.66
+80,2,1,5,141,Phillip,Padgett,null,null,12,98,7,21.94
+81,2,1,5,142,Caleb,Black,null,null,12,100,7,10.65
+82,2,1,5,143,Scooter,Carter,null,null,1,100,5,4.44
+83,2,1,5,144,Judson,Ward,null,null,1,100,4,15.16
+84,2,1,5,147,Peter,Strong,null,null,4,100,11,28.19
+85,2,1,5,148,Leighton,Brown,null,null,4,100,6,6.72
+86,2,1,5,149,Andrew,Just,null,null,4,100,6,41.5
+87,2,2,11,201,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Mark McCall,5,100,7,19.91
+88,2,2,11,202,null,null,Blue Ridge 2,Michael Sims - Jacob Kelley - Anson Perry - Sam McMillan,5,100,6,47.31
+89,2,2,11,203,null,null,Broad River 1,Cameron Smith - Tyler Gibson - Steve Adams - David Upchurch,8,86,12,53.91
+90,2,2,11,204,null,null,Black River 1,Jacob Davis - Shane Newman - Ryan Munn - David Chambers,9,76,12,0
+91,2,2,11,205,null,null,BEC 1,Mark Millovich - William Burbage - Wesley Mason,2,100,7,22.28
+92,2,2,11,206,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,98,8,45.84
+93,2,2,11,207,null,null,SC 1,Jay Ayers - Johnny Brinson - Kevin Rhode - Greg Welch,1,100,6,37.63
+94,2,2,11,208,null,null,Pee Dee 1,Chris Blackmon - Allen Kinsaul - Eugene Bryant - Sean Stephens,10,98,10,52.75
+95,2,2,11,211,null,null,Tri-County 1,Ryan Jones - Wesley Bilton - Parker Kenney,11,88,12,51.97
+96,2,2,11,212,null,null,Marlboro 1,Justin Cheek - Caleb Bailey - Tommy Hayes - Johnny Rogers,13,88,12,0
+97,2,2,11,213,null,null,SC 2,Matthew Martin - Sport Rabon - Mack Johnson,1,90,5,51.08
+98,2,2,11,214,null,null,SEC 1,Channing Matthews - Corbett Collins - Russell Tedder,15,98,9,17.12
+99,2,2,11,215,null,null,SC 3,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,100,7,2.93
+100,2,2,11,216,null,null,SC 4,Chad Williams - Dow Hardee - Joe Sawyer - Drew Jordan,1,100,5,44.41
+101,2,2,11,217,null,null,PEC 1,Thomas Scaachi - Tarl Graham - Kurt Brunn - David White,4,100,10,44.22
+102,2,2,11,218,null,null,Lynches River 1,Joe Wright - Alex Honeycutt - CJ Roberts - James Eason,14,88,12,0
+42,2,1,12,101,Lee,Cochran,null,null,1,100,0,56.03
+43,2,1,12,103,Grayson,Smith,null,null,6,100,0,55.54
+44,2,1,12,104,Alex,Pittman,null,null,6,100,0,55.19
+45,2,1,12,105,Dustin,Victor,null,null,6,100,1,4.16
+46,2,1,12,106,Bruce,Cunupp,null,null,6,100,0,48.09
+47,2,1,12,107,Lucas,Elston,null,null,6,100,1,13.31
+48,2,1,12,108,Jake,Stewart,null,null,5,100,0,59.23
+49,2,1,12,109,D.J.,Roper,null,null,5,100,0,45.6
+50,2,1,12,110,Cameron,Kenner,null,null,7,98,2,38.22
+51,2,1,12,111,Cody,Fulmer,null,null,7,100,1,11.09
+52,2,1,12,112,Josh,Hughes,null,null,7,100,1,14.94
+53,2,1,12,113,Garen,Murray,null,null,8,100,1,56.75
+54,2,1,12,114,Daniel,Sams,null,null,8,98,1,34.15
+55,2,1,12,116,Kyle,Patrick,null,null,6,100,1,22.66
+56,2,1,12,117,Austin,Seitz,null,null,9,100,1,26.44
+57,2,1,12,118,Joseph,Kruger,null,null,9,100,2,20.72
+58,2,1,12,119,Corey,Thomas,null,null,2,100,0,58.91
+59,2,1,12,120,Jacob,O'Dea,null,null,2,100,0,48.68
+60,2,1,12,121,Colby,Moore,null,null,2,100,1,4.91
+61,2,1,12,122,Henry,Owens,null,null,2,100,0,46.25
+62,2,1,12,123,Austin,Griswold,null,null,1,100,1,0.44
+63,2,1,12,124,Jamie,Anderson,null,null,1,100,0,59.57
+64,2,1,12,125,Brenton,Hollingsworth,null,null,6,98,0,56.03
+65,2,1,12,126,Joseph,Shillinglaw,null,null,1,100,0,53.53
+66,2,1,12,127,Joseph,Watson,null,null,10,100,1,22.31
+67,2,1,12,128,Barett,Altman,null,null,10,100,1,29.19
+68,2,1,12,129,Greg,Beckum,null,null,10,100,1,33.06
+69,2,1,12,130,Scott,Truett,null,null,10,100,1,28.66
+70,2,1,12,131,Russ,Wannamaker,null,null,11,100,0,55.65
+71,2,1,12,132,Hunter,Melton,null,null,1,100,0,45.37
+72,2,1,12,133,Charlie,Thompkins,null,null,1,100,0,51.37
+73,2,1,12,134,Conner,Brown,null,null,1,100,0,50.38
+74,2,1,12,135,Aaron Thomas,Hughes,null,null,1,100,1,0.32
+75,2,1,12,136,Josh,Sawyer,null,null,1,100,0,55.72
+76,2,1,12,137,Drew,Boatwright,null,null,1,100,0,46.47
+77,2,1,12,138,William,Gregory,null,null,1,100,0,53.78
+78,2,1,12,139,David,Blizzard,null,null,11,100,1,34.25
+79,2,1,12,140,Dakota,Smith,null,null,12,100,1,19.66
+80,2,1,12,141,Phillip,Padgett,null,null,12,100,2,12
+81,2,1,12,142,Caleb,Black,null,null,12,98,2,13.69
+82,2,1,12,143,Scooter,Carter,null,null,1,100,0,58.81
+83,2,1,12,144,Judson,Ward,null,null,1,98,0,52.57
+84,2,1,12,147,Peter,Strong,null,null,4,100,1,2.28
+85,2,1,12,148,Leighton,Brown,null,null,4,100,1,5.69
+86,2,1,12,149,Andrew,Just,null,null,4,100,1,14.63
+87,2,2,12,201,null,null,Blue Ridge 1,Chad Davidson - Jay Bagwell - Clay Crawford - Mark McCall,5,100,0,56.47
+88,2,2,12,202,null,null,Blue Ridge 2,Michael Sims - Jacob Kelley - Anson Perry - Sam McMillan,5,100,1,1.22
+89,2,2,12,203,null,null,Broad River 1,Cameron Smith - Tyler Gibson - Steve Adams - David Upchurch,8,100,1,38.03
+90,2,2,12,204,null,null,Black River 1,Jacob Davis - Shane Newman - Ryan Munn - David Chambers,9,98,1,50.65
+91,2,2,12,205,null,null,BEC 1,Mark Millovich - William Burbage - Wesley Mason,2,100,0,52.34
+92,2,2,12,206,null,null,BEC 2,Will Mills - Cody Carter - Tim Whigham,2,100,1,3.28
+93,2,2,12,207,null,null,SC 1,Jay Ayers - Johnny Brinson - Kevin Rhode - Greg Welch,1,100,0,49.35
+94,2,2,12,208,null,null,Pee Dee 1,Chris Blackmon - Allen Kinsaul - Eugene Bryant - Sean Stephens,10,100,1,26
+95,2,2,12,211,null,null,Tri-County 1,Ryan Jones - Wesley Bilton - Parker Kenney,11,100,1,3.69
+96,2,2,12,212,null,null,Marlboro 1,Justin Cheek - Caleb Bailey - Tommy Hayes - Johnny Rogers,13,100,2,2.28
+97,2,2,12,213,null,null,SC 2,Matthew Martin - Sport Rabon - Mack Johnson,1,96,1,5.35
+98,2,2,12,214,null,null,SEC 1,Channing Matthews - Corbett Collins - Russell Tedder,15,100,1,19.81
+99,2,2,12,215,null,null,SC 3,Tommy Reece - Nick Brown - Coby Martin - Bryant Geathers,1,100,1,1.65
+100,2,2,12,216,null,null,SC 4,Chad Williams - Dow Hardee - Joe Sawyer - Drew Jordan,1,100,1,1.9
+101,2,2,12,217,null,null,PEC 1,Thomas Scaachi - Tarl Graham - Kurt Brunn - David White,4,100,0,59.66
+102,2,2,12,218,null,null,Lynches River 1,Joe Wright - Alex Honeycutt - CJ Roberts - James Eason,14,98,2,5.53
+103,3,1,1,101,Hunter,Melton,null,null,1,97,5,13
+104,3,1,1,102,Ethan,Johnson,null,null,1,93,6,11
+105,3,1,1,103,Chandler,Strickland,null,null,1,96,5,45
+106,3,1,1,104,Richard,Carter,null,null,1,97,7,17
+107,3,1,1,105,Dalton,Jones,null,null,1,100,6,24
+108,3,1,1,106,Austin,Griswold,null,null,1,99,7,50
+109,3,1,1,107,Jacob R,Asbill,null,null,1,89,7,44
+110,3,1,1,108,Tristan,Tucker,null,null,1,91,5,8
+111,3,1,1,109,Grant,Burton,null,null,1,91,8,45
+112,3,1,1,110,Andrew,Mills,null,null,1,91,6,19
+113,3,1,1,111,Jamie,Anderson,null,null,1,97,7,28
+114,3,1,1,112,Robert,Thornley,null,null,1,91,5,30
+115,3,1,1,113,Steven,McCants,null,null,1,94,6,34
+116,3,1,1,114,TJ,Brown,null,null,1,94,7,26
+117,3,1,1,115,Conner,Brown,null,null,1,94,6,35
+118,3,1,1,116,Paten,Powell,null,null,1,93,4,42
+119,3,1,1,117,Tyler,Garrett,null,null,1,96,5,17
+120,3,1,1,118,Lee,Cochran,null,null,1,99,3,43
+121,3,1,1,119,Jeremy,Garrett,null,null,1,99,6,15
+122,3,2,2,201,null,null,SC 1,Tommy Reece - Nick Brown - Brandon Pugh - Christian Osha,1,100,2,57
+123,3,2,2,202,null,null,SC 2,Sport Rabon-  Matthew Martin - Mack Johnson,1,100,1,58.65
+124,3,2,2,203,null,null,SC 3,Jason Sanders - Jacob Black - Brad Yon,1,98,3,4.35
+125,3,2,2,204,null,null,SC 4,Josh Craven - Luke Crosby - Rodian Henry,1,100,1,55.18
+126,3,2,2,205,null,null,SC 5,William Brown - Evan Glen - Leon Gadsden - Kyle McKnight,1,100,2,21
+127,3,2,2,206,null,null,SC 6,Dow Hardee - Chad Williams - Joe Sawyer,1,100,1,44
+128,3,2,2,207,null,null,SC 7,Drew Boatwright - Charlie Thompkins - Josh Sawyer,1,100,1,53.75
+129,3,2,2,208,null,null,SC 8,Jay Ayers - Joe Shillinglaw - Kevin Rhode,1,100,1,59.69
+130,3,2,2,209,null,null,SC 9,Brandon Clarey - Kyle McKnight - Sam Gorman,1,100,2,47.21
+103,3,1,2,101,Hunter,Melton,null,null,1,100,1,52
+104,3,1,2,102,Ethan,Johnson,null,null,1,98,4,58
+105,3,1,2,103,Chandler,Strickland,null,null,1,98,2,42
+106,3,1,2,104,Richard,Carter,null,null,1,100,2,38
+107,3,1,2,105,Dalton,Jones,null,null,1,100,2,34
+108,3,1,2,106,Austin,Griswold,null,null,1,100,2,23
+109,3,1,2,107,Jacob R,Asbill,null,null,1,98,3,10
+110,3,1,2,108,Tristan,Tucker,null,null,1,98,2,35
+111,3,1,2,109,Grant,Burton,null,null,1,100,3,28
+112,3,1,2,110,Andrew,Mills,null,null,1,98,2,50
+113,3,1,2,111,Jamie,Anderson,null,null,1,100,1,46
+114,3,1,2,112,Robert,Thornley,null,null,1,100,2,54
+115,3,1,2,113,Steven,McCants,null,null,1,100,2,47
+116,3,1,2,114,TJ,Brown,null,null,1,98,4,28
+117,3,1,2,115,Conner,Brown,null,null,1,100,2,4
+118,3,1,2,116,Paten,Powell,null,null,1,98,3,7
+119,3,1,2,117,Tyler,Garrett,null,null,1,100,2,45
+120,3,1,2,118,Lee,Cochran,null,null,1,98,3,4.22
+121,3,1,2,119,Jeremy,Garrett,null,null,1,100,2,43
+122,3,2,3,201,null,null,SC 1,Tommy Reece - Nick Brown - Brandon Pugh - Christian Osha,1,100,5,1
+123,3,2,3,202,null,null,SC 2,Sport Rabon-  Matthew Martin - Mack Johnson,1,100,5,12
+124,3,2,3,203,null,null,SC 3,Jason Sanders - Jacob Black - Brad Yon,1,100,7,52
+125,3,2,3,204,null,null,SC 4,Josh Craven - Luke Crosby - Rodian Henry,1,100,6,17
+126,3,2,3,205,null,null,SC 5,William Brown - Evan Glen - Leon Gadsden - Kyle McKnight,1,98,10,56.22
+127,3,2,3,206,null,null,SC 6,Dow Hardee - Chad Williams - Joe Sawyer,1,100,4,37.44
+128,3,2,3,207,null,null,SC 7,Drew Boatwright - Charlie Thompkins - Josh Sawyer,1,100,4,37.94
+129,3,2,3,208,null,null,SC 8,Jay Ayers - Joe Shillinglaw - Kevin Rhode,1,100,4,51
+130,3,2,3,209,null,null,SC 9,Brandon Clarey - Kyle McKnight - Sam Gorman,1,98,7,46
+103,3,1,4,101,Hunter,Melton,null,null,1,100,2,6
+104,3,1,4,102,Ethan,Johnson,null,null,1,100,3,8
+105,3,1,4,103,Chandler,Strickland,null,null,1,100,2,36
+106,3,1,4,104,Richard,Carter,null,null,1,100,2,31
+107,3,1,4,105,Dalton,Jones,null,null,1,100,3,2
+108,3,1,4,106,Austin,Griswold,null,null,1,100,3,9
+109,3,1,4,107,Jacob R,Asbill,null,null,1,100,4,57
+110,3,1,4,108,Tristan,Tucker,null,null,1,100,3,22
+111,3,1,4,109,Grant,Burton,null,null,1,100,2,56
+112,3,1,4,110,Andrew,Mills,null,null,1,100,3,13
+113,3,1,4,111,Jamie,Anderson,null,null,1,100,2,9
+114,3,1,4,112,Robert,Thornley,null,null,1,100,2,37.75
+115,3,1,4,113,Steven,McCants,null,null,1,100,2,37.69
+116,3,1,4,114,TJ,Brown,null,null,1,100,2,52
+117,3,1,4,115,Conner,Brown,null,null,1,100,3,18
+118,3,1,4,116,Paten,Powell,null,null,1,98,5,2
+119,3,1,4,117,Tyler,Garrett,null,null,1,100,3,21
+120,3,1,4,118,Lee,Cochran,null,null,1,98,4,11
+121,3,1,4,119,Jeremy,Garrett,null,null,1,98,4,40
+122,3,2,6,201,null,null,SC 1,Tommy Reece - Nick Brown - Brandon Pugh - Christian Osha,1,100,3,4.22
+123,3,2,6,202,null,null,SC 2,Sport Rabon-  Matthew Martin - Mack Johnson,1,100,4,23.72
+124,3,2,6,203,null,null,SC 3,Jason Sanders - Jacob Black - Brad Yon,1,98,6,28
+125,3,2,6,204,null,null,SC 4,Josh Craven - Luke Crosby - Rodian Henry,1,100,4,4
+126,3,2,6,205,null,null,SC 5,William Brown - Evan Glen - Leon Gadsden - Kyle McKnight,1,100,4,42
+127,3,2,6,206,null,null,SC 6,Dow Hardee - Chad Williams - Joe Sawyer,1,100,3,4.19
+128,3,2,6,207,null,null,SC 7,Drew Boatwright - Charlie Thompkins - Josh Sawyer,1,100,3,13.46
+129,3,2,6,208,null,null,SC 8,Jay Ayers - Joe Shillinglaw - Kevin Rhode,1,100,3,18.16
+130,3,2,6,209,null,null,SC 9,Brandon Clarey - Kyle McKnight - Sam Gorman,1,96,3,18.94
+103,3,1,5,101,Hunter,Melton,null,null,1,100,2,47
+104,3,1,5,102,Ethan,Johnson,null,null,1,100,3,56
+105,3,1,5,103,Chandler,Strickland,null,null,1,100,3,35
+106,3,1,5,104,Richard,Carter,null,null,1,100,3,55
+107,3,1,5,105,Dalton,Jones,null,null,1,100,3,57
+108,3,1,5,106,Austin,Griswold,null,null,1,100,3,25
+109,3,1,5,107,Jacob R,Asbill,null,null,1,100,4,53
+110,3,1,5,108,Tristan,Tucker,null,null,1,96,4,3
+111,3,1,5,109,Grant,Burton,null,null,1,100,4,3.63
+112,3,1,5,110,Andrew,Mills,null,null,1,100,3,49.29
+113,3,1,5,111,Jamie,Anderson,null,null,1,100,3,45
+114,3,1,5,112,Robert,Thornley,null,null,1,100,4,13
+115,3,1,5,113,Steven,McCants,null,null,1,100,4,2
+116,3,1,5,114,TJ,Brown,null,null,1,98,4,17
+117,3,1,5,115,Conner,Brown,null,null,1,100,3,13
+118,3,1,5,116,Paten,Powell,null,null,1,100,4,18
+119,3,1,5,117,Tyler,Garrett,null,null,1,100,3,49
+120,3,1,5,118,Lee,Cochran,null,null,1,100,2,53
+121,3,1,5,119,Jeremy,Garrett,null,null,1,100,3,3
+122,3,2,7,201,null,null,SC 1,Tommy Reece - Nick Brown - Brandon Pugh - Christian Osha,1,100,0,26
+123,3,2,7,202,null,null,SC 2,Sport Rabon-  Matthew Martin - Mack Johnson,1,100,0,31
+124,3,2,7,203,null,null,SC 3,Jason Sanders - Jacob Black - Brad Yon,1,100,0,37.03
+125,3,2,7,204,null,null,SC 4,Josh Craven - Luke Crosby - Rodian Henry,1,100,0,37.06
+126,3,2,7,205,null,null,SC 5,William Brown - Evan Glen - Leon Gadsden - Kyle McKnight,1,98,0,41
+127,3,2,7,206,null,null,SC 6,Dow Hardee - Chad Williams - Joe Sawyer,1,100,0,30
+128,3,2,7,207,null,null,SC 7,Drew Boatwright - Charlie Thompkins - Josh Sawyer,1,100,0,29
+129,3,2,7,208,null,null,SC 8,Jay Ayers - Joe Shillinglaw - Kevin Rhode,1,98,0,31.31
+130,3,2,7,209,null,null,SC 9,Brandon Clarey - Kyle McKnight - Sam Gorman,1,98,0,25.29
+103,3,1,7,101,Hunter,Melton,null,null,1,100,0,21.28
+104,3,1,7,102,Ethan,Johnson,null,null,1,100,0,22.62
+105,3,1,7,103,Chandler,Strickland,null,null,1,100,0,24.72
+106,3,1,7,104,Richard,Carter,null,null,1,100,0,32.03
+107,3,1,7,105,Dalton,Jones,null,null,1,98,0,26.35
+108,3,1,7,106,Austin,Griswold,null,null,1,100,0,29.25
+109,3,1,7,107,Jacob R,Asbill,null,null,1,100,0,38.03
+110,3,1,7,108,Tristan,Tucker,null,null,1,100,0,30.4
+111,3,1,7,109,Grant,Burton,null,null,1,100,0,51.62
+112,3,1,7,110,Andrew,Mills,null,null,1,98,0,38.22
+113,3,1,7,111,Jamie,Anderson,null,null,1,100,0,32.44
+114,3,1,7,112,Robert,Thornley,null,null,1,100,0,27.16
+115,3,1,7,113,Steven,McCants,null,null,1,100,0,29.37
+116,3,1,7,114,TJ,Brown,null,null,1,100,0,31.81
+117,3,1,7,115,Conner,Brown,null,null,1,98,0,20.06
+118,3,1,7,116,Paten,Powell,null,null,1,100,0,26.31
+119,3,1,7,117,Tyler,Garrett,null,null,1,98,0,21.88
+120,3,1,7,118,Lee,Cochran,null,null,1,100,0,28.29
+121,3,1,7,119,Jeremy,Garrett,null,null,1,98,0,15.63
+122,3,2,8,201,null,null,SC 1,Tommy Reece - Nick Brown - Brandon Pugh - Christian Osha,1,100,5,11
+123,3,2,8,202,null,null,SC 2,Sport Rabon-  Matthew Martin - Mack Johnson,1,100,4,27
+124,3,2,8,203,null,null,SC 3,Jason Sanders - Jacob Black - Brad Yon,1,88,8,27
+125,3,2,8,204,null,null,SC 4,Josh Craven - Luke Crosby - Rodian Henry,1,100,6,31.41
+126,3,2,8,205,null,null,SC 5,William Brown - Evan Glen - Leon Gadsden - Kyle McKnight,1,100,6,31.1
+127,3,2,8,206,null,null,SC 6,Dow Hardee - Chad Williams - Joe Sawyer,1,100,4,30.59
+128,3,2,8,207,null,null,SC 7,Drew Boatwright - Charlie Thompkins - Josh Sawyer,1,100,4,30.06
+129,3,2,8,208,null,null,SC 8,Jay Ayers - Joe Shillinglaw - Kevin Rhode,1,100,4,30.94
+130,3,2,8,209,null,null,SC 9,Brandon Clarey - Kyle McKnight - Sam Gorman,1,96,6,46.06
