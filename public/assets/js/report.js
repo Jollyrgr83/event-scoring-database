@@ -4,14 +4,16 @@ $(() => {
     let obj;
 
     $(document).on("click", ".button", (event) => {
-        // only button is the create pdf button
+
     });
 
     $(document).on("change", "#year-select", event => getAll());
 
     $(document).on("change", "#report-select", event => renderTierMenu());
 
-    $(document).on("change", "#tier-select", event => renderEventMenuTier());
+    $(document).on("change", "#org-select", event => renderTierMenu());
+
+    $(document).on("change", "#tier-select", event => renderEventMenu());
 
     $(document).on("change", "#dynamic-select-org", event => renderScores());
 
@@ -21,8 +23,24 @@ $(() => {
         $.get("/api/report/all/" + parseInt($("#year-select").val()), (data) => {
             obj = JSON.parse(JSON.stringify(data));
             console.log("obj", obj);
+            renderOrgMenu();
             renderTierMenu();
         });
+    }
+
+    function renderOrgMenu() {
+        $("#org-select").empty();
+        var optionEl = $("<option>");
+        optionEl.val("all");
+        optionEl.text("All Organizations");
+        $("#org-select").append(optionEl);
+        var keys = Object.keys(obj.org_ref);
+        for (let i = 0; i < keys.length; i++) {
+            var optionEl = $("<option>");
+            optionEl.val(keys[i]);
+            optionEl.text(obj.org_ref[keys[i]].name);
+            $("#org-select").append(optionEl);
+        }
     }
 
     function renderTierMenu() {
@@ -63,7 +81,7 @@ $(() => {
         renderScores();
     }
 
-    function renderEventMenuTier() {
+    function renderEventMenu() {
         $("#event-select").empty();
         let optionArray = [];
         let tier_id = parseInt($("#tier-select").val());
@@ -89,6 +107,7 @@ $(() => {
         $("#dynamic").empty();
         var tier_id = parseInt($("#event-select").val().split("-")[0]);
         var event_id = isNaN(parseInt($("#event-select").val().split("-")[1])) ? $("#event-select").val().split("-")[1] : parseInt($("#event-select").val().split("-")[1]);
+        var org_id = isNaN(parseInt($("#org-select").val())) ? "all" : parseInt($("#org-select").val());
         // render event title
         var pTitleEl = $("<p>");
         pTitleEl.attr("class", "mini-title mx auto");
@@ -102,38 +121,40 @@ $(() => {
         for (let i = 0; i < x; i++) {
             // retrieve competitor information
             let competitor_id = obj.tiers[tier_id][event_id][i].competitor_id;
-            // render html elements
-            var divEl = $("<div>");
-            divEl.attr("class", "result-container mx-auto");
-            var pRankEl = $("<p>");
-            pRankEl.attr("class", "mini-title mx-auto");
-            pRankEl.text(`Place: ${i + 1}`);
-            var pCompNumberEl = $("<p>");
-            pCompNumberEl.attr("class", "item-title mx-auto");
-            pCompNumberEl.text(obj.comp_ref[competitor_id].comp_number);
-            var pNameEl = $("<p>");
-            pNameEl.attr("class", "item-title mx-auto");
-            if (obj.tier_ref[tier_id].team === 0) {
-                pNameEl.text(`${obj.comp_ref[competitor_id].first_name} ${obj.comp_ref[competitor_id].last_name}`);
-            } else {
-                pNameEl.text(`${obj.comp_ref[competitor_id].team_name}: ${obj.comp_ref[competitor_id].group_names}`);
+            if (org_id === "all" || org_id === obj.comp_ref[competitor_id].org_id) {
+                // render html elements
+                var divEl = $("<div>");
+                divEl.attr("class", "result-container mx-auto");
+                var pRankEl = $("<p>");
+                pRankEl.attr("class", "mini-title mx-auto");
+                pRankEl.text(`Place: ${i + 1}`);
+                var pCompNumberEl = $("<p>");
+                pCompNumberEl.attr("class", "item-title mx-auto");
+                pCompNumberEl.text(obj.comp_ref[competitor_id].comp_number);
+                var pNameEl = $("<p>");
+                pNameEl.attr("class", "item-title mx-auto");
+                if (obj.tier_ref[tier_id].team === 0) {
+                    pNameEl.text(`${obj.comp_ref[competitor_id].first_name} ${obj.comp_ref[competitor_id].last_name}`);
+                } else {
+                    pNameEl.text(`${obj.comp_ref[competitor_id].team_name}: ${obj.comp_ref[competitor_id].group_names}`);
+                }
+                var pOrgEl = $("<p>");
+                pOrgEl.attr("class", "item-title mx-auto");
+                pOrgEl.text(obj.comp_ref[competitor_id].org_name);
+                var pScoreEl = $("<p>");
+                pScoreEl.attr("class", "item-title mx-auto");
+                pScoreEl.text(obj.tiers[tier_id][event_id][i].score);
+                var pTimeEl = $("<p>");
+                pTimeEl.attr("class", "item-title mx-auto");
+                pTimeEl.text(`${Math.floor(obj.tiers[tier_id][event_id][i].total_seconds / 60)}:${(obj.tiers[tier_id][event_id][i].total_seconds % 60).toFixed(2)}`);
+                divEl.append(pRankEl);
+                divEl.append(pCompNumberEl);
+                divEl.append(pNameEl);
+                divEl.append(pOrgEl);
+                divEl.append(pScoreEl);
+                divEl.append(pTimeEl);
+                $("#dynamic").append(divEl);
             }
-            var pOrgEl = $("<p>");
-            pOrgEl.attr("class", "item-title mx-auto");
-            pOrgEl.text(obj.comp_ref[competitor_id].org_name);
-            var pScoreEl = $("<p>");
-            pScoreEl.attr("class", "item-title mx-auto");
-            pScoreEl.text(obj.tiers[tier_id][event_id][i].score);
-            var pTimeEl = $("<p>");
-            pTimeEl.attr("class", "item-title mx-auto");
-            pTimeEl.text(`${Math.floor(obj.tiers[tier_id][event_id][i].total_seconds / 60)}:${(obj.tiers[tier_id][event_id][i].total_seconds % 60).toFixed(2)}`);
-            divEl.append(pRankEl);
-            divEl.append(pCompNumberEl);
-            divEl.append(pNameEl);
-            divEl.append(pOrgEl);
-            divEl.append(pScoreEl);
-            divEl.append(pTimeEl);
-            $("#dynamic").append(divEl);
         }
     }
 });
