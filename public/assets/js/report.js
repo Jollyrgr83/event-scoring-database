@@ -4,7 +4,10 @@ $(() => {
     let obj;
 
     $(document).on("click", ".button", (event) => {
-
+      $.get("/api/retrieve-report/", (data) => {
+        console.log("report", data);
+        window.location.href = "/api/retrieve-report/";
+      });
     });
 
     $(document).on("change", "#year-select", event => getAll());
@@ -156,5 +159,13 @@ $(() => {
                 $("#dynamic").append(divEl);
             }
         }
+        generateReport();
     }
+
+    function generateReport() {
+      $.get("/api/generate-report/", (data) => {
+        console.log("generate-report data", data);
+      });
+    }
+
 });

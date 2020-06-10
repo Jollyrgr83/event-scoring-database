@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var model = require("../models/model.js");
+var fs = require("fs");
 
 // sends data to view.js to build the view and edit items section
 router.get("/api/view/menu/:tableName", (req, res) => {
@@ -212,5 +213,40 @@ function compare(a, b) {
         }
     }
 }
+
+router.get("/api/generate-report/", (req, res) => {
+  var fonts = {
+    Roboto: {
+      normal: "./public/assets/fonts/Lato-Light.ttf",
+      bold: "./public/assets/fonts/Lato-Bold.ttf",
+      italics: "./public/assets/fonts/Lato-Italic.ttf",
+      bolditalics: "./public/assets/fonts/Lato-BoldItalic.ttf"
+    }
+  };
+  var PdfPrinter = require('pdfmake');
+  var printer = new PdfPrinter(fonts);
+  var fs = require('fs');
+  
+  var docDefinition = { content: "This is a sample pdf." };
+  var options = {};
+  var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
+  pdfDoc.pipe(fs.createWriteStream("./controllers/report.pdf"))
+  pdfDoc.end()
+  res.json({ status: 200 });
+});
+
+var counter = 0;
+router.get("/api/retrieve-report", (req, res) => {
+  counter++;
+  console.log("report", counter);
+  // var data =fs.readFileSync(__dirname + "/report.pdf");
+  // res.contentType("application/pdf");
+  // res.send(data);
+  res.attachment("./report.pdf");
+  res.sendFile(__dirname + "/report.pdf", (err) => {
+    if(err) throw err;
+  });
+  // res.download("./output/report.pdf");
+});
 
 module.exports = router;
