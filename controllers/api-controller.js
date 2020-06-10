@@ -154,6 +154,31 @@ router.get("/api/report/all/:year_id", (req, res) => {
         });
     });
 });
+// generates pdf report on updating score selections
+router.get("/api/generate-report/", (req, res) => {
+  var fonts = {
+    Roboto: {
+      normal: "./public/assets/fonts/Lato-Light.ttf",
+      bold: "./public/assets/fonts/Lato-Bold.ttf",
+      italics: "./public/assets/fonts/Lato-Italic.ttf",
+      bolditalics: "./public/assets/fonts/Lato-BoldItalic.ttf"
+    }
+  };
+  var PdfPrinter = require('pdfmake');
+  var printer = new PdfPrinter(fonts);
+  var fs = require('fs');
+  // add functionality here to generate report with data
+  var docDefinition = { content: "This is a sample pdf." };
+  var options = {};
+  var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
+  pdfDoc.pipe(fs.createWriteStream("./output/report.pdf"))
+  pdfDoc.end()
+  res.json({ status: 200 });
+});
+// sends pdf file to browser
+router.get("/api/retrieve-report", (req, res) => {
+  res.download("./output/report.pdf");
+});
 // receives data from view.js and adds new category (tier, event, organization, year)
 router.post("/api/view/", (req, res) => {
     model.addCategory(req.body, data => res.json(data));
@@ -213,40 +238,5 @@ function compare(a, b) {
         }
     }
 }
-
-router.get("/api/generate-report/", (req, res) => {
-  var fonts = {
-    Roboto: {
-      normal: "./public/assets/fonts/Lato-Light.ttf",
-      bold: "./public/assets/fonts/Lato-Bold.ttf",
-      italics: "./public/assets/fonts/Lato-Italic.ttf",
-      bolditalics: "./public/assets/fonts/Lato-BoldItalic.ttf"
-    }
-  };
-  var PdfPrinter = require('pdfmake');
-  var printer = new PdfPrinter(fonts);
-  var fs = require('fs');
-  
-  var docDefinition = { content: "This is a sample pdf." };
-  var options = {};
-  var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
-  pdfDoc.pipe(fs.createWriteStream("./controllers/report.pdf"))
-  pdfDoc.end()
-  res.json({ status: 200 });
-});
-
-var counter = 0;
-router.get("/api/retrieve-report", (req, res) => {
-  counter++;
-  console.log("report", counter);
-  // var data =fs.readFileSync(__dirname + "/report.pdf");
-  // res.contentType("application/pdf");
-  // res.send(data);
-  res.attachment("./report.pdf");
-  res.sendFile(__dirname + "/report.pdf", (err) => {
-    if(err) throw err;
-  });
-  // res.download("./output/report.pdf");
-});
 
 module.exports = router;
