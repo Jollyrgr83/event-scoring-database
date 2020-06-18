@@ -6,8 +6,7 @@ $(() => {
             "year": "/year",
             "comp": "/competitors",
             "score": "/score",
-            "reports": "/reports",
-            "help": "/help"
+            "reports": "/reports"
         };
         if (routes[$(event.target).attr("id")]) {
             window.location.href = routes[$(event.target).attr("id")];
