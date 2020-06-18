@@ -107,10 +107,37 @@ $(() => {
     }
 
     function renderScores() {
+      const content = [
+        { text: "", fontSize: 22},
+        { table: { headerRows: 1, widths: [ "20%", "20%", "20%", "20%", "20%" ], body: [ [ "Competitor Number", "Organization", "Place", "Score", "Time" ] ] } }
+      ];
+      
         $("#dynamic").empty();
         var tier_id = parseInt($("#event-select").val().split("-")[0]);
         var event_id = isNaN(parseInt($("#event-select").val().split("-")[1])) ? $("#event-select").val().split("-")[1] : parseInt($("#event-select").val().split("-")[1]);
         var org_id = isNaN(parseInt($("#org-select").val())) ? "all" : parseInt($("#org-select").val());
+        
+
+        content[0].text = obj.event_ref[event_id];
+        for (let i = 0; i < obj.tiers[tier_id][event_id].length; i++) {
+          var comp_id = obj.tiers[tier_id][event_id][i].competitor_id;
+          var compNum = obj.comp_ref[comp_id].comp_number;
+          var orgName = obj.comp_ref[comp_id].org_name;
+          var sc = obj.tiers[tier_id][event_id][i].score;
+          var tt = parseFloat(obj.tiers[tier_id][event_id][i].total_seconds);
+          var tmin = (Math.floor(tt / 60)).toFixed(0);
+          var tsec = (Math.floor(tt % 60)).toFixed(0);
+          var trem = ((tt % 60) - tsec).toFixed(2);
+          var tminDisp = tmin.length === 2 ? tmin : `0${tmin}`;
+          var tsecDisp = tsec.length === 2 ? tsec : `0${tsec}`;
+          var tremDisp = `${trem[2]}${trem[3]}`
+          var ttime = `${tminDisp}:${tsecDisp}.${tremDisp}`;
+          var tplace = i + 1;
+          var tArr = [compNum, orgName, tplace, sc, ttime];
+          content[1].table.body.push(tArr);
+        }
+        console.log("content", content);
+
         // render event title
         var pTitleEl = $("<p>");
         pTitleEl.attr("class", "mini-title mx auto");
@@ -159,11 +186,15 @@ $(() => {
                 $("#dynamic").append(divEl);
             }
         }
-        generateReport();
+        generateReport({ data: content });
     }
 
-    function generateReport() {
-      $.get("/api/generate-report/", (data) => {
+    function generateReport(content) {
+      const data = content;
+      $.ajax("/api/generate-report/", {
+        type: "POST",
+        data: data
+      }).then((data) => {
         console.log("generate-report data", data);
       });
     }
