@@ -109,7 +109,7 @@ $(() => {
     function renderScores() {
       const content = [
         { text: "", fontSize: 22},
-        { table: { headerRows: 1, widths: [ "20%", "20%", "20%", "20%", "20%" ], body: [ [ "Competitor Number", "Organization", "Place", "Score", "Time" ] ] } }
+        { table: { headerRows: 1, widths: [ "15%", "40%", "15%", "15%", "15%" ], body: [ [ "Competitor Number", "Organization", "Place", "Score", "Time" ] ] } }
       ];
       
         $("#dynamic").empty();
