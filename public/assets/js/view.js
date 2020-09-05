@@ -53,25 +53,25 @@ $(() => {
     const warningDivEl = h({ e: "p", c: "warning mx-auto text-center" });
     const warningTitleEl = h({ e: "p", tx: "WARNING!" });
     const warningTextEl = h({ e: "p", tx: "Deleting an item will also remove all records associated with that item." });
-    const pTitleEl = h({ e: "p", c: "mini-title mx-auto", tx: o.titleName });
+    const pTitleEl = h({ e: "p", c: "subtitle mx-auto", tx: o.titleName });
     warningDivEl.append(warningTitleEl);
     warningDivEl.append(warningTextEl);
     $("#view-container").append(warningDivEl);
     $("#view-container").append(pTitleEl);
     for (let i = 0; i < o.data.length; i++) {
-      const itemInputEl = h({ e: "input", c: "view-input", i: `input-${o.data[i].id}`, ty: "text", v: o.data[i].name });
-      const updateButtonEl = svgEl("update", "square-button mx-auto");
+      const itemInputEl = h({ e: "input", c: "half mx-auto", i: `input-${o.data[i].id}`, ty: "text", v: o.data[i].name });
+      const updateButtonEl = svgEl("update", "square-button blue mx-auto");
       updateButtonEl.setAttribute("id", `${o.data[i].id}`);
-      const deleteButtonEl = svgEl("delete", "square-button del-btn mx-auto");
+      const deleteButtonEl = svgEl("delete", "square-button red del-btn mx-auto");
       deleteButtonEl.setAttribute("id", `${o.data[i].id}`);
-      const rowEl = h({ e: "div", c: "row mx-auto text-center" });
+      const rowEl = h({ e: "div", c: "row mx-auto text-center row-container" });
       rowEl.append(itemInputEl);
       rowEl.append(updateButtonEl);
       rowEl.append(deleteButtonEl);
       $("#view-container").append(rowEl);
     }
     if (o.status === "update") {
-      const textEl = h({ e: "p", c: "item-title", tx: "Success! Item Updated!" });
+      const textEl = h({ e: "p", c: "text", tx: "Success! Item Updated!" });
       $("#view-container").append(textEl);
     }
   }
@@ -79,30 +79,30 @@ $(() => {
   function renderAddMenu() {
     const titleName = $("#add-menu").val();
     $("#add-container").empty();
-    const pTitleEl = h({ e: "p", c: "item-title mx-auto", tx: titleName === "Years" ? "Enter Year" : "Enter Name" });
+    const pTitleEl = h({ e: "p", c: "text full mx-auto", tx: titleName === "Years" ? "Enter Year" : "Enter Name" });
     $("#add-container").append(pTitleEl);
-    const inputEl = h({ e: "input", i: "add-container-input", ty: "text" });
+    const inputEl = h({ e: "input", i: "add-container-input", ty: "text", c: "full mx-auto" });
     $("#add-container").append(inputEl);
     if (titleName === "Tiers") {
-      const tiersTextEl = h({ e: "p", c: "item-title mx-auto", tx: "Are the competitors in this tier individuals or teams?" });
+      const tiersTextEl = h({ e: "p", c: "text full mx-auto", tx: "Are the competitors in this tier individuals or teams?" });
       $("#add-container").append(tiersTextEl);
-      const tiersSelectEl = h({ e: "select", i: "tiers-add-select" });
+      const tiersSelectEl = h({ e: "select", i: "tiers-add-select", c: "full mx-auto" });
       const optionYesEl = h({ e: "option", tx: "Individuals", v: "false" });
       tiersSelectEl.append(optionYesEl);
       const optionNoEl = h({ e: "option", tx: "Teams", v: "true" });
       tiersSelectEl.append(optionNoEl);
       $("#add-container").append(tiersSelectEl);
     } else if (titleName === "Organizations") {
-      const organizationsTextEl = h({ e: "p", c: "item-title mx-auto", tx: "Is this organization a coop?" });
+      const organizationsTextEl = h({ e: "p", c: "text full mx-auto", tx: "Is this organization a coop?" });
       $("#add-container").append(organizationsTextEl);
-      const organizationsSelectEl = h({ e: "select", i: "organizations-add-select" });
+      const organizationsSelectEl = h({ e: "select", i: "organizations-add-select", c: "full mx-auto" });
       const optionYesEl = h({ e: "option", tx: "Yes", v: "true" });
       organizationsSelectEl.append(optionYesEl);
       const optionNoEl = h({ e: "option", tx: "No", v: "false" });
       organizationsSelectEl.append(optionNoEl);
       $("#add-container").append(organizationsSelectEl);
     }
-    const buttonEl = h({ e: "button", c: "button mx-auto", i: "add-container-button", tx: `Add New ${titleName.slice(0, -1)}` });
+    const buttonEl = h({ e: "button", c: "button blue mx-auto", i: "add-container-button", tx: "Add" });
     $("#add-container").append(buttonEl);
     const messageEl = h({ e: "div", i: "add-message-container" });
     $("#add-container").append(messageEl);
@@ -111,14 +111,14 @@ $(() => {
   function renderAddMessage(status, o) {
     $("#add-container").empty();
     if (status === "error") {
-      const textEl = h({ e: "p", c: "item-title", tx: "Please ensure that your entry is not blank or is a valid number for a year entry." });
+      const textEl = h({ e: "p", c: "text mx-auto", tx: "Please ensure that your entry is not blank or is a valid number for a year entry." });
       renderAddMenu();
       $("#add-container").append(textEl);
     } else {
       $.ajax("/api/view/", { type: "POST", data: o }).then(() => {
         getView($("#view-menu").val());
         renderAddMenu();
-        const textEl = h({ e: "p", c: "item-title", tx: "Success! Item Added!" });
+        const textEl = h({ e: "p", c: "text mx-auto", tx: "Success! Item Added!" });
         $("#add-container").append(textEl);
       });
     }

@@ -1,33 +1,38 @@
 /* page width, global font styling, and background */
 .background {
-  background-color: rgba(39, 89, 55, 45%);
-  width: 375px;
+  background-color: #9bb4a5;
+  width: 400px;
   padding: 20px;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 18px;
 }
 /* header elements */
 .title {
-  background-color: #275937;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 1px 1px 3px black;
+  color: #275937;
   padding: 5px;
   text-align: center;
-  font-size: 22px;
-  font-weight: 300;
+  font-size: 1.5em;
+  font-weight: 700;
+  width: 375px;
+  max-width: 90%;
+}
+.line {
+  width: 375px;
+  border-top: solid 1px #275937;
+  margin: 5px 0 15px 0;
 }
 .logo {
   width: 100px;
 }
 /* page elements */
-.section-container {
-  background-color: rgba(39, 89, 55, 10%);
+.container {
+  background-color: #9bb4a5;
   border-radius: 5px;
   box-shadow: 1px 1px 3px black;
-  margin: 10px 0 10px 0;
-  padding: 20px;
+  margin: 12.5px;
+  padding: 15px 0 15px 0;
+  width: 375px;
+  /* max-width: 90%; */
 }
 .result-container {
   background-color: lightgray;
@@ -35,19 +40,22 @@
   box-shadow: 1px 1px 3px black;
   margin: 10px 0 10px 0;
   padding: 10px;
+  width: 90%;
+}
+.row-container {
+  width: 90%;
 }
 /* section elements */
-.mini-title {
-  background-color: #275937;
-  color: white;
-  border: solid 1px #275937;
-  border-radius: 5px;
-  box-shadow: 1px 1px 3px black;
-  margin-bottom: 10px;
+.subtitle {
+  color: #275937;
   padding: 5px;
+  margin: 0 0 5px 0;
+  font-size: 1.2em;
+  width: 90%;
   text-align: center;
 }
-.item-title {
+.text {
+  font-size: 0.9em;
   color: #275937;
   margin: 5px;
   padding: 5px;
@@ -58,30 +66,24 @@
 }
 /* buttons */
 .button {
-  background-color: #275937;
-  color: white;
+  outline: none;
   border: none;
   border-radius: 40px;
   box-shadow: 1px 1px 3px black;
   margin: 10px;
   padding: 5px;
-  width: 250px;
+  width: 40%;
 }
 .square-button {
-  background-color: #275937;
-  color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 1px 1px 3px black;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  padding: 5px;
-  width: 45px;
-  font-size: 22px;
-}
-.del-btn {
-  background-color: rgb(192, 0, 0);
-  color: white;
+  margin: 0 0 5px 5px;
+  padding: 7px;
+  font-size: 1.5em;
+  height: 2em;
+  width: 2em;
+  text-align: center;
 }
 .button:hover, .square-button:hover {
   cursor: pointer;
@@ -97,6 +99,22 @@
   cursor: pointer;
   outline: none;
 }
+.red {
+  background-color: #C00000;
+  color: white;
+}
+.blue {
+  background-color: rgb(0, 75, 155);
+  color: white;
+}
+.clear {
+  background-color: #9bb4a5;
+  color: #275937;
+}
+.green {
+  background-color: #275937;
+  color: white;
+}
 /* user input elements */
 input:enabled,
 input:focus,
@@ -108,8 +126,8 @@ input:active {
   box-shadow: 1px 1px 3px black;
   margin-bottom: 10px;
   padding: 5px;
-  width: 295px;
   outline: none;
+  height: 3em;
 }
 select:enabled,
 select:focus,
@@ -119,9 +137,8 @@ select:active {
   border: none;
   border-radius: 10px;
   box-shadow: 1px 1px 3px black;
-  margin-bottom: 10px;
+  margin: 0 0 5px 0;
   padding: 5px;
-  width: 295px;
   text-align: center;
   outline: none;
 }
@@ -132,25 +149,38 @@ select:active {
   border: none;
   border-radius: 15px;
   box-shadow: 1px 1px 3px black;
-  width: 295px;
+  width: 90%;
   text-align: center;
   margin-top: 10px;
   padding: 10px;
 }
 /* width classes */
-.year-input {
-  width: 235px !important;
-  margin-right: 10px !important;
+.small {
+  width: 25%;
 }
-.view-input {
-  width: 175px !important;
-  margin-right: 10px !important;
+.half {
+  width: 65%;
 }
-.score-input {
-  width: 83px !important;
-  text-align: center !important;
+.large {
+  width: 79%;
+}
+.full {
+  width: 337px;
 }
 /* prevents mouse clicks on child elements for vector icons */
 svg > * {
   pointer-events: none;
+}
+/* prevents default link styling */
+a, a:hover, a:focus, a.active {
+  text-emphasis: none !important;
+  text-decoration: none !important;
+  color: white;
+  padding: 10px !important;
+  margin: 25px !important;
+  outline: none;
+  border: none;
+  border-radius: 40px;
+  width: 40%;
+  display: block;
 }

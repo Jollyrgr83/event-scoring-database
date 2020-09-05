@@ -12,11 +12,11 @@
 
     <main>
 
-        <section class="section-container mx-auto text-center">
+        <section class="container mx-auto text-center">
 
-            <p class="item-title mx-auto">Select Competition Year</p>
+            <p class="text mx-auto">Select Competition Year</p>
             
-            <select id="year-select">
+            <select id="year-select" class="full mx-auto">
                 {{#each arrays}}
                     {{#each years}}
                         {{> year/year-block}}
@@ -24,38 +24,38 @@
                 {{/each}}
             </select>
 
-            <p class="item-title mx-auto">Select Report Type</p>
+            <p class="text mx-auto">Select Report Type</p>
 
-            <select id="report-select">
+            <select id="report-select" class="full mx-auto">
                 <option value="0">View Awards Layout (Top 3)</option>
                 <option value="1">View All Results</option>
             </select>
 
-            <p class="item-title mx-auto">Select Organization</p>
+            <p class="text mx-auto">Select Organization</p>
 
-            <select id="org-select"></select>
+            <select id="org-select" class="full mx-auto"></select>
 
-            <p class="item-title mx-auto">Select Competition Tier</p>
+            <p class="text mx-auto">Select Competition Tier</p>
 
-            <select id="tier-select"></select>
+            <select id="tier-select" class="full mx-auto"></select>
 
 
-            <p class="item-title mx-auto">Select Event/Overall</p>
+            <p class="text mx-auto">Select Event/Overall</p>
 
-            <select id="event-select"></select>
+            <select id="event-select" class="full mx-auto"></select>
         
         </section>
 
-        <section class="section-container mx-auto text-center">
+        <section class="mx-auto text-center">
 
-            <button id="print" class="button">Create pdf</button>
+          <a id="print" class="button blue mx-auto" href="/api/retrieve-report/" target="_blank">Create pdf</a>
+
+            {{!-- <button id="print" class="button blue mx-auto">Create pdf</button> --}}
 
         </section>
 
-        <section id="dynamic" class="section-container mx-auto text-center"></section>
+        <section id="dynamic" class="container mx-auto text-center"></section>
 
     </main>
-
-    {{> main/nav-menu-block}}
 
 </body>

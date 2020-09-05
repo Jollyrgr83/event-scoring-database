@@ -46,12 +46,12 @@ $(() => {
   function renderYearSetup(data) {
     $("#dynamic").empty();
     for (let i = 0; i < data.tiers.length; i++) {
-      const containerEl = h({ e: "section", c: "section-container mx-auto text-center" });
-      const pTitleEl = h({ e: "p", c: "mini-title mx-auto", tx: `${data.tiers[i].name} Tier` });
+      const containerEl = h({ e: "section", c: "container mx-auto text-center" });
+      const pTitleEl = h({ e: "p", c: "text mx-auto", tx: `${data.tiers[i].name} Tier` });
       containerEl.append(pTitleEl);
       for (let j = 0; j < data[data.tiers[i].name].length; j++) {
-        const itemInputEl = h({ e: "input", c: "year-input mx-auto", di: data[data.tiers[i].name][j].event_id, ty: "text", v: data[data.tiers[i].name][j].name });
-        const deleteButtonEl = svgEl("delete", "square-button del-btn mx-auto");
+        const itemInputEl = h({ e: "input", c: "large mx-auto", di: data[data.tiers[i].name][j].event_id, ty: "text", v: data[data.tiers[i].name][j].name });
+        const deleteButtonEl = svgEl("delete", "square-button del-btn red mx-auto");
         deleteButtonEl.setAttribute("data-event_id", data[data.tiers[i].name][j].event_id);
         deleteButtonEl.setAttribute("data-tier_id", data.tiers[i].tier_id);
         const rowEl = h({ e: "div", c: "row mx-auto text-center" });
@@ -59,22 +59,22 @@ $(() => {
         rowEl.append(deleteButtonEl);
         containerEl.append(rowEl);
       }
-      const pAddEl = h({ e: "p", c: "item-title mx-auto", tx: "Add New Event" });
+      const pAddEl = h({ e: "p", c: "text mx-auto", tx: "Add New Event" });
       containerEl.append(pAddEl);
       const rowContainerEl = h({ e: "div", c: "row mx-auto text-center" });
-      const selectEventEl = h({ e: "select", c: "year-input mx-auto", i: `year-add-event-select-${data.tiers[i].tier_id}`, di: data.tiers[i].tier_id });
+      const selectEventEl = h({ e: "select", c: "large mx-auto", i: `year-add-event-select-${data.tiers[i].tier_id}`, di: data.tiers[i].tier_id });
       for (let k = 0; k < data.allEvents.length; k++) {
         const optionEl = h({ e: "option", v: data.allEvents[k].id, tx: data.allEvents[k].name });
         selectEventEl.append(optionEl);
       }
       rowContainerEl.append(selectEventEl);
-      const addEventButtonEl = svgEl("plus", "square-button year-add-event-button mx-auto");
+      const addEventButtonEl = svgEl("plus", "square-button blue year-add-event-button mx-auto");
       addEventButtonEl.setAttribute("data-id", data.tiers[i].tier_id);
       rowContainerEl.append(addEventButtonEl);
       containerEl.append(rowContainerEl);
-      const pDelEl = h({ e: "p", c: "item-title mx-auto", tx: "Delete Tier" });
+      const pDelEl = h({ e: "p", c: "text mx-auto", tx: "Delete Tier" });
       containerEl.append(pDelEl);
-      const delTierButtonEl = h({ e: "button", c: "button mx-auto del-btn", dti: data.tiers[i].tier_id, tx: "Delete Tier" });
+      const delTierButtonEl = h({ e: "button", c: "button mx-auto red del-btn", dti: data.tiers[i].tier_id, tx: "Delete Tier" });
       containerEl.append(delTierButtonEl);
       $("#dynamic").append(containerEl);
     }
