@@ -1,7 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var model = require("../models/model.js");
-var fs = require("fs");
+const express = require("express");
+const router = express.Router();
+const model = require("../models/model.js");
 
 // sends data to view.js to build the view and edit items section
 router.get("/api/view/menu/:tableName", (req, res) => {
@@ -99,7 +98,7 @@ router.get("/api/score/reconcile/:year_id", (req, res) => {
         }
         // insert missing score table records
         for (let i = 0; i < obj.delta.length; i++) {
-            model.addScore(obj.delta[i], data => console.log(data));
+            model.addScore(obj.delta[i], () => {});
         }
         obj.scores = data;
         res.json(obj);
@@ -177,7 +176,6 @@ router.post("/api/comp/", (req, res) => {
 // generates pdf report on updating score selections
 router.post("/api/generate-report/", (req, res) => {
   var data = req.body;
-  console.log("data", data);
   var fonts = {
     Roboto: {
       normal: "./public/assets/fonts/Lato-Light.ttf",

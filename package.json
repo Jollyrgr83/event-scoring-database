@@ -1,7 +1,7 @@
 {
-  "name": "event-scoring-database",
+  "name": "rodeo-scoring-v1",
   "version": "1.0.0",
-  "description": "Rodeo Scoring Database",
+  "description": "Annual Lineworkers Rodeo Scoring",
   "main": "server.js",
   "scripts": {
     "test": "none",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jollyrgr83/event-scoring-database.git"
+    "url": "git+https://github.com/Jollyrgr83/rodeo-scoring-version-1.git"
   },
   "keywords": [
     "rodeo"
@@ -17,9 +17,9 @@
   "author": "Jason Mangin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jollyrgr83/event-scoring-database/issues"
+    "url": "https://github.com/Jollyrgr83/rodeo-scoring-version-1/issues"
   },
-  "homepage": "https://github.com/Jollyrgr83/event-scoring-database#readme",
+  "homepage": "https://github.com/Jollyrgr83/rodeo#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",

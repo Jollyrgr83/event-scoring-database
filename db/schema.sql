@@ -1,6 +1,6 @@
-CREATE DATABASE rodeo_db;
+CREATE DATABASE rodeo;
 
-USE rodeo_db;
+USE rodeo;
 
 CREATE TABLE tiers (
     id INT AUTO_INCREMENT NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE competitors (
     org_id INT NOT NULL,
     tier_id INT NOT NULL,
     year_id INT NOT NULL,
-    comp_number VARCHAR(255 NOT NULL),
+    comp_number VARCHAR(255) NOT NULL,
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
