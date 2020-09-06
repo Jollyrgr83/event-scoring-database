@@ -1,10 +1,11 @@
 /* page width, global font styling, and background */
 .background {
   background-color: #9bb4a5;
-  width: 400px;
-  padding: 20px;
+  margin: 0;
+  padding: 10px;
+  width: 375px;
+  max-width: 100%;
   font-family: "Montserrat", sans-serif;
-  font-weight: 400;
 }
 /* header elements */
 .title {
@@ -13,11 +14,9 @@
   text-align: center;
   font-size: 1.5em;
   font-weight: 700;
-  width: 375px;
-  max-width: 90%;
+  width: 90%;
 }
 .line {
-  width: 375px;
   border-top: solid 1px #275937;
   margin: 5px 0 15px 0;
 }
@@ -29,10 +28,10 @@
   background-color: #9bb4a5;
   border-radius: 5px;
   box-shadow: 1px 1px 3px black;
-  margin: 12.5px;
+  margin: 15px;
   padding: 15px 0 15px 0;
   width: 375px;
-  /* max-width: 90%; */
+  max-width: 90%;
 }
 .result-container {
   background-color: lightgray;
@@ -71,7 +70,7 @@
   border-radius: 40px;
   box-shadow: 1px 1px 3px black;
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
   width: 40%;
 }
 .square-button {
@@ -79,10 +78,10 @@
   border-radius: 5px;
   box-shadow: 1px 1px 3px black;
   margin: 0 0 5px 5px;
-  padding: 7px;
-  font-size: 1.5em;
-  height: 2em;
-  width: 2em;
+  padding: 10px;
+  font-size: 1.4em;
+  height: 1.85em;
+  width: 1.85em;
   text-align: center;
 }
 .button:hover, .square-button:hover {
@@ -104,7 +103,7 @@
   color: white;
 }
 .blue {
-  background-color: rgb(0, 75, 155);
+  background-color: #004b9b;
   color: white;
 }
 .clear {
@@ -122,12 +121,12 @@ input:active {
   background-color: white;
   color: #275937;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 1px 1px 3px black;
   margin-bottom: 10px;
   padding: 5px;
   outline: none;
-  height: 3em;
+  height: 2.6em;
 }
 select:enabled,
 select:focus,
@@ -135,12 +134,13 @@ select:active {
   background-color: white;
   color: #275937;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 1px 1px 3px black;
   margin: 0 0 5px 0;
   padding: 5px;
   text-align: center;
   outline: none;
+  height: 2.6em;
 }
 /* warning element on view page */
 .warning {
@@ -151,7 +151,7 @@ select:active {
   box-shadow: 1px 1px 3px black;
   width: 90%;
   text-align: center;
-  margin-top: 10px;
+  margin: 10px;
   padding: 10px;
 }
 /* width classes */
@@ -159,28 +159,81 @@ select:active {
   width: 25%;
 }
 .half {
-  width: 65%;
+  width: 60%;
 }
 .large {
   width: 79%;
 }
 .full {
-  width: 337px;
+  width: 90%;
 }
 /* prevents mouse clicks on child elements for vector icons */
-svg > * {
+svg > *, i > * {
   pointer-events: none;
 }
 /* prevents default link styling */
-a, a:hover, a:focus, a.active {
-  text-emphasis: none !important;
-  text-decoration: none !important;
-  color: white;
-  padding: 10px !important;
-  margin: 25px !important;
+a {
+  text-emphasis: none;
+  text-decoration: none;
+  display: block;
   outline: none;
   border: none;
-  border-radius: 40px;
   width: 40%;
+  color: white;
+  padding: 10px;
+  margin: 25px;
+  border-radius: 40px;
+  box-shadow: 1px 1px 3px black;
+}
+a:hover {
+  text-emphasis: none;
+  text-decoration: none;
   display: block;
+  outline: none;
+  border: none;
+  width: 40%;
+  color: white;
+  cursor: pointer;
+  box-shadow: 3px 3px 6px black;
+  padding: 10px;
+  margin: 25px;
+}
+a:active {
+  text-emphasis: none;
+  text-decoration: none;
+  display: block;
+  outline: none;
+  border: none;
+  width: 40%;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 0 black;
+  padding: 10px;
+  margin: 25px;
+}
+a:focus {
+  text-emphasis: none;
+  text-decoration: none;
+  display: block;
+  outline: none;
+  border: none;
+  width: 40%;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  margin: 25px;
+  box-shadow: 0 0 0 black;
+}
+a:enabled {
+  text-emphasis: none;
+  text-decoration: none;
+  display: block;
+  outline: none;
+  border: none;
+  width: 40%;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  margin: 25px;
+  box-shadow: 1px 1px 3px black;
 }
